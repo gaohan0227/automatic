@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+    <script type="text/javascript" src="../../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
+    <script type="text/javascript" src="../../js/tool.js"></script>
+    <script type="text/javascript" src="../../js/pageInit.js"></script>
+    <title>个人中心</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f7f7f7;
+        }
+
+        .goodsListVue {
+            max-width: 1460px;
+            margin: 0 auto;
+        }
+
+        .goods_list_title {
+            width: 328px;
+            height: 130px;
+            line-height: 130px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            margin-top: 42px;
+            margin-bottom: 34px;
+        }
+
+        .goods_list_title img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .goods_list_title span {
+            font-size: 26px;
+            font-weight: 500;
+            color: rgba(47, 47, 47, 1);
+            position: relative;
+        }
+
+        .goods_list {
+            display: flex;
+            align-items: center;
+            justify-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .goods_list .goods_item {
+            padding: 10px;
+            width: 20%;
+        }
+
+        .goods_list .goods_item .goods_item_info {
+            background: #fff;
+            text-align: center;
+            padding: 0 28px;
+            padding-bottom: 37px;
+        }
+
+        .goods_list .goods_item .goods_item_info .goods_cover {
+            width: 100%;
+            position: relative;
+        }
+
+        .goods_list .goods_item .goods_item_info .goods_cover:before {
+            content: "";
+            padding-top: 100%;
+            background: #fff;
+            display: block;
+        }
+
+        .goods_list .goods_item .goods_item_info .goods_cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .goods_list .goods_item .goods_item_info .goods_name {
+            font-size: 22px;
+            color: rgba(47, 47, 47, 1);
+            line-height: 30px;
+            padding-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .goods_list .goods_item .goods_item_info .goods_integral {
+            padding-top: 10px;
+            font-size: 18px;
+            color: rgba(172, 172, 172, 1);
+            line-height: 25px;
+        }
+
+        .goods_list .goods_item .goods_item_info .goods_integral span {
+            color: #FE4973;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="goodsListVue" v-cloak>
+        <div class="goods_list_title">
+            <img src="../../img/index/textbook_title.png" alt="">
+            <span>商品展示</span>
+        </div>
+        <div class="goods_list">
+            <div class="goods_item" v-for="item in goosList">
+                <div class="goods_item_info">
+                    <div class="goods_cover">
+                        <img :src="item.goodsPicture" alt="">
+                    </div>
+                    <p class="goods_name">{{item.goodsName}}</p>
+                    <p class="goods_integral"><span>{{item.goodsNum}}</span>积分</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+<script type="text/javascript" src="../../js/vue.min.js"></script>
+<script type="text/javascript" src="../../js/service/service-tool.js"></script>
+<script type="text/javascript" src="../../js/service/service-verify.js"></script>
+<script type="text/javascript">
+    var vm;
+    window.onload = function () {
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".goodsListVue",
+            data: {
+                goosList: [],
+                pageNo: "1"
+            },
+        })
+    }
+
+    function getData() {
+        var callback = function (data) {
+            vm.goosList = data.listData;
+        };
+        var postData = { "pageSize": 10, "pageNo": vm.pageNo };
+        POST('apiTeacherLogin/findGoodsList', postData, callback);
+    }
+</script>
+
+</html>

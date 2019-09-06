@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/job_report.css">
+<div class="vueApp" v-cloak>
+        <div class="job_report_bg">
+            <img src="../image/mine/job_report_bg.png">
+            <div class="job_report_text">
+                <p>{{unitName}}</p>
+            </div>
+        </div>
+        <header>
+            <div class="job_report_header">
+                <img src="../image/release/back_w.png" alt="" tapmode onclick="fnBack()">
+                <span>我的作业</span>
+            </div>
+        </header>
+        <div class="job_report_card">
+            <div v-if="isLoad">
+                <div class="job_report_card_header" v-if="listData.length>0">
+                    <div class="job_report_card_header_item" style="width: 25%;">
+                        <p>时间</p>
+                    </div>
+                    <div class="job_report_card_header_item" style="width: 26%;">
+                        <p>做题数</p>
+                    </div>
+                    <div class="job_report_card_header_item" style="width: 26%;">
+                        <p>完成度</p>
+                    </div>
+                    <div class="job_report_card_header_item" style="width: 23%;">
+                        <p>正确率</p>
+                    </div>
+                </div>
+                <div class="job_report_card_content" v-if="listData.length>0">
+                    <div class="job_report_card_content_list" v-for="item in listData">
+                        <p class="job_report_time">{{item.createDate|fnSetDate('report')}}</p>
+                        <p class="job_report_question_num">{{item.ztNum}}</p>
+                        <p class="job_report_complete">{{item.wcdu}}</p>
+                        <p class="job_report_correct">{{item.zqdu}}</p>
+                    </div>
+                </div>
+                <div class="none_data" v-else>
+                    <div>
+                        <img src="../image/no_page/no_task.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

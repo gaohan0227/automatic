@@ -1,0 +1,27 @@
+
+    <div class="dubShowVue" v-cloak>
+        <div class="dub_show" v-if="isLoad">
+            <div class="dub_show_div">
+                <div class="dub_show_content" v-for="item,index in listData">
+                    <div class="dub_show_title" v-if="item.list.length>0">
+                        <img src="../img/index/dub.png" alt="">
+                        <span>{{item.dubText}}</span>
+                    </div>
+                    <div class="dub_show_info" v-if="item.list.length>0">
+                        <div class="dub_show_item" v-for="key,val in item.list" @click="fnOpenPage('dub/dub_detail','dub_detail',key.id,key.videoUrl,key.videoCover,key.videoName)">
+                            <div class="dub_show_item_info" @mouseover="fnHover(index,val,'1')"
+                                @mouseout="fnHover(index,val,'0')">
+                                <div class="dub_show_img">
+                                    <img :src="key.videoCover" alt="">
+                                    <div class="dub_show_hover" v-if="key.isHover=='1'">
+                                        <img src="../img/index/video_btn.png" alt="">
+                                    </div>
+                                </div>
+                                <p>{{key.videoName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

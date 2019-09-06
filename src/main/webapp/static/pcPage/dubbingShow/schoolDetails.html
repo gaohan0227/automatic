@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>走向未来</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/data-flex.min.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/normal.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/header.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css?v=0.0.1">
+    <script type="text/javascript" src="../libs/jquery.min.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/page.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/tool.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/pageInit.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/vue.min.js?v=0.0.1"></script>
+    <style type="text/css">
+        body {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-content">
+        <div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+				学校详情
+			</h3>
+			<div class="carousel slide" id="carousel-490668">
+				<div class="carousel-inner">
+					<div class="item active">
+						<img alt="" :src="data.schoolRotationchartUrl" />
+					</div>
+				</div>
+			</div>
+			<p>
+				{{data.schoolIntroduce}}
+			</p>
+		</div>
+	</div>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm;
+    // 等同于window.onload
+    function pageOnload() {
+        initPage();
+        getData();
+    }
+
+    function initPage() {
+        vm = new Vue({
+            el: "#page-content",
+            data: {
+               "data":{},
+               "status":""
+            }
+        });
+    }
+
+    function getData() {
+        var callback = function(data) {
+            vm.data=data;
+        };
+        POST('apiTeacherLogin/getBannerById', {"id":"1"}, callback);
+    }
+
+</script>
+
+</html>

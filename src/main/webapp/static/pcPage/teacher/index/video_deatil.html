@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/video_deatil.css">
+<div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <div v-if="type=='2'">
+                <div class="dub_video">
+                    <video class="dub_detail_video" id="video_data" preload="meta" :poster="videoCover" :src="videoUrl" x5-playsinline="" playsinline="" webkit-playsinline="" onended="fnVideoEnd()">
+                        <source :src="videoUrl" type="video/mp4"/>
+                        <source :src="videoUrl" type="video/ogg"/>
+                        <source :src="videoUrl" type="video/webm" />
+                    </video>
+                    <img v-if="!isPlay" class="video_btn" src="../image/index/video_btn.png" alt="" tapmode @click="fnVideoPlay('1')">
+                    <header v-if="id==''">
+                        <div class="dub_detail_header">
+                            <img src="../image/index/dub_back.png" alt="" tapmode onclick="fnBack()">
+                            <img v-if="isPlay" src="../image/index/dub_speed.png" alt="" tapmode @click="fnCloseChangeSpeed('1')">
+                        </div>
+                    </header>
+                    <div class="dub_play" v-if="isPlay">
+                        <img :src="inPlay=='0'?'../image/index/dub_play_btn.png':'../image/index/dub_pause_btn.png'" alt="" tapmode @click="inPlay=='0'?fnVideoPlay('1'):fnVideoPlay('0')">
+                        <div class="dub_progress">
+                            <p class="dub_time">{{fnSecToMin(currentTime)}}/{{fnSecToMin(duration)}}</p>
+                            <div class="dub_progress_bar">
+                                <input id="range" type="range" min="0" max="100" v-model="progress" step="1" oninput="change(this)">
+                                <div class="rang_width_div">
+                                    <p class="rang_width" id="rang_width" :style="'width:'+progress+'%'"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="../image/index/dub_full.png" alt="" tapmode onclick="fnOpenFullVideo()">
+                    </div>
+                </div>
+                <p class="dub_title" v-if="videoName!=''">{{videoName}}</p>
+            </div>
+            <div v-else-if="type=='1'">
+                <img :src="imgUrl" alt="" style="width:100%;height:auto;">
+            </div>
+        </div>
+        <div class="dub_speed_div" v-if="isChangeSpeed=='1'">
+            <div class="dub_speed_gray">
+                <div class="dub_speed_alert">
+                    <div class="dub_speed_title">播放速度</div>
+                    <div class="dub_speed_list">
+                        <div :class="newSpeed==item.key?'dub_speed_item active':'dub_speed_item'" v-for="item in speedList" tapmode @click="fnSetNewsSpeed(item.key)">{{item.key}}X</div>
+                    </div>
+                    <div class="dub_speed_alert_back" tapmode @click="fnCloseChangeSpeed('0')">
+                        取消
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/lesson_center.css">
+<div class="vueApp" v-cloak>
+    <div class="header" data-flex="main:center">
+        <img src="../image/headerBg.png" alt="">
+        <p>备课中心</p>
+    </div>
+    <div class="lesson_center_card">
+        <div v-if="isLoad">
+            <div class="lesson_center_list" v-for="item in manageList">
+                <div class="lesson_center_item">
+                    <div class="lesson_center_item_img" v-for="key in item" tapmode @click="fnOpenResource(key.id)">
+                        <img class="lesson_center_item_book" :src="key.materialCoverUrl" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="none_data" v-if="manageList.length==0">
+                <div>
+                    <img src="../image/no_page/no_teach_book.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

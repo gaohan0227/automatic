@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>走向未来</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../css/data-flex.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/normal.css">
+		<link rel="stylesheet" type="text/css" href="../css/header.css">
+		<link rel="stylesheet" type="text/css" href="../css/footer.css">
+		<script type="text/javascript" src="../libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/page.js"></script>
+		<script type="text/javascript" src="../js/tool.js"></script>
+		<script type="text/javascript" src="../js/pageInit.js"></script>
+		<style type="text/css">
+			body {
+				background-color: #f7f7f7;
+			}
+			
+			.panel-body {
+				border: 1px solid rgba(228, 228, 228, 1);
+				border-top: 0;
+			}
+			
+			h3,
+			h4 {
+				font-weight: bold;
+			}
+			
+			#videoDiv {
+				background-color: #FFFFFF;
+				border: 1px solid #ddd;
+			}
+			
+			#phb_div {
+				background-color: rgba(242, 242, 242, 1);
+				border: 1px solid #ddd;
+			}
+			
+			#kspy_div {
+				width: 140px;
+				height: 41px;
+				background: inherit;
+				background-color: rgba(26, 188, 156, 1);
+				border: none;
+				border-radius: 3px;
+				-moz-box-shadow: none;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				font-family: 'PingFangSC-Regular', 'PingFang SC';
+				font-weight: 400;
+				font-style: normal;
+				color: #FFFFFF;
+				text-align: center;
+				margin-top: 9px;
+			}
+			 .personal_item{
+			 	/*display: flex;*/
+			 	text-align: center;
+			 /*flex-direction: column;*/
+			 width: 33.33%;
+			 }
+			 .personal_item img{
+			 	width: 100px;
+			 	height: 100px;
+			 	border-radius: 50%;
+			 	margin:0 auto;
+			 }
+			 .personal_item .personal_item_like{
+			 	display: flex;
+			 	justify-content: center;
+			 }
+			  .personal_item .personal_item_like img{
+			  	width: 20px;
+			 	height:20px;
+			 	border-radius:0;
+			 	margin:0;
+			  }
+			   .personal_item .personal_item_like span{
+			   	padding:0 10px;
+			   }
+			   .people_img_wz{
+			   	line-height: 45px;
+			   }
+		</style>
+	</head>
+
+	<body>
+		<div id="page-content">
+			<div class="panel panel-defaulta" style="padding: 3% 10% 3% 10%;">
+				<div class="panel-heading" id="videoDiv">
+					<h3 style="float: left;">视频名称</h3>
+					<div id="kspy_div" style="float: right;">
+						<span style="line-height: 38px;">开始配音</span>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="panel-body">
+					<img src="../img/dubbingShow/videoZw.png" />
+				</div>
+
+				<!--
+                	作者：1364161037@qq.com
+                	时间：2019-05-06
+                	描述：排行榜
+                -->
+				<div class="panel-heading" id="phb_div">
+					<h3 style="float: left;">排行榜</h3>
+					<div style="float: right;"><span style="line-height: 57px;color:#1AB9C9;padding-right: 57px;">查看全部</span></div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="panel-body" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+					
+						<div class="personal_item"><img src="../img/dubbingShow/people.png" class="img-circle">
+							<div  class="people_img_wz">张三</div>
+							
+							<div class="personal_item_like" >
+								<img src="../img/dubbingShow/xin.png"/>
+								<span>10000</span>
+							</div>
+							
+						</div>
+
+						<div class="personal_item">
+							<img src="../img/dubbingShow/people.png" class="img-circle">
+							<div class="people_img_wz">李四</div>
+							<div class="personal_item_like" >
+								<img src="../img/dubbingShow/redXin.png"/>
+								<span>9000</span>
+							</div>
+						</div>
+
+						<div class="personal_item"><img src="../img/dubbingShow/people.png" class="img-circle" >
+							<div class="people_img_wz">王五</div>
+								<div class="personal_item_like" >
+								<img src="../img/dubbingShow/xin.png"/>
+								<span>4000</span>
+							</div>
+						</div>
+						
+						<div style="width: 100%;text-align: center;"><font style="line-height: 24px;font-size: 20px;color: #999999;">——首页只显示前三名——</font></div>
+				
+
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		// 等同于window.onload
+		function pageOnload() {
+
+		}
+	</script>
+
+</html>

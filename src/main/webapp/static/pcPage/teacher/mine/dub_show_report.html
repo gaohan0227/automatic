@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/dub_show_report.css">
+<div class="vueApp" v-cloak>
+        <div class="dub_show_report_bg">
+            <img src="../image/mine/dub_show_report_bg.png">
+            <p>{{unitName}}</p>
+        </div>
+        <header>
+            <div class="dub_show_report_header">
+                <img src="../image/release/back_w.png" alt="" tapmode onclick="fnBack()">
+                <span>配音秀</span>
+            </div>
+        </header>
+        <div class="dub_show_report_card">
+            <div v-if="isLoad">
+                <div class="dub_show_report_info">
+                    <div class="dub_show_report_item">
+                        <img src="../image/mine/dub_time.png" alt="">
+                        <p v-text="reportInfo.timeNum>0?parseInt(reportInfo.timeNum):'0'"></p>
+                        <span>总时长/分</span>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <img src="../image/mine/dub_num.png" alt="">
+                        <p v-text="reportInfo.countNum>0?reportInfo.countNum:'0'"></p>
+                        <span>总数量/个</span>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <img src="../image/mine/dub_share.png" alt="">
+                        <p v-text="reportInfo.clickCountNum>0?reportInfo.clickCountNum:'0'"></p>
+                        <span>总分享/次</span>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <img src="../image/mine/dub_like.png" alt="">
+                        <p v-text="reportInfo.praiseNum>0?reportInfo.praiseNum:'0'"></p>
+                        <span>总赞数/个</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

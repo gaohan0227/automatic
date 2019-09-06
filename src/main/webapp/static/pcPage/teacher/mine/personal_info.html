@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<script type="text/javascript" src="../libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/page.js"></script>
+		<script type="text/javascript" src="../js/tool.js"></script>
+		<script type="text/javascript" src="../js/pageInit.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/service/service-tool.js"></script>
+		<script type="text/javascript" src="../js/service/service-verify.js"></script>
+		<style media="screen">
+			html,
+			body {
+				background: rgba(0, 0, 0, 0);
+				width: 100%;
+				height: 100%;
+			}
+			
+			.personal_list {
+				padding-left: 0.8rem;
+				padding-right: 0.7rem;
+			}
+			
+			.personal_list .personal_item {
+				position: relative;
+				height: 2.8rem;
+				display: flex;
+				align-items: center;
+				line-height: 2.8rem;
+				width: 100%;
+			}
+			
+			.personal_list .personal_item.personal_avatar {
+				height: 3.4rem;
+				line-height: 3.4rem;
+			}
+			
+			.personal_list .personal_item:after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height: 1px;
+				width: 100%;
+				background: #ededed;
+				transform: scaleY(0.5);
+				-webkit-transform: scaleY(0.5);
+				transform-origin: 0 0;
+				-webkit-transform-origin: 0 0;
+			}
+			
+			.personal_list .personal_item span {
+				font-size: 0.75rem;
+				color: #2f2f2f;
+				width: 4rem;
+			}
+			
+			.personal_list .personal_item div {
+				flex: 1;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				overflow: hidden;
+			}
+			
+			.personal_list .personal_item div span {
+				flex: 1;
+				text-align: right;
+				color: #6d6d6d;
+				font-size: 0.75rem;
+				padding: 0 0.15rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.personal_list .personal_item div img {
+				width: 0.6rem;
+				height: 0.6rem;
+			}
+			
+			.personal_list .personal_item.personal_avatar div .avatar {
+				width: 2rem;
+				height: 2rem;
+				border-radius: 100%;
+				margin-right: 0.35rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="vueApp" v-cloak>
+			<div class="personal_list" v-if="isLoad">
+				<div class="personal_item personal_avatar" tapmode onclick="fnIsAlbum()">
+					<span>头像</span>
+					<div>
+						<img class="avatar" :src="userInfo.avatarUrl?userInfo.avatarUrl:'../image/mine/default_avatar.png'" alt="">
+						<img src="../image/mine/go_page_mine.png" alt="">
+					</div>
+				</div>
+				<div class="personal_item" tapmode @click="fnOpenModifyInfo('username',userInfo.teacherName)">
+					<span>姓名</span>
+					<div>
+						<span>{{userInfo.teacherName}}</span>
+						<img src="../image/mine/go_page_mine.png" alt="">
+					</div>
+				</div>
+				<div class="personal_item" tapmode onclick="fnChangeSex()">
+					<span>性别</span>
+					<div>
+						<span>{{userInfo.sex|fnSexText}}</span>
+						<img src="../image/mine/go_page_mine.png" alt="">
+					</div>
+				</div>
+				<div class="personal_item" tapmode @click="fnOpenModifyInfo('email',userInfo.email)">
+					<span>邮箱</span>
+					<div>
+						<span>{{userInfo.email}}</span>
+						<img src="../image/mine/go_page_mine.png" alt="">
+					</div>
+				</div>
+				<div class="personal_item" tapmode onclick="fnChangeBirthday()">
+					<span>出生年月</span>
+					<div>
+						<span>{{userInfo.birthday|fnSetDate('date')}}</span>
+						<img src="../image/mine/go_page_mine.png" alt="">
+					</div>
+				</div>
+				<div class="personal_item">
+					<span>学校名称</span>
+					<div>
+						<span>{{userInfo.schoolName}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm;
+		var UIAlbumBrowser;
+
+		window.onload = function() {
+//			UIAlbumBrowser = api.require('UIAlbumBrowser');
+			fnInit();
+			fnInitPage()
+		};
+		//初始化
+		function fnInit() {
+			vm = new Vue({
+				el: ".vueApp",
+				data: {
+					userInfo: "",
+					isLoad: false
+				},
+				filters: {
+					fnSexText: function(key) {
+						if(key == '1') {
+							return "男"
+						} else if(key == '2') {
+							return "女"
+						}
+						return ""
+					}
+				}
+			})
+		}
+		//获取个人信息
+		function fnInitPage() {
+//			$S.ShowProgress();
+			POST("apiTeacherLogin/getTeacherInfo", "", function(ret, err) {
+				if(ret && ret.status == "200") {
+					vm.userInfo = ret.data;
+				}
+				vm.isLoad = true;
+//				$S.CloseProgress();
+			})
+		}
+
+		function fnIsAlbum() {
+//			if(api.systemType == 'ios') {
+//				UIAlbumBrowser.requestAlbumPermissions({}, function(ret, err) {
+//					if(ret.isAccessPermissions) {
+//						fnChangeType();
+//					} else {
+//						fnToast("相册权限未开启")
+//					}
+//				});
+//			} else {
+//				fnChangeType();
+//			}
+		}
+
+		function fnChangeType() {
+			var pageData = {
+				bottomAlertList: [{
+					text: "拍照",
+					key: "1"
+				}, {
+					text: "相册",
+					key: "2"
+				}],
+				bottomAlertFn: 'fnChangeImg'
+			}
+			fnOpenBottomAlert(pageData)
+		}
+
+		function fnChangeImg(val) {
+			if(val == '1') {
+				fnOpenCamera()
+			} else if(val == '2') {
+				fnOpenChangeImg()
+			}
+		}
+
+		function fnOpenCamera() {
+			var FNPhotograph = api.require('FNPhotograph');
+			FNPhotograph.open({
+				path: 'fs://savePath',
+				album: true,
+				quality: 'medium'
+			}, function(ret) {
+				if(ret.eventType == "takePhoto") {
+					fnOpenClipPic(ret.imagePath);
+					setTimeout(function() {
+						FNPhotograph.close();
+					}, 500)
+				} else if(ret.eventType == "cameraError") {
+					fnToast("相机权限未开启")
+				}
+			});
+		}
+
+		function fnOpenChangeImg() {
+			UIAlbumBrowser.open({
+				max: 1,
+				type: "image",
+				isOpenPreview: false,
+				classify: false,
+				styles: {
+					bg: '#fff',
+					mark: {
+						icon: '',
+						position: 'bottom_left',
+						size: 20
+					},
+					nav: {
+						bg: 'rgba(0,0,0,0.6)',
+						titleColor: '#fff',
+						titleSize: 18,
+						cancelColor: '#fff',
+						cancelSize: 16,
+						finishColor: '#fff',
+						finishSize: 16
+					}
+				},
+				rotation: false
+			}, function(ret) {
+				if(ret) {
+					if(ret.eventType == 'confirm') {
+						if(ret.list.length > 0) {
+							fnTrashPath(ret.list[0].path)
+						}
+					}
+				}
+			});
+		}
+
+		function fnTrashPath(path) {
+//			$S.ShowProgress();
+//			UIAlbumBrowser.transPath({
+//				path: path
+//			}, function(ret, err) {
+//				if(ret) {
+//					fnOpenClipPic(ret.path)
+//				} else {
+//					console.log('图片路径转换失败')
+//				}
+//			});
+//			$S.CloseProgress();
+		}
+
+		function fnOpenClipPic(url) {
+			var tParam = {
+				name: 'clip_pic_win',
+				url: 'widget://html/clip_pic_win.html',
+				pageParam: {
+					picUrl: url
+				}
+			}
+			fnOpenWin(tParam);
+		}
+
+		function fnChangeSex() {
+			var pageData = {
+				bottomAlertList: [{
+					text: "男",
+					key: "1"
+				}, {
+					text: "女",
+					key: "2"
+				}],
+				bottomAlertFn: 'fnSetSex'
+			}
+			fnOpenBottomAlert(pageData)
+		}
+
+		function fnSetSex(val) {
+			fnUpdateInfor("sex", val)
+		}
+
+		function fnChangeBirthday() {
+			var param = {
+				name: "birthday_layer",
+				url: "widget://html/birthday_layer.html",
+				pageParam: {
+					birthday: formatTime(vm.userInfo.birthday, 'date')
+				}
+			}
+			fnOpenFrame(param)
+		}
+
+		function fnOpenModifyInfo(type, val) {
+			var pageParam = {
+				"modify_type": type,
+				"page_name": type == 'username' ? '修改姓名' : '修改邮箱',
+				"modify_val": val
+			}
+			fnOpenPublicWin("", "mine/modify_info", pageParam)
+		}
+		//修改个人信息
+		function fnUpdateInfor(type, val) {
+			var postData = {};
+			postData[type] = val;
+			POST("apiTeacherLogin/updateTeacher", postData, function(ret, err) {
+				if(ret && ret.status == "200") {
+					fnToast("信息保存成功")
+					fnInitPage();
+					api.execScript({
+						name: 'main',
+						frameName: 'tab_mine',
+						script: 'fnInitPage();'
+					});
+
+				} else {
+					fnToast("信息保存失败")
+				}
+//				$S.CloseProgress();
+			})
+		}
+	</script>
+
+</html>

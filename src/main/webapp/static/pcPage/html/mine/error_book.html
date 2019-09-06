@@ -1,0 +1,25 @@
+
+    <div class="errorQuestionVue" v-cloak>
+        <div class="my_error_book" v-if="isLoad">
+            <div class="my_error_book_title">
+                <p>我的错题</p>
+                <div class="change_unit_right_btn">
+                    <span>选择单元</span>
+                    <img src="../img/mine/change_unit_left.png" alt="">
+                </div>
+            </div>
+            <div class="error_book_num">
+                <p class="error_question_num">{{totalCount}}</p>
+                <p>错题数</p>
+            </div>
+            <div class="my_error_book_list">
+                <div class="my_error_book_item" v-for="item,index in errorQuestionList">
+                    <div class="my_error_book_item_info">
+                        <img src="../img/mine/error_book.png" alt="">
+                        <p class="unit_name">{{item.questionName}}</p>
+                        <p class="unit_text_btn">详情</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

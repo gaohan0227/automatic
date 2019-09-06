@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>首页</title>
+    <link href="../../css/api.css" rel="stylesheet" type="text/css">
+    <link href="../../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../../css/index.css" rel="stylesheet" type="text/css">
+    <link href="../../css/swiper.min.css" rel="stylesheet" type="text/css">
+    <style>
+        html,
+        body {
+            /*background: red;*/
+        }
+
+        header {
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0;
+            z-index: 9999;
+            background: #fff;
+        }
+
+        .index_header {
+            padding: 0 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.2rem;
+            border-bottom: 1px solid #EAEAEA;
+        }
+
+        .index_header img {
+            width: 1.7rem;
+            height: 1.7rem;
+        }
+
+        .index_header p {
+            flex: 1;
+            padding-left: 0.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .index_swiper .swiper-container {
+            width: 100%;
+            padding: 0.5rem 0;
+            padding-bottom: 0.7rem;
+        }
+
+        .index_swiper .swiper-container .swiper-wrapper .swiper-slide {
+            width: 91.5%;
+            position: relative;
+            /*border-radius: 0.4rem;*/
+        }
+
+        .index_swiper .swiper-container .swiper-wrapper .swiper-slide:before {
+            content: "";
+            padding-top: 50%;
+            background: url(../../image/no_page/index_banner.png) no-repeat;
+            background-size: 100% 100%;
+            display: block;
+            border-radius: 0.4rem;
+        }
+
+        .index_swiper .swiper-container .swiper-wrapper .swiper-slide img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.4rem;
+        }
+
+        .swiper-container>.swiper-pagination-bullets {
+            bottom: 0rem;
+            line-height: 0.2rem;
+        }
+
+        .swiper-pagination-bullet {
+            width: 0.2rem;
+            height: 0.2rem;
+            background: #eaeaea;
+            border-radius: 0.1rem;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 0.6rem;
+            height: 0.2rem;
+            background: #5296FF;
+            border-radius: 0.1rem;
+        }
+
+        .index_teacher_region {
+            padding: 1rem 0.8rem;
+            padding-top: 0.7rem;
+        }
+
+        .index_teacher_region .index_item_two {
+            display: flex;
+            width: 100%;
+            /*padding-bottom: 0.75rem;*/
+            position: relative;
+        }
+
+        .index_teacher_region .index_item_two div {
+            flex: 1;
+        }
+
+        .index_teacher_region .index_item_two div img {
+            width: 100%;
+        }
+
+        .index_teacher_region .index_item_two div:first-child {
+            margin-right: 0.45rem;
+        }
+
+        .index_teacher_region .index_item_one {
+            padding-top: 1.45rem;
+            position: relative;
+        }
+
+        .index_teacher_region .index_item_one:after {
+            content: "";
+            position: absolute;
+            top: 0.75rem;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: #EAEAEA;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .hot_recommend .hot_recommend_title {
+            height: 1.4rem;
+            line-height: 1.4rem;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 0 0.8rem;
+            position: relative;
+            display: flex;
+            color: #2f2f2f;
+            align-items: center;
+        }
+
+        .hot_recommend .hot_recommend_title:before {
+            content: "";
+            position: absolute;
+            top: 0.35rem;
+            bottom: 0.35rem;
+            background: #5296FF;
+            border-radius: 0.1rem;
+            width: 0.2rem;
+        }
+
+        .hot_recommend .hot_recommend_title span {
+            padding-left: 0.5rem;
+            padding-right: 0.3rem;
+        }
+
+        .hot_recommend .hot_recommend_title img {
+            width: 0.7rem;
+            height: 0.7rem;
+        }
+
+        .hot_recommend .hot_recommend_list {
+            padding: 0 0.8rem;
+            padding-right: 0.45rem;
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 2.5rem;
+        }
+
+        .hot_recommend .hot_recommend_list .hot_recommend_item {
+            width: 50%;
+            padding: 0.8rem 0.35rem 0.3rem 0;
+            overflow: hidden;
+        }
+
+        .hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img {
+            width: 100%;
+            position: relative;
+        }
+
+        .hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img:before {
+            content: "";
+            padding-top: 62.5%;
+            background: url(../../image/no_page/index_dub.png) no-repeat;
+            background-size: 100% 100%;
+            display: block;
+            border-radius: 0.3rem;
+        }
+
+        .hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img .hot_recommend_item_cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.3rem;
+        }
+
+        .hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img .hot_recommend_item_btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2.1rem;
+            height: 2.1rem;
+            transform: translate(-50%, -50%);
+        }
+
+        .hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_title {
+            font-size: 0.75rem;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1rem;
+            margin-top: 0.5rem;
+            color: #2f2f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header>
+            <div class="index_header">
+                <img :src="indexInfo.schoolLogoUrl?indexInfo.schoolLogoUrl:'../../image/index/logo.png'" alt="">
+                <p>{{indexInfo.schoolName}}</p>
+            </div>
+        </header>
+        <div class="index_swiper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper" id="swiperList">
+                    <div class="swiper-slide" v-for="item,index in indexInfo.schoolBannerList">
+                        <img :src="item.schoolRotationchartUrl">
+                    </div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-bullets"></div>
+            </div>
+        </div>
+        <div class="index_teacher_region">
+            <div class="index_item_two">
+                <div tapmode onclick="fnOpenClassManage()">
+                    <img src="../../image/index/class_management.png" alt="">
+                </div>
+                <div tapmode onclick="fnOpenJobPublish()">
+                    <img src="../../image/index/homework_assignment.png" alt="">
+                </div>
+            </div>
+            <div class="index_item_one" v-if="indexInfo.teacherRole=='1'" tapmode onclick="fnOpenLessonCenter()">
+                <img src="../../image/index/lesson_preparation_center.png" alt="">
+            </div>
+        </div>
+        <div v-if="indexInfo!=''">
+            <div class="hot_recommend" v-if="indexInfo.hotList.length>0">
+                <div class="hot_recommend_title">
+                    <span>热门推荐</span>
+                    <img src="../../image/index/go_page.png" alt="">
+                </div>
+                <div class="hot_recommend_list">
+                    <div class="hot_recommend_item" v-for="item,index in indexInfo.hotList" tapmode @click="fnOpenVideoDetail(item.videoUrl,item.videoCover,item.videoName)">
+                        <div class="hot_recommend_item_img">
+                            <img class="hot_recommend_item_cover" :src="item.videoCover" alt="">
+                            <img class="hot_recommend_item_btn" src="../../image/index/video_btn.png" alt="">
+                        </div>
+                        <p class="hot_recommend_item_title">{{item.videoName}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/swiper.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-font.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    
+</script>
+
+</html>

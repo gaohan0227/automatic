@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/class_report_student_list.css">
+<div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <div class="change_student_list">
+                <div class="change_student_item" v-for="item in studentList" tapmode @click="fnOpenReport(item.studentId)">
+                    <img class="student_avatar" src="../image/mine/default_avatar.png" alt="">
+                    <p class="student_info">{{item.studentName}}</p>
+                </div>
+            </div>
+            <div class="none_data" v-if="studentList.length==0">
+                <div>
+                    <img src="../image/no_page/no_student.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>

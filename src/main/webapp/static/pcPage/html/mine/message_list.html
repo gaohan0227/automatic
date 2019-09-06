@@ -1,0 +1,25 @@
+<div class="messageListVue" v-cloak>
+    <div v-if="isLoad">
+        <div class="message_info">
+            <div class="message_info_title">
+                <span>消息通知</span>
+            </div>
+            <div class="message_list" v-if="messageList.length>0">
+                <div class="message_item" v-for="item in messageList">
+                    <div class="message_title">{{item.title}}</div>
+                    <div class="message_content">{{item.context}}</div>
+                    <div class="message_item_info">
+                        <p class="message_time"><span>发布时间</span>{{formatTime(item.pushTime)}}</p>
+                        <div class="message_btn">详情</div>
+                        <div class="message_btn message_del">删除</div>
+                    </div>
+                </div>
+            </div>
+            <div class="none_data" v-else>
+                <div>
+                    <img src="../img/no_page/no_message.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

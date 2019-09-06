@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/release_setting.css">
+<div class="vueApp" v-cloak>
+    <div class="release_list">
+        <div class="release_item" tapmode onclick="fnChangeClass()">
+            <img class="release_type_img" src="../img/teacher/release/class_name.png" alt="">
+            <p class="release_type">班级名称</p>
+            <p :class="classId==''?'release_content':'release_content active'" v-text="classId==''?'请选择':(className+'/'+unitName)"></p>
+            <img src="../img/teacher/release/go_page_release.png" alt="">
+        </div>
+        <div class="release_item" tapmode onclick="fnOpenSelectDur()">
+            <img class="release_type_img" src="../img/teacher/release/exam_duration.png" alt="">
+            <p class="release_type">考试时长</p>
+            <p :class="duration==''?'release_content':'release_content active'" v-text="duration==''?'请选择':duration+'分钟'"></p>
+            <img src="../img/teacher/release/go_page_release.png" alt="">
+        </div>
+        <div class="release_item" tapmode onclick="fnOpenChangeDate()">
+            <img class="release_type_img" src="../img/teacher/release/release_time.png" alt="">
+            <p class="release_type">发布时间</p>
+            <p class="release_content active">{{releaseTime}}</p>
+            <img src="../img/teacher/release/go_page_release.png" alt="">
+        </div>
+    </div>
+    <div style="height:5rem;width:100%;"></div>
+    <div class="release_fixed" tapmode onclick="fnChangeUnitTest()">
+        <div class="release_btn">下一步</div>
+    </div>
+</div>

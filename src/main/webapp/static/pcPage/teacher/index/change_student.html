@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/change_student.css">
+<div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <div class="change_student_list">
+                <div class="change_student_item" v-for="item in studentList" tapmode @click="fnCheckStudent(item.id)">
+                    <img class="checkImg" :src="fnIsChecked(item.id)>-1?'../image/release/checked.png':'../image/release/no_check.png'" alt="">
+                    <div class="student_info">
+                        <img :src="item.avatarUrl?item.avatarUrl:'../image/mine/default_avatar.png'" alt="">
+                        <p>{{item.studentName}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="none_data" v-if="studentList.length==0">
+                <div>
+                    <img src="../image/no_page/no_student.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="change_student_bottom" style="height:2.7rem;width:100%;"></div>
+        <!-- <div class="change_student_fixed">
+            <img class="checkImg" :src="isCheckAll?'../image/release/checked.png':'../image/release/no_check.png'" alt="" tapmode @click="fnCheckAll()">
+            <span>全选</span>
+            <div class="change_student_btn">确认</div>
+        </div> -->
+    </div>

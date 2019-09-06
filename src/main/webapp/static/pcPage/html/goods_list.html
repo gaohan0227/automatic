@@ -1,0 +1,18 @@
+
+    <div class="goodsListVue" v-cloak>
+        <div class="goods_list_title">
+            <img src="../img/index/textbook_title.png" alt="">
+            <span>商品展示</span>
+        </div>
+        <div class="goods_list">
+            <div class="goods_item" v-for="item in goosList">
+                <div class="goods_item_info">
+                    <div class="goods_cover">
+                        <img :src="item.goodsPicture" alt="">
+                    </div>
+                    <p class="goods_name">{{item.goodsName}}</p>
+                    <p class="goods_integral"><span>{{item.goodsNum}}</span>积分</p>
+                </div>
+            </div>
+        </div>
+    </div>

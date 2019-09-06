@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/deduct_record.css">
+<div class="vueApp" v-cloak>
+        <div class="deduct_record_list" v-if="isLoad">
+            <div class="deduct_record_item" v-for="item in listData">
+                <div class="deduct_record_user">
+                    <p class="deduct_phone">{{item.telephoneNum}}</p>
+                    <p class="deduct_time">{{item.createDate|fnSetDate("release_date")}}</p>
+                </div>
+                <p class="deduct_integral">{{item.operValue}}</p>
+            </div>
+            <div class="none_data" v-if="listData.length==0">
+                <div>
+                    <img src="../image/no_page/no_record.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>

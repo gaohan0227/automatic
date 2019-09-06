@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="../js/tool.js"></script>
+    <script type="text/javascript" src="../js/pageInit.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js"></script>
+   <script type="text/javascript" src="../js/service/service-tool.js"></script>
+   <script type="text/javascript" src="../js/service/service-verify.js"></script>
+    <style>
+        .search_class_list {
+            padding: 0 0.8rem;
+        }
+
+        .search_class_list .search_class_item {
+            height: 2.5rem;
+            line-height: 2.5rem;
+            color: #6D6D6D;
+            font-size: 0.7rem;
+            border-bottom: 1px solid #EAEAEA;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <!--<div v-if="!isLoad" class="search_class_list">
+            <div class="search_class_item" v-for="item in searchHisList" tapmode @click="fnSearchClass(item)">
+                {{item}}
+            </div>
+        </div>-->
+        <div v-else-if="isLoad">
+            <div class="search_class_list" v-if="listData.length>0">
+                <div class="search_class_item" v-for="item in listData" tapmode @click="fnOpenClassDetail(item.id)">
+                    {{item.classNames}}
+                </div>
+            </div>
+            <div class="none_data" v-else-if="listData.length==0">
+                <div>
+                    <img src="../image/no_page/no_search.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm;
+    var searchClassHis;
+     window.onload =function() {
+//      searchClassHis = api.getPrefs({
+//          sync: true,
+//          key: 'searchClass'
+//      }) || "";
+//      searchClassHis = searchClassHis != "" ? searchClassHis.split(",") : [];
+        fnInit();
+        fnInitPage();
+//      api.addEventListener({
+//          name: 'searchClassData'
+//      }, function(ret, err) {
+//          if (ret.value.searchClassVal) {
+//              vm.searchVal = ret.value.searchClassVal;
+//              fnInitPage();
+//          }
+//      });
+
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                pageNo: "1",
+                isLoad: false,
+                searchVal: "",
+//              searchHisList: searchClassHis.reverse(),
+                listData: [],
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+
+                })
+            }
+        })
+    }
+
+    function fnInitPage() {
+        fnSearchClassList();
+//      fnAddHeaderRefreshingEvent(function() { //设置下拉刷新
+//          fnSearchClassList('headerRefreshing');
+//      });
+//      fnAddFooterLoadingEvent(function() { // 设置上拉加载
+//          fnSearchClassList('load');
+//      });
+    }
+
+    function fnSearchClassList(pSign) {
+        if (pSign != "load") { //刷新
+            if (pSign != "headerRefreshing") {
+//              $S.ShowProgress();
+            }
+            vm.pageNo = "1";
+        } else { //加载
+//          $S.ShowProgress();
+        }
+        var _postData = {
+            "classNames":"啥啥啥",
+            "pageNo": vm.pageNo,
+            "pageSize": "10"
+        };
+        POST("apiTeacherLogin/findClassInfo", _postData, function(ret, err) {
+            if (ret && ret.status == "200") {
+                if (vm.pageNo == '1') {
+                    vm.listData = [];
+                }
+                vm.listData.push.apply(vm.listData, ret.data.listData);
+                console.log(JSON.stringify(vm.listData))
+                vm.pageNo++;
+            }
+            vm.isLoad = true;
+//          $S.CloseProgress();
+//          api.refreshHeaderLoadDone();
+
+        })
+
+    }
+
+    function fnBack() {
+        fnDelayCloseWin()
+    };
+
+    function fnSearchClass(val) {
+//      api.execScript({
+//          name: 'index/search_class_list_win',
+//          script: 'fnClassHistory("' + val + '");'
+//      });
+        vm.searchVal = val;
+        fnInitPage()
+    }
+    //打开班级详情
+    function fnOpenClassDetail(cId) {
+        var pageData = {
+            classId:cId
+        }
+        fnOpenPublicWin("", "index/class_detail",pageData)
+    }
+</script>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>走向未来</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../css/data-flex.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/normal.css">
+		<link rel="stylesheet" type="text/css" href="../css/header.css">
+		<link rel="stylesheet" type="text/css" href="../css/footer.css">
+		<script type="text/javascript" src="../libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/page.js"></script>
+		<script type="text/javascript" src="../js/tool.js"></script>
+		<script type="text/javascript" src="../js/pageInit.js"></script>
+		<style type="text/css">
+			body {
+				background-color: #f7f7f7;
+			}
+			
+			h3,
+			h4 {
+				font-weight: bold;
+			}
+			
+			.table tr td img {
+				width: 20px;
+				height: 20px;
+			}
+			
+			.table tr td img.img-circle {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				margin: 0 auto;
+			}
+			
+			.table td {
+				padding: auto;
+			}
+			
+			.table tbody tr td {
+				padding: 10px 11px 10px 11px;
+			}
+			
+			.rank_list {
+				width: 100%;
+			}
+			
+			.rank_list_item_header {
+				height: 54px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+			
+			.rank_list_item_header span {
+				flex: 1;
+			}
+			
+			.rank_list_item {
+				height: 85px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+			
+			.rank_list_item div {
+				flex: 1;
+			}
+			
+			.rank_list_item div.rank_list_item_like {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.rank_list_item div.rank_list_item_like span {
+				padding: 0 10px;
+			}
+			
+			.rank_list_item img.img-circle {
+				width: 60px;
+				height: 60px;
+			}
+			
+			.rank_list_item_like img {
+				width: 30px;
+				height: 30px;
+			}
+			
+			.rank_list_item_header {
+				border-bottom: 1px solid rgba(228, 228, 228, 1);
+				background-color: rgba(250, 250, 250, 1);
+			}
+			
+			.rank_list_item {
+				border-bottom: 1px solid rgba(228, 228, 228, 1);
+			}
+			
+			.rank_list_item_header span {
+				font-size: 17px;
+				font-weight: bold;
+			}
+			.fh{
+				width: 140px;
+				background-color: rgba(0, 121, 254, 1);
+				border-radius: 3px;
+				color: #FFFFFF;
+				margin-top: 9px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page-content">
+			<div class="panel panel-default" style="padding: 3% 10% 3% 10%;">
+
+				<div class="panel-heading" style="background-color: white;border: 1px solid #ddd;">
+					<h3>排行榜</h3>
+				</div>
+				<div class="panel-body" style="border: 1px solid #ddd;border-top:none;">
+					<div style="border: 1px solid #ddd;margin: 17px 150px 10px 150px;border-radius: 4px;">
+						<div style="border:0;margin: 30px 150px 10px 150px;">
+							<div style="border: 1px solid rgba(145, 213, 255, 1);margin-bottom: 15px;border-radius: 4px;background-color: rgba(230, 247, 255, 1);">
+								<div class="rank_list_item" style="border-bottom: none;">
+									<div style="color: #3BB19C;font-size: 19px;">24</div>
+									<div>
+										<img src="../img/dubbingShow/people.png" alt="" class="img-circle" />
+									</div>
+									<div>学生姓名B</div>
+									<div class="rank_list_item_like">
+										<img src="../img/dubbingShow/xin.png" />
+										<span>500</span>
+									</div>
+								</div>
+							</div>
+							<div style="border: 1px solid #ddd;margin-bottom: 10px;border-radius: 4px;">
+								<div class="rank_list">
+									<div class="rank_list_item_header">
+										<span>名次</span>
+										<span>头像</span>
+										<span>姓名</span>
+										<span>点赞数</span>
+									</div>
+									<div class="rank_list_item">
+										<div>1</div>
+										<div>
+											<img src="../img/dubbingShow/people.png" alt="" class="img-circle" />
+										</div>
+										<div>学生姓名A</div>
+										<div class="rank_list_item_like">
+											<img src="../img/dubbingShow/redXin.png" />
+											<span>600</span>
+										</div>
+									</div>
+									<div class="rank_list_item">
+										<div>2</div>
+										<div>
+											<img src="../img/dubbingShow/people.png" alt="" class="img-circle" />
+										</div>
+										<div>学生姓名B</div>
+										<div class="rank_list_item_like">
+											<img src="../img/dubbingShow/xin.png" />
+											<span>500</span>
+										</div>
+									</div>
+									<div class="rank_list_item">
+										<div>3</div>
+										<div>
+											<img src="../img/dubbingShow/people.png" alt="" class="img-circle" />
+										</div>
+										<div>学生姓名C</div>
+										<div class="rank_list_item_like">
+											<img src="../img/dubbingShow/xin.png" />
+											<span>100</span>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						
+								<div style="padding-left: 580px;">
+									<ul class="pagination pagination-sm">
+										<li>
+											<a href="#">Prev</a>
+										</li>
+										<li>
+											<a href="#">1</a>
+										</li>
+										<li>
+											<a href="#">2</a>
+										</li>
+										<li>
+											<a href="#">3</a>
+										</li>
+										<li>
+											<a href="#">4</a>
+										</li>
+										<li>
+											<a href="#">5</a>
+										</li>
+										<li>
+											<a href="#">Next</a>
+										</li>
+									</ul>
+								</div>
+					</div>
+					<center><div class="fh" style="text-align:center;height:50px;line-height:50px;"><span style="line-height: 38px;">返回</span></div></center>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 等同于window.onload
+		function pageOnload() {
+
+		}
+	</script>
+
+</html>

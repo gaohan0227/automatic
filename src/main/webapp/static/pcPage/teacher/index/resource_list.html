@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/resource_list.css">
+<div class="vueApp" v-cloak>
+        <header>
+            <div class="resource_list_header">
+                <img src="../image/release/back_w.png" alt="" tapmode onclick="fnBack()">
+                <span>资源列表</span>
+            </div>
+        </header>
+        <div class="resource_list_card">
+            <div v-if="isLoad">
+                <div class="listData.length>0">
+                    <div class="resource_list_item" v-for="item in listData" tapmode @click="fnOpenResourceDetail(item.id,item.moduleName)">
+                        <span>{{item.moduleName}}</span>
+                        <img src="../image/index/go_page_class.png" alt="">
+                    </div>
+                    <p class="load_complete"><span>加载完成</span></p>
+                </div>
+                <div class="">
+
+                </div>
+            </div>
+        </div>
+    </div>

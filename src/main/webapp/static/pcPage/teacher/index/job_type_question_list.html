@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/job_type_question_list.css">
+<div class="vueApp" v-cloak>
+			<div v-if="isLoad">
+				<div class="job_type_question_list">
+					<div class="job_type_question_item" tapmode @click="fnCheckQuestion(item.relationId,item.questionName,item.questionLibraryId)" v-for="item in questionList">
+						<img class="checkImg" :src="fnIsHaveChecked(item.relationId)>-1?'../image/release/checked.png':'../image/release/no_check.png'" alt="">
+						<p class="job_type_question_title">{{item.questionName}}</p>
+						<img src="../image/index/go_page_class.png" alt="">
+					</div>
+				</div>
+				<div class="none_data" v-if="questionList.length==0">
+					<div>
+						<img src="../image/no_page/no_data.png" alt="">
+						<p>暂无可选题目</p>
+					</div>
+				</div>
+			</div>
+			<div class="job_type_question_list_bottom" style="height:2.7rem;width:100%;"></div>
+			<!-- <div class="job_type_question_fixed">
+            <img class="checkImg" src="../image/release/no_check.png" alt="">
+            <span>全选</span>
+            <div class="job_type_question_btn">立即发布（4）</div>
+        </div> -->
+		</div>

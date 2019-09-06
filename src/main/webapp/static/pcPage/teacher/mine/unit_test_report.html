@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="../js/tool.js"></script>
+    <script type="text/javascript" src="../js/pageInit.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js"></script>
+   <script type="text/javascript" src="../js/service/service-tool.js"></script>
+   <script type="text/javascript" src="../js/service/service-verify.js"></script>
+
+    <style>
+        html,
+        body {
+            background: rgba(0, 0, 0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .vueApp {
+            /*background: linear-gradient(90deg, rgba(118, 125, 212, 1) 0%, rgba(143, 154, 255, 1) 100%);*/
+            background: linear-gradient(270deg, rgba(248, 223, 117, 1) 0%, rgba(240, 170, 101, 1) 100%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .unit_test_report_bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 9;
+        }
+
+        .unit_test_report_bg img {
+            width: 100%;
+            height: auto;
+        }
+
+        .unit_test_report_bg .unit_test_report_text {
+            position: absolute;
+            top: 52%;
+            left: 9vw;
+        }
+
+        .unit_test_report_bg .unit_test_report_text p {
+            line-height: 1.1rem;
+            font-size: 0.75rem;
+            color: #fff;
+        }
+
+        .unit_test_report_bg .unit_test_report_text p:first-child {
+            line-height: 2.25rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            padding-bottom: 0.1rem;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 99;
+        }
+
+        .unit_test_report_header {
+            height: 2.2rem;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 0 0.3rem;
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .unit_test_report_header img {
+            width: 1rem;
+            height: 1rem;
+            margin: 0.5rem;
+        }
+
+        .unit_test_report_header span {
+            padding-left: 0;
+            padding-right: 2rem;
+            flex: 1;
+        }
+
+        .unit_test_report_card {
+            top: 63vw;
+            position: absolute;
+            left: 0.6rem;
+            right: 0.6rem;
+            bottom: 1rem;
+            border-radius: 0.5rem;
+            background: #fefefe;
+        }
+
+        .unit_test_report_card .unit_test_report_title {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4.1rem;
+            height: 1.65rem;
+            background: linear-gradient(180deg, rgba(98, 213, 250, 1) 0%, rgba(59, 135, 242, 1) 100%);
+            box-shadow: 0 -0.1rem 0.15rem 0 rgba(79, 179, 248, 1);
+            border-radius: 0.85rem;
+            color: #fff;
+            line-height: 1.65rem;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+
+        .unit_test_report_card .unit_test_report_btn {
+            position: absolute;
+            bottom: 1rem;
+            left: 1.25rem;
+            right: 1.25rem;
+            height: 2.35rem;
+            background: #5296ff;
+            box-shadow: 0 0.2rem 0.7rem -0.2rem rgba(82, 150, 255, 1);
+            border-radius: 1.2rem;
+            color: #fff;
+            text-align: center;
+            line-height: 2.35rem;
+        }
+
+        .unit_test_report_card .unit_test_report_question {
+            position: absolute;
+            top: 3.5rem;
+            bottom: 0.7rem;
+            overflow: scroll;
+            width: 100%;
+            padding: 0 0.85rem;
+            padding-top: 0.7rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            /*padding-left:2.25rem;
+            padding-right: 0.45rem;*/
+        }
+
+        .unit_test_report_card .unit_test_report_line {
+            position: absolute;
+            top: 3.5rem;
+            left: 1.25rem;
+            right: 1.25rem;
+            height: 1px;
+            background: #ECECEE;
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+        }
+        /*.unit_test_report_card .unit_test_report_line:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 1.25rem;
+            right: 1.25rem;
+            height: 1px;
+            background: #ECECEE;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }*/
+
+        .unit_test_report_card .unit_test_report_question .unit_test_report_question_item {
+            width: 20%;
+            padding: 0.7rem 0.4rem;
+        }
+
+        .unit_test_report_card .unit_test_report_question .unit_test_report_question_item .question_item_num {
+            width: 100%;
+            position: relative;
+            text-align: center;
+            font-size: 1rem;
+            color: #2F2F2F;
+            font-weight: bold;
+        }
+
+        .unit_test_report_card .unit_test_report_question .unit_test_report_question_item .question_item_num:before {
+            content: "";
+            padding-top: 100%;
+            background: url(../image/release/question_card.png) no-repeat;
+            background-size: 100% 100%;
+            display: block;
+            border-radius: 100%;
+        }
+
+        .unit_test_report_card .unit_test_report_question .unit_test_report_question_item .question_item_num.question_item_success:before {
+            background: url(../image/release/test_success.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .unit_test_report_card .unit_test_report_question .unit_test_report_question_item .question_item_num.question_item_fail:before {
+            background: url(../image/release/test_fail.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .unit_test_report_card .unit_test_report_question .unit_test_report_question_item .question_item_num span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="unit_test_report_bg">
+            <img src="../image/mine/unit_test_report_bg.png">
+            <div class="unit_test_report_text">
+                <p>{{score}}分</p>
+                <p>{{unitName}}测试分数</p>
+            </div>
+        </div>
+        <header>
+            <div class="unit_test_report_header">
+                <img src="../image/release/back_w.png" alt="" tapmode onclick="fnBack()">
+                <span>单元测试</span>
+            </div>
+        </header>
+        <div class="unit_test_report_card">
+            <div v-if="isLoad">
+                <div class="unit_test_report_title" v-if="listData.length>'0'">答题卡</div>
+                <div class="unit_test_report_line" v-if="listData.length>'0'"></div>
+                <div class="unit_test_report_question" v-if="listData.length>'0'">
+                    <div class="unit_test_report_question_item" v-for="item,index in listData">
+                        <div :class="item.doStatus=='1'?'question_item_num question_item_success':(item.doStatus=='2'?'question_item_num question_item_fail':'question_item_num')">
+                            <span>{{index|fnIndexNum}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="none_data" v-else-if="listData.length=='0'">
+                    <div>
+                        <img src="../image/no_page/no_test.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body> 
+<script type="text/javascript">
+    var vm;
+    window.onload = function() {
+        fnInit();
+        fnInitPage();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                listData: [],
+                score:"0",
+                classId:  "",
+                studentId: "",
+                unitId: "",
+                unitName:"",
+                isLoad: false,
+            },
+            filters: {
+                fnIndexNum: function(i) {
+                    return i + 1;
+                }
+            }
+        })
+    }
+
+    function fnInitPage() {
+        var postData = {
+            "classId":vm.classId,
+            "unitId": vm.unitId,
+        }
+        POST("apiQuestion/getASetUnitQuestionIdByClassIdAndUnitId", postData, function(ret, err) {
+            if (ret && ret.status == "200") {
+                fnGetReport(ret.data.aSetUnitQuestionId)
+            }
+        })
+    }
+    function fnGetReport(qId) {
+        var postData = {
+            "studentId":vm.studentId,
+            "dynamicMaterialId": vm.unitId,
+            "bussActivityKindCode": "3",
+            "aSetUnitQuestionId": qId,
+        }
+        POST("apiQuestion/findQuestionCompleteList", postData, function(ret, err) {
+            if (ret && ret.status == "200") {
+                vm.listData = ret.data.list;
+                vm.score = ret.data.score;
+            }
+            vm.isLoad = true;
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin()
+    }
+</script>
+
+</html>

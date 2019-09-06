@@ -1,0 +1,33 @@
+<div class="personalVue">
+    <div class="personalInfoVue personalInfo" v-cloak>
+        <div v-if="isLoad">
+            <div class="personal_info_top">
+                <div class="user_info"@click="fnOpenNextPageUrl('个人信息','mine/personal_info','personal_info')">
+                    <img :src="userInfo.avatarUrl?userInfo.avatarUrl:'../img/index/mine.png'" alt="">
+                    <div class="user_info_item">
+                        <p class="user_name"><span>{{userInfo.studentName}}</span>
+                            <span class="levelName" v-for="item,index in currentLevelList"
+                                v-if="index==currentLevelIndex">{{item.levelName}}</span>
+                        </p>
+                        <p class="user_material"><span>{{materialName}}</span><span>&nbsp;{{materialLevelName}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="personal_score">
+                    <img src="../img/mine/personal_score.png" alt="">
+                    <p>个人积分</p>
+                    <span>{{userInfo.integral}}</span>
+                </div>
+            </div>
+            <div class="personal_info_bottom">
+                <div class="personal_info_bottom_item" v-for="item,index in personalInfoList" @click="fnOpenNextPage(index)">
+                    <img :src="'../img/mine/personal_icon_'+index+'.png'" alt="">
+                    <p>{{item.pageName}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="personalPage">
+
+    </div>
+</div>

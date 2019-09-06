@@ -1,0 +1,114 @@
+html,body,div,h1,h2,h3,p,span,input,button{
+    padding: 0;
+    margin: 0;
+}
+.header-warp{
+    height: 70px;
+    background: #ffffff;
+}
+.header{
+    background: #ffffff;
+    width: 1200px;
+    height: 70px;
+    margin: 0px auto
+}
+
+.header .logo{
+    width: 92px;
+    height: 30px;
+    margin-right: 10px;
+    float: left;
+    margin-top: 16px;
+}
+.header h1{
+    line-height: 70px;
+    font-weight: normal;
+    font-size: 20px;
+    float: left;
+}
+
+.conter-warp{
+    height: 675px;
+     position: relative;
+     background:url(../img/new-bg.png) no-repeat;
+     background-size: cover;
+}
+
+.login-carld{
+    width: 400px;
+    height: 378px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #ffffff;
+}
+.login-carld h2{
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 45px;
+}
+.login-carld input{
+    width: 320px;
+    height: 46px;
+    border: 1px solid #ccc;
+    display: block;
+    margin: 0 auto;
+    margin-top: 22px;
+    text-indent: 1em;
+}
+
+.login-carld .password{
+    
+}
+
+.login-carld button{
+    width: 320px;
+    height: 48px;
+    background: #005aaa;
+    border: none;
+    outline:none;
+    display: block;
+    margin: 0px auto;
+    margin-top: 40px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.tles{
+    height: 20px;
+    width: 320px;
+    margin: 0px auto;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.tles input{
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    display: inline-block;
+    border: #ffffff;
+    background: #ffffff;
+    margin-right: 5px;
+   float: left;
+   margin-top: 4px;
+}
+.xia{
+    color: #333333;
+    font-size: 14px;
+    float: left;
+}
+.wang{
+    float: right;
+    color: #005aaa;
+}
+.footer{
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    color: #333333;
+    font-size: 12px;
+}

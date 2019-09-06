@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>选择学生</title>
+    <link href="../css/api.css" rel="stylesheet" type="text/css">
+    <link href="../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <style>
+        .change_student_fixed {
+            padding: 0 0.8rem;
+            position: fixed;
+            bottom: 0rem;
+            left: 0;
+            width: 100%;
+            height: 2.7rem;
+            background: #fff;
+            /*box-shadow: 0 0.1rem 0.5rem 0 rgba(0, 0, 0, 0.1);*/
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .change_student_fixed:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: #eaeaea;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .change_student_fixed img {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .change_student_fixed span {
+            padding: 0 0.5rem;
+            flex: 1;
+            font-size: 0.75rem;
+            color: #2F2F2F;
+        }
+
+        .change_student_fixed .change_student_btn {
+            width: 5.4rem;
+            height: 2rem;
+            background: #5296FF;
+            border-radius: 1rem;
+            color: #fff;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="change_student_fixed">
+            <img class="checkImg" :src="isCheckAll?'../image/release/checked.png':'../image/release/no_check.png'" alt="" tapmode @click="fnCheckAll()">
+            <span>全选</span>
+            <div class="change_student_btn" tapmode @click="fnSubmit()">确认</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript" src="../script/service/service-app.js"></script>
+<script type="text/javascript" src="../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../script/service/service-font.js"></script>
+<script type="text/javascript" src="../script/service/service-user.js"></script>
+<script type="text/javascript" src="../script/service/service-login.js"></script>
+<script type="text/javascript" src="../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        fnInit();
+        api.addEventListener({
+            name: 'isCheckAll'
+        }, function(ret, err) {
+            if (ret) {
+                vm.isCheckAll = ret.value.isCheckAll;
+            }
+        });
+        if (api.pageParam.studentList.length == 0) {
+            api.setFrameAttr({
+                name: 'index/change_student_bottom',
+                hidden: true
+            });
+        }
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                isCheckAll: false,
+            },
+            methods: {
+                fnCheckAll: function() {
+                    api.execScript({
+                        name: 'index/change_student_win',
+                        frameName: 'index/change_student',
+                        script: 'vm.fnCheckAll();'
+                    });
+                },
+                fnSubmit: function() {
+                    api.execScript({
+                        name: 'index/change_student_win',
+                        frameName: 'index/change_student',
+                        script: 'fnConfirmAdd();'
+                    });
+                }
+            }
+        })
+    }
+</script>
+
+</html>

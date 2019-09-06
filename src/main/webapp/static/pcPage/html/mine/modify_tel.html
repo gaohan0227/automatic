@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+    <script type="text/javascript" src="../../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
+    <script type="text/javascript" src="../../js/tool.js"></script>
+    <script type="text/javascript" src="../../js/pageInit.js"></script>
+    <title>个人中心</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f7f7f7;
+        }
+
+        .modifyTelVue {
+            width: 100%;
+        }
+
+        .modify_tel {
+            width: 100%;
+            height: 920px;
+            padding: 31px 22px;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .modify_tel .modify_tel_title {
+            height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            position: relative;
+            display: flex;
+            color: #2f2f2f;
+            align-items: center;
+            padding: 0 8px;
+        }
+
+        .modify_tel .modify_tel_title:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            background: #F7D76D;
+            border-radius: 2px;
+            width: 3px;
+        }
+
+        .modify_tel .modify_tel_title p {
+            padding: 0 18px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .modify_tel_guide {
+            margin-top: 99px;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modify_tel_guide div {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modify_tel_guide div span:first-child {
+            width: 37px;
+            height: 37px;
+            line-height: 37px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2f2f2f;
+            background: url(../../img/topic/question_card.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .modify_tel_guide div span:last-child {
+            font-size: 20px;
+            color: rgba(213, 213, 213, 1);
+            line-height: 28px;
+            padding-top: 11px;
+        }
+
+        .modify_tel_guide div.active span:first-child {
+            background: url(../../img/topic/test_success.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .modify_tel_guide div.active span:last-child {
+            color: #6D6D6D;
+        }
+
+        .modify_tel_guide .modify_tel_line {
+            width: 17.86%;
+            height: 1px;
+            background: rgba(234, 234, 234, 1);
+            /* box-shadow: 0px 1px 0px 0px rgba(234, 234, 234, 1); */
+            margin: 0 10px;
+            margin-top: 18px;
+        }
+
+        .modify_tel_btn {
+            width: 260px;
+            margin: 0 auto;
+            margin-top: 70px;
+            height: 60px;
+            line-height: 60px;
+            background: rgba(255, 212, 70, 1);
+            box-shadow: 0px 6px 20px -7px rgba(255, 188, 13, 1);
+            border-radius: 35px;
+            text-align: center;
+            font-size: 28px;
+            color: rgba(47, 47, 47, 1);
+            letter-spacing: 12px;
+        }
+
+        .modify_tel_info {
+            text-align: center;
+        }
+
+        .modify_tel_info .modify_tel_tips {
+            font-size: 26px;
+            padding-top: 6px;
+            padding-bottom: 47px;
+            font-weight: 500;
+            color: rgba(47, 47, 47, 1);
+            line-height: 37px;
+        }
+
+        .modify_tel_info .modify_tel_success {
+            font-size: 32px;
+            font-weight: 500;
+            color: rgba(47, 47, 47, 1);
+            line-height: 45px;
+            padding-top: 4px;
+        }
+
+        .modify_tel_info img {
+            margin-top: 16px;
+            width: 180px;
+            margin: 0 auto;
+            height: auto;
+        }
+
+        .modify_tel_info input {
+            outline: none;
+            width: 380px;
+            height: 60px;
+            padding: 15px 30px;
+            line-height: 30px;
+            border-radius: 30px;
+            color: #2f2f2f;
+            font-size:22px;
+            border: 1px solid rgba(234, 234, 234, 1);
+        }
+
+        .modify_tel_info input::-webkit-input-placeholder {
+            color: #D5D5D5;
+        }
+
+        .modify_tel_info input:-moz-placeholder {
+            color: #D5D5D5;
+        }
+
+        .modify_tel_info input::-moz-placeholder {
+            color: #D5D5D5;
+        }
+
+        .modify_tel_info input:-ms-input-placeholder {
+            color: #D5D5D5;
+        }
+        .modify_tel_info_code{
+display: flex;
+align-items: center;
+justify-content: center;
+padding:10px 0;
+        }
+        .modify_tel_info_code input{
+            width:246px;
+        }
+        .modify_tel_info_code span{
+            width: 114px;
+    height: 60px;
+    background: rgba(255, 212, 70, 1);
+    border-radius: 30px;
+    margin-left: 20px;
+    font-size: 18px;
+    color: #2f2f2f;
+    line-height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modifyTelVue" v-cloak>
+        <div class="modify_tel">
+            <div class="modify_tel_title">
+                <p>修改手机</p>
+            </div>
+            <div class="modify_tel_guide">
+                <div :class="newIndex>0?'active':''"><span>1</span> <span>验证手机号</span></div>
+                <p class="modify_tel_line"></p>
+                <div :class="newIndex>1?'active':''"><span>2</span> <span>修改手机号</span></div>
+                <p class="modify_tel_line"></p>
+                <div :class="newIndex>2?'active':''"><span>3</span> <span>完成</span></div>
+            </div>
+            <div class="modify_tel_info">
+                <p v-if="newIndex=='1'" class="modify_tel_tips">已绑定的手机号：187***0945</p>
+                <div class="modify_tel_info_code" v-if="newIndex=='1'">
+                    <input type="text" placeholder="请输入短信验证码"style="text-align:center;">
+                    <span>验证码</span>
+                </div>
+                <input v-if="newIndex=='2'" type="text" style="margin:10px 0;" placeholder="请输入新的手机号">
+                <div class="modify_tel_info_code" v-if="newIndex=='2'">
+                    <input type="text" placeholder="请输入短信验证码">
+                    <span>验证码</span>
+                </div>
+                <img v-if="newIndex=='3'" src="../../img/index/dub_save_success.png" alt="">
+                <p v-if="newIndex=='3'" class="modify_tel_success">密码修改成功</p>
+            </div>
+            <div class="modify_tel_btn" v-text="newIndex==3?'返回':'下一步'" @click="fnModify()"></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../js/vue.min.js"></script>
+<script type="text/javascript" src="../../js/service/service-tool.js"></script>
+<script type="text/javascript" src="../../js/service/service-verify.js"></script>
+<script type="text/javascript">
+    var vm;
+    $(function () {
+        fnInit();
+    })
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".modifyTelVue",
+            data: {
+                newIndex: 1,
+            },
+            methods: {
+                fnModify: function () {
+                    if (this.newIndex < 3) {
+                        this.newIndex++;
+                    }
+                }
+            },
+            watch: {
+
+            }
+        })
+    }
+</script>
+
+</html>

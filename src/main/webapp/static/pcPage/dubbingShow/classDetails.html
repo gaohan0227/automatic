@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>走向未来</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/data-flex.min.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/normal.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/header.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css?v=0.0.1">
+    <script type="text/javascript" src="../libs/jquery.min.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/page.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/tool.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/pageInit.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/vue.min.js?v=0.0.1"></script>
+    <style type="text/css">
+        body {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-content">
+      <div class="row clearfix">
+		<div class="col-md-12 column">
+			<div v-for="item in dataList" class="row clearfix">
+				<div class="col-md-6 column">
+					<div class="row clearfix">
+						<div class="col-md-6 column">
+							<h3>{{item.materialName}} </h3>
+							<h5>{{item.materialLevelName}}</h5>
+						</div>
+						<div class="col-md-6 column">
+							<img width="100px" height="100px" :src="item.classLogoUrl" class="img-circle ">
+							<h5>{{item.teacherName}}</h5>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm;
+    // 等同于window.onload
+    function pageOnload() {
+        initPage();
+        getData();
+    }
+
+    function initPage() {
+        vm = new Vue({
+            el: "#page-content",
+            data: {
+               "dataList":[]
+            }
+        });
+    }
+
+    function getData() {
+        var callback = function(data) {
+            vm.dataList=data.listData;
+        };
+        POST('apiTeacherLogin/findClassInfoList', {"custId":"1"}, callback);
+    }
+
+</script>
+
+</html>

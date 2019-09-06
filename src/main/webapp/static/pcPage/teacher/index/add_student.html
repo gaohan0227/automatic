@@ -1,0 +1,11 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/add_student.css">
+<div class="vueApp" v-cloak>
+        <div class="add_student_tips">通过手机号添加学生到班级</div>
+        <div class="add_student_item" id="phone_input">
+            <form id="search_from" target="nm_iframe" style="flex:1;">
+                <input type="tel" v-model="studentPhone" maxlength="11" data-type="_telphone" data-verify="true" data-null="true" data-regular="true" name="手机号" placeholder="请输入手机号">
+            </form>
+            <iframe name="nm_iframe" style="display:none;"></iframe>
+            <img v-if="studentPhone!=''" src="../image/login/input_clear.png" alt="" tapmode @click="fnClearVal()">
+        </div>
+    </div>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="../js/tool.js"></script>
+    <script type="text/javascript" src="../js/pageInit.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js"></script>
+   <script type="text/javascript" src="../js/service/service-tool.js"></script>
+   <script type="text/javascript" src="../js/service/service-verify.js"></script> 
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .vueApp {
+            padding: 0 0.8rem;
+        }
+
+        .about_us_logo {
+            padding: 2rem 1rem;
+        }
+
+        .about_us_logo img {
+            width: 6rem;
+            height: 6rem;
+            box-shadow: 0 0.25rem 1.2rem 0 rgba(169, 169, 169, 0.18);
+            border-radius: 1.3rem;
+            margin: 0 auto;
+        }
+
+        .about_us_logo p {
+            text-align: center;
+            padding-bottom: 0.3rem;
+            line-height: 0.9rem;
+            font-size: 0.6rem;
+            color: #ACACAC;
+        }
+
+        .about_us_logo .appVersion {
+            font-size: 0.75rem;
+            line-height: 1.05rem;
+            color: #2F2F2F;
+            padding-top: 1.4rem;
+        }
+
+        .about_us_list {
+            position: relative;
+        }
+
+        .about_us_list:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #EAEAEA;
+        }
+
+        .about_us_list .about_us_item {
+            position: relative;
+            height: 2.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .about_us_list .about_us_item:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #EAEAEA;
+        }
+
+        .about_us_list .about_us_item span {
+            flex: 1;
+            font-size: 0.75rem;
+            color: #2F2F2F;
+            padding-right: 0.8rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .about_us_list .about_us_item img {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="about_us_logo">
+            <img src="../image/mine/about_us_logo.png" alt="">
+            <p class="appVersion">版本号:&nbsp;{{appVersion}}</p>
+            <p>版权所有:&nbsp;未来教育公司</p>
+        </div>
+        <div class="about_us_list">
+            <div class="about_us_item" tapmode @click="fnOpenAgreement('功能介绍','1')">
+                <span>功能介绍</span>
+                <img src="../image/mine/go_page_about_us.png" alt="">
+            </div>
+            <div class="about_us_item" tapmode @click="fnOpenAgreement('平台协议','3')">
+                <span>未来教育平台协议</span>
+                <img src="../image/mine/go_page_about_us.png" alt="">
+            </div>
+            <div class="about_us_item" tapmode @click="fnOpenAgreement('法律申明','2')">
+                <span>未来教育法律申明</span>
+                <img src="../image/mine/go_page_about_us.png" alt="">
+            </div>
+        </div>
+    </div>
+</body> 
+<script type="text/javascript">
+    var vm;
+    var appVersion;
+    window.onload = function() {
+//      appVersion = api.appVersion;
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                appVersion: appVersion
+            },
+            methods: {
+                fnOpenAgreement: function(name, key) {
+                    var pageData = {
+                        "textType": key
+                    };
+                    fnOpenPublicWin(name, "agreement", pageData)
+                }
+            }
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin()
+    }
+</script>
+
+</html>

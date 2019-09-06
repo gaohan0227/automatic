@@ -1,0 +1,43 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/class_manage.css">
+<div class="vueApp" v-cloak>
+    <div class="class_search" data-flex="main:justify">
+        <div class="teacher-sec-header">
+            班级管理
+        </div>
+        <div class="class_search_item" data-flex="cross:center box:last" tapmode onclick="fnSearchClass()">
+            <input placeholder="请输入" type="text">
+            <div>搜索</div>
+        </div>
+    </div>
+    <div class="class_list" data-flex="dir:left">
+        <div class="class_item" v-for="item,index in classList" :style="{background:bgColor[Math.floor(index%5)]}" data-flex="main:center" tapmode @click="pageType=='index'?fnOpenClassDetail(item.id):fnOpenClassReport(item.id)">
+            <div style="width: 100%;">
+                <div class="tearch_info">
+                    <img :class="avatarClass[Math.floor(index%5)]" :src="item.classLogoUrl?item.classLogoUrl:'../img/teacher/mine/default_avatar.png'" alt="">
+                    <p>{{item.teacherName}}</p>
+                </div>
+                <div class="class_info">
+                    <p class="class_name">{{item.classNames}}</p>
+                    <div data-flex="dir:left box:mean">
+                        <div>
+                            <p class="course_name">课程</p>
+                            <p>{{item.materialName}}</p>
+                        </div>
+                        <div>
+                            <p class="course_name">级别</p>
+                            <p>{{item.materialLevelName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="none_data" v-if="classList.length==0">
+            <div>
+                <img src="../img/teacher/no_page/no_class.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="creat-class blue-btn">
+        <div onclick="fnClassAdd()" class="">创建班级</div>
+    </div>
+</div>

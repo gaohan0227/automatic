@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>我的</title>
+    <link href="../../css/api.css" rel="stylesheet" type="text/css">
+    <link href="../../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../../css/index.css" rel="stylesheet" type="text/css">
+    <style>
+        html,
+        body {
+            background: rgba(0, 0, 0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .vueApp {
+            width: 100%;
+            height: 100%;
+            background: rgba(33, 68, 142, 0.032);
+            padding-bottom: 1rem;
+        }
+
+        .mine_bg {
+            width: 100%;
+            height: 68vw;
+            background: url(../../image/mine/mine_bg.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .msg_img {
+            position: relative;
+            height: 2.5rem;
+        }
+
+        .msg_img .msgImg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.7rem;
+            width: 2.5rem;
+        }
+
+        .user_info {
+            margin-top: 0.8rem;
+            padding: 0 0.6rem 0 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user_info img {
+            width: 0.7rem;
+            height: 0.7rem;
+        }
+
+        .user_info .user_avatar {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 100%;
+            border: 1px solid #fff;
+            position: relative;
+        }
+
+        .user_info .user_avatar img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+
+        .user_info .userInfo {
+            flex: 1;
+            padding: 0 0.6rem;
+            overflow: hidden;
+        }
+
+        .user_info .userInfo p {
+            font-size: 0.7rem;
+            line-height: 1rem;
+            padding-top: 0.4rem;
+            color: #fff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .user_info .userInfo p:first-child {
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+            padding-top: 0.1rem;
+            font-weight: bold;
+        }
+
+        .mine_list {
+            height: 10.5rem;
+            background: #fff;
+            box-shadow: 0 0.1rem 0.5rem 0 rgba(0, 140, 255, 0.08);
+            border-radius: 0.5rem;
+            margin: 0 0.6rem;
+            margin-top: 1rem;
+            padding: 0.45rem 0;
+        }
+
+        .mine_item {
+            display: flex;
+            padding: 0 1.1rem 0 1.25rem;
+            line-height: 3.2rem;
+            height: 3.2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mine_item img {
+            width: 0.7rem;
+            height: 0.7rem;
+        }
+
+        .mine_item img:first-child {
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+
+        .mine_item p {
+            color: #2F2F2F;
+            flex: 1;
+            padding: 0 0.55rem;
+            font-size: 0.8rem;
+        }
+
+        .report_center {
+            height: 4rem;
+            border-radius: 2rem;
+            box-shadow: 0 0.1rem 0.5rem 0 rgba(0, 140, 255, 0.08);
+            margin: 0 0.6rem;
+            margin-top: -2.5rem;
+            background: #fff;
+            display: flex;
+            font-weight: bold;
+        }
+
+        .report_center p {
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <div class="mine_bg">
+                <header>
+                    <div class="msg_img">
+                        <img class="msgImg" src="../../image/mine/message_btn.png" alt="" tapmode onclick="fnOpenMessageList()">
+                    </div>
+                    <div class="user_info" tapmode onclick="fnOpenPersonalInfo()">
+                        <div class="user_avatar">
+                            <img :src="userInfo.avatarUr?userInfo.avatarUrl:'../../image/mine/default_avatar.png'" alt="">
+                        </div>
+                        <div class="userInfo">
+                            <p>{{userInfo.teacherName}}</p>
+                            <p>{{userInfo.schoolName}}</p>
+                        </div>
+                        <img src="../../image/mine/go_page_white.png" alt="">
+                    </div>
+                </header>
+            </div>
+            <div class="mine_item report_center" tapmode onclick="fnOpenClassList()">
+                <img src="../../image/mine/report_center.png" alt="">
+                <p>报告中心</p>
+                <img src="../../image/mine/go_page_mine.png" alt="">
+            </div>
+            <div class="mine_list">
+                <div class="mine_item" tapmode onclick="fnOpenDeductRecord()">
+                    <img src="../../image/mine/deduct_record.png" alt="">
+                    <p>扣除记录</p>
+                    <img src="../../image/mine/go_page_mine.png" alt="">
+                </div>
+                <div class="mine_item" tapmode onclick="fnOpenAboutUs()">
+                    <img src="../../image/mine/about_us.png" alt="">
+                    <p>关于我们</p>
+                    <img src="../../image/mine/go_page_mine.png" alt="">
+                </div>
+                <div class="mine_item" tapmode onclick="fnOpenSetting()">
+                    <img src="../../image/mine/setting.png" alt="">
+                    <p>系统设置</p>
+                    <img src="../../image/mine/go_page_mine.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-font.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        fnInit();
+        api.addEventListener({
+            name: 'online'
+        }, function(ret, err) {
+            fnInitPage()
+        });
+        fnInitPage()
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                userInfo: "",
+                isLoad: false,
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+
+                })
+            }
+        })
+    }
+
+    function fnInitPage() {
+        $S.ShowProgress();
+        $S.POST("apiTeacherLogin/getTeacherInfo", "", function(ret, err) {
+            if (ret && ret.status == "200") {
+                vm.userInfo = ret.data;
+            }
+            vm.isLoad = true;
+            $S.CloseProgress();
+        })
+    }
+    //打开班级管理页面
+    function fnOpenClassList() {
+        var pageParam = {
+            pageType: "mine"
+        }
+        fnOpenPublicWin("班级列表", "index/class_manage", pageParam)
+    }
+
+    function fnOpenDeductRecord() {
+        fnOpenPublicWin("扣除历史", "mine/deduct_record")
+    }
+
+    function fnOpenMessageList() {
+        fnOpenPublicWin("消息", "mine/message_list")
+    }
+    //打开个人信息页面
+    function fnOpenPersonalInfo() {
+        fnOpenPublicWin("个人信息", "mine/personal_info")
+    }
+
+    function fnOpenAboutUs() {
+        fnOpenPublicWin("关于我们", "mine/about_us")
+    }
+
+    function fnOpenSetting() {
+        fnOpenPublicWin("系统设置", "mine/setting")
+    }
+</script>
+
+</html>

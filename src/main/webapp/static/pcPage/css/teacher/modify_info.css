@@ -1,0 +1,90 @@
+.vueApp {
+            width: 100%;
+            height: 100%;
+            background-color: #F7F7F7;
+        }
+
+        .modify_item {
+            height: 2.5rem;
+            width: 100%;
+            display: flex;
+            padding: 0 0.8rem;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFF;
+            margin-top: 0.5rem;
+        }
+
+        .modify_item input {
+            flex: 1;
+            height: 2.5rem;
+            padding: 0.6rem 0;
+            line-height: 1.3rem;
+            width: 100%;
+            font-size: 0.7rem;
+            color: #2F2F2F;
+        }
+
+        .modify_item img {
+            width: 0.9rem;
+            height: 0.9rem;
+            margin: 0.5rem 0;
+            margin-left: 0.5rem;
+        }
+
+        .modify_item input::-webkit-input-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        .modify_item input:-moz-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        .modify_item input::-moz-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        .modify_item input:-ms-input-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        header {
+            background: #fff;
+        }
+
+        .modify_info_header {
+            height: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2F2F2F;
+            padding: 0 0.3rem;
+        }
+
+        .modify_info_header span {
+            font-size: 0.7rem;
+            line-height: 1rem;
+            padding: 0.5rem;
+        }
+
+        .modify_info_header span:last-child {
+            color: #5296FF;
+        }
+
+        .modify_info_header p {
+            flex: 1;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .modify_info_header span.color_gray {
+            color: #5296FF;
+        }

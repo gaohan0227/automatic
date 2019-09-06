@@ -1,0 +1,203 @@
+<!doctype html>
+<html style="background:rgba(0,0,0,0);">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>消息详情</title>
+    <link href="../../css/api.css" rel="stylesheet" type="text/css">
+    <link href="../../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../../css/index.css" rel="stylesheet" type="text/css">
+    <style>
+        .message_info {
+            padding: 30px;
+            padding-bottom: 18px;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 8px;
+        }
+
+        .message_info .message_info_title {
+            height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            position: relative;
+            display: flex;
+            color: #2f2f2f;
+            align-items: center;
+        }
+
+        .message_info .message_info_title:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            background: #F7D76D;
+            border-radius: 2px;
+            width: 3px;
+        }
+
+        .message_info .message_info_title span {
+            padding: 0 18px;
+            font-weight: 500;
+        }
+
+        .message_detail {
+            padding: 42px 0;
+            position: relative;
+            color: #2f2f2f;
+        }
+
+        .message_detail .message_detail_title {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 42px;
+            word-wrap: break-word;
+            padding-bottom: 16px;
+        }
+
+        .message_detail .message_detail_time {
+            font-size: 18px;
+            color: rgba(109, 109, 109, 1);
+            line-height: 25px;
+            padding-bottom: 40px;
+            word-wrap: break-word;
+        }
+
+        .message_detail .message_detail_time span {
+            padding-right: 16px;
+        }
+
+        .message_detail .message_detail_content {
+            color: #2F2F2F;
+            font-size: 20px;
+            line-height: 42px;
+            word-wrap: break-word;
+            padding-bottom: 40px;
+        }
+
+        .message_detail .message_detail_publisher {
+            font-size: 14px;
+            line-height: 20rem;
+            color: #6D6D6D;
+            padding-bottom: 40px;
+            word-wrap: break-word;
+            text-align: right;
+        }
+
+        /* .message_fixed {
+            padding: 1rem 0.8rem;
+            position: fixed;
+            bottom: 0rem;
+            left: 0;
+            width: 100%;
+            height: 4.3rem;
+            background: #fff;
+        } */
+
+        .message_detail_btn {
+            width: 260px;
+            height: 60px;
+            background: rgba(255, 212, 70, 1);
+            box-shadow: 0px 6px 20px -7px rgba(255, 188, 13, 1);
+            border-radius: 35px;
+            color: #2F2F2F;
+            text-align: center;
+            font-size: 28px;
+            line-height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="msgDetailVue" v-cloak>
+        <div v-if="mesInfo!=''">
+            <div class="message_info">
+                <div class="message_info_title">
+                    <span>消息通知</span>
+                </div>
+                <div class="message_detail">
+                    <div class="message_detail_info">
+                        <p class="message_detail_title">{{mesInfo.title}}</p>
+                        <p class="message_detail_time"><span>发布时间</span>{{mesInfo.createDate|fnSetDate('release_date')}}
+                        </p>
+                    </div>
+                    <div class="message_detail_content" id="message_detail" v-html="mesInfo.context"></div>
+                    <p class="message_detail_publisher">发布人: {{mesInfo.userName}}</p>
+
+                    <div class="message_detail_btn" v-if="mesInfo.messageTypeCode=='3'" tapmode
+                        @click="fnChangeUnitTest(mesInfo.messageTypeCode,mesInfo.studentMaterialLevelId)">立即前往</div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/hammer.min.js"></script>
+<script type="text/javascript" src="../../script/slide2del.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-font.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script>
+    var vm;
+    $(function () {
+        fnInit();
+        fnInitPage();
+    })
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".msgDetailVue",
+            data: {
+                mId: "",
+                mesInfo: ""
+            }
+        })
+    }
+
+    function fnInitPage() {
+        // $S.ShowProgress();
+        var postData = {
+            id: vm.mId
+        }
+        POST("apiTeacherLogin/findMessageInfoDetail", postData, function (ret) {
+            if (ret && ret.status == "200") {
+                vm.mesInfo = ret.data;
+                setTimeout(function () {
+                    fnAdaptationContent("message_detail")
+                }, 500)
+            }
+            // $S.CloseProgress();
+        })
+    }
+
+    function fnChangeUnitTest(code, levelId) {
+        var userLevelId = USER.Get("studentMaterialLevelId", true) || "";
+        if (code == '3') { //单元测试
+            if (levelId != userLevelId) {
+                fnToast("请切换到对应的教材");
+                return;
+            }
+            if (userLevelId == "") {
+                fnToast("当前暂无选中教材");
+                return;
+            }
+            fnOpenPublicWin("", "mine/unit_test_list")
+        }
+    }
+</script>
+
+
+</html>

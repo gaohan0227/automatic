@@ -1,0 +1,56 @@
+
+    <div class="shiftTestVue" v-cloak>
+        <div class="shift_info" v-if="isLoad">
+            <div class="shift_info_title">
+                <p>插班测试</p>
+            </div>
+            <img class="shift_test_bg" src="../img/index/task_preview_bg.png">
+            <div v-if="isDoIt">
+                <div class="shift_test_info">
+                    <div class="shift_test_detail">
+                        <p class="shift_test_title">
+                            <img src="../img/index/time_left.png" alt="">
+                            <span>测试分数</span>
+                            <img src="../img/index/time_right.png" alt="">
+                        </p>
+                        <div class="shift_test_line"></div>
+                        <div class="shift_test_score">
+                            <p>{{score}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="shift_test_card">
+                    <img class="shift_test_card_left" src="../img/index/shift_report.png" alt="">
+                    <img class="shift_test_card_right" src="../img/index/shift_report.png" alt="">
+                    <div class="shift_test_title">答题卡</div>
+                    <div class="shift_test_line"></div>
+                    <div class="shift_test_question">
+                        <div class="shift_test_question_item" v-for="item,index in listData">
+                            <div
+                                :class="item.doStatus=='1'?'question_item_num question_item_success':(item.doStatus=='2'?'question_item_num question_item_fail':'question_item_num')">
+                                <span>{{index|fnIndexNum}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shift_test_btn">完成</div>
+                </div>
+            </div>
+            <div v-else-if="!isDoIt">
+                <div class="shift_test_card">
+                    <div class="shift_test_title">答题卡</div>
+                    <div class="shift_test_line"></div>
+                    <div class="shift_test_question">
+                        <div class="shift_test_question_item" v-for="item,index in listData" tapmode
+                            @click="isPreview?fnContinue(index):''">
+                            <div :class="item.doStatus>0?'question_item_num question_item_do':'question_item_num'">
+                                <span>{{index|fnIndexNum}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shift_test_btn" @click="isPreview?fnSubmitShift():fnOpenShiftTest()"
+                            v-text="isPreview?'提交测试':'开始测试'"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>

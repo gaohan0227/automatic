@@ -1,0 +1,84 @@
+<div class="calendarVue" v-cloak>
+    <div class="calendar">
+        <div class="calendar_title">
+            <p>签到日历</p>
+        </div>
+        <div class="sign_in">
+            <img src="../img/index/sign_in.png" alt="">
+        </div>
+        <div class="calendar_data">
+            <div class="calendar_data_info">
+                <p class="calendar_data_time">
+                    <img src="../img/index/calendar_left.png" alt="" tapmode @click="fnBeforeMonth()">
+                    <span>{{newYear}}年{{newMonth}}月</span>
+                    <img src="../img/index/calendar_right.png" alt="" tapmode @click="fnAfterMonth()">
+                </p>
+                <p class="calendar_week">
+                    <span v-for="item in weekList">{{item}}</span>
+                </p>
+                <div class="calendar_month">
+                    <div class="calendar_item" v-for="item,index in monthData">
+                        <span :class="fnSetDataStyle(item.year,item.month,item.day)" tapmode
+                            @click="item.month==newMonth?fnChangeDay(item.year,item.month,item.day):''">{{item.day}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="calendar_card">
+                <div class="unit_test" v-if="changeDay!=''">
+                    <p class="unit_test_title" v-if="testList.length>0">
+                        <img src="../img/index/time_left.png" alt="">
+                        <span>单元测试</span>
+                        <img src="../img/index/time_right.png" alt="">
+                    </p>
+                    <div class="unit_test_item" v-for="item,index in testList">
+                        <span v-if="item.studentMaterialLevelId==calendar.mLevelId">默认教材</span>
+                        <p>{{item.materialName}} {{item.materialLevelName}}</p>
+                        <div class="unit_test_btn" tapmode @click="fnOpenUnitTest(item.studentMaterialLevelId)">前往测试
+                        </div>
+                    </div>
+                    <div class="none_data" v-if="testList.length==0">
+                        <div>
+                            <img src="../img/no_page/no_test.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <div class="calendar_test_card" v-if="changeDay!=''">
+            <div class="calendar_test_list">
+                <div class="calendar_test_item" v-for="item,index in testList">
+                    <div class="calendar_test_item_info">
+                        <img src="../img/mine/unit_test.png" alt="">
+                        <p class="unit_name">{{item.materialName}} {{item.materialLevelName}}</p>
+                        <p class="unit_text_btn">去测试</p>
+                    </div>
+                </div>
+            </div>
+            <div class="none_data" v-if="testList.length==0">
+                <div>
+                    <img src="../img/no_page/no_test.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="calendar_help" v-if="isCalendarHelp=='1'" tapmode @click="fnIsHelpShow('0')">
+                <div class="calendar_help_alert">
+                    <p class="calendar_help_title">单元测试</p>
+                    <p class="calendar_help_text">您的所有单元测试会关联到日历中,进入日历查看今天是否有“单元测试”内容,如有会显示“前往测试”,可以点击直接进入单元测试进行测试。</p>
+                    <p class="calendar_help_tips">小提示: 如果进入的单元测试不是当前的教材需要切换教材才可以进入哦!</p>
+                </div>
+            </div> -->
+        <div class="sign_in_success" v-if="isSignIn=='1'" tapmode @click="fnIsSignIn('0')">
+            <div class="sign_in_alert">
+                <p class="sign_in_num">+{{IntegralValue}}积分</p>
+                <img src="../img/index/sign_in_alert.png" alt="">
+                <p class="sign_in_btn">签到成功</p>
+            </div>
+        </div>
+        <!-- <div class="switch_book" v-if="isSwitchBook=='1'" tapmode @click="fnIsSwitchBook('0')">
+                <div class="switch_book_alert">
+                    <img src="../img/index/switch_book.png" alt="">
+                    <p class="switch_book_tips">请切换为该测试的教材</p>
+                </div>
+            </div> -->
+    </div>
+</div>

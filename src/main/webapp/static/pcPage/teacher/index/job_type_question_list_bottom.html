@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="../js/tool.js"></script>
+    <script type="text/javascript" src="../js/pageInit.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/service/service-tool.js"></script>
+	<script type="text/javascript" src="../js/service/service-verify.js"></script>
+    <style>
+        .job_type_question_fixed {
+            padding: 0 0.8rem;
+            position: fixed;
+            bottom: 0rem;
+            left: 0;
+            width: 100%;
+            height: 2.7rem;
+            background: #fff;
+            /*box-shadow:0 0.1rem 0.5rem 0 rgba(0,0,0,0.1);*/
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .job_type_question_fixed:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: #eaeaea;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .job_type_question_fixed img {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .job_type_question_fixed span {
+            padding: 0 0.5rem;
+            flex: 1;
+            font-size: 0.75rem;
+            color: #2F2F2F;
+        }
+
+        .job_type_question_fixed .job_type_question_btn {
+            width: 8.6rem;
+            height: 2rem;
+            background: #5296FF;
+            border-radius: 1rem;
+            color: #fff;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 2rem;
+        }
+
+        .job_type_question_fixed .job_type_question_btn.gray_bg {
+            background: #EAEAEA;
+            color: #acacac;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="job_type_question_fixed">
+            <img class="checkImg" :src="isCheckAll?'../image/release/checked.png':'../image/release/no_check.png'" alt="" tapmode @click="fnCheckAll()">
+            <span>全选</span>
+            <div :class="questionIdList.length>0?'job_type_question_btn':'job_type_question_btn gray_bg'" v-text="questionIdList.length>0?'立即发布('+questionIdList.length+')':'立即发布'" tapmode @click="questionIdList.length>0?fnSubmit():''"></div>
+        </div>
+    </div>
+</body> 
+<script type="text/javascript">
+    var vm;
+     window.onload = function() {
+        fnInit();
+//      api.addEventListener({
+//          name: 'isCheckAll'
+//      }, function(ret, err) {
+//          if (ret) {
+//              vm.isCheckAll = ret.value.isCheckAll;
+//          }
+//      });
+//      if (api.pageParam.questionList.length == 0) {
+//          api.setFrameAttr({
+//              name: 'index/job_type_question_list_bottom',
+//              hidden: true
+//          });
+//      }
+//      api.addEventListener({
+//          name: 'checkQuestionList'
+//      }, function(ret, err) {
+//          if (ret) {
+//              vm.questionIdList = ret.value.list;
+//          }
+//      });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                isCheckAll: false,
+                questionIdList:  []
+            },
+            methods: {
+                fnCheckAll: function() {
+//                  api.execScript({
+//                      name: 'index/job_type_question_list_win',
+//                      frameName: 'index/job_type_question_list',
+//                      script: 'vm.fnCheckAll();'
+//                  });
+                },
+                fnSubmit: function() {
+//                  api.execScript({
+//                      name: 'index/job_publish_win',
+//                      frameName: 'index/job_publish',
+//                      script: 'fnSubmit();'
+//                  });
+                }
+            }
+        })
+    }
+</script>
+
+</html>

@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/modify_info.css">
+<div class="vueApp" v-cloak>
+        <header>
+            <div class="modify_info_header">
+                <span tapmode @click="fnBack()">取消</span>
+                <p>{{page_name}}</p>
+                <span :class="modify_val!=''?'':'color_gray'" tapmode onclick="fnSaveInfo()">{{btn_name}}</span>
+            </div>
+        </header>
+        <div class="modify_item" id="info_input">
+            <input v-if="modify_type=='username'" type="text" v-model="modify_val" minlength="2" maxlength="10" data-type="chinese" data-verify="true" data-null="true" data-regular="true" name="姓名" placeholder="请输入姓名">
+            <input v-else-if="modify_type=='classname'" type="text" v-model="modify_val" maxlength="12" data-type="" data-verify="true" data-null="true" data-regular="false" name="班级名称" placeholder="请输入班级名称">
+            <input v-else-if="modify_type=='email'" type="text" v-model="modify_val" maxlength="30" data-type="_email" data-verify="true" data-null="true" data-regular="true" name="邮箱" placeholder="请输入邮箱">
+            <img v-if="modify_val!=''" src="../image/login/input_clear.png" alt="" tapmode @click="fnClearVal()">
+        </div>
+    </div>

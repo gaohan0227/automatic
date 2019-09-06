@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/class_overview.css">
+<div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <div class="class_overview_list" v-if="infoList.length>0">
+                <div class="class_overview_item class_overview_item_header">
+                    <span class="class_unit">单元</span>
+                    <span class="class_job">作业完成率</span>
+                    <span class="class_dub_num">配音数</span>
+                    <span class="class_dub_time">配音时长</span>
+                    <span class="class_test_average">测试平均分</span>
+                </div>
+                <div class="class_overview_item" v-for="item in infoList">
+                    <span class="class_unit">{{item.unitName}}</span>
+                    <span class="class_job">{{item.workWcDu}}%</span>
+                    <span class="class_dub_num">{{item.moduleDubCount}}</span>
+                    <span class="class_dub_time">{{parseInt(item.sumDubTime*1)}}分</span>
+                    <span class="class_test_average">{{item.unitTestAvgScore}}</span>
+                    <div class="class_overview_item_line"></div>
+                </div>
+            </div>
+            <div class="none_data" v-if="infoList.length==0">
+                <div>
+                    <img src="../image/no_page/no_record.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>

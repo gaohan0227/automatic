@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/message_list.css">
+<div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <div class="message_list" v-if="listData.length>0">
+                <div class="message_item" v-for="item in listData">
+                    <p class="message_time">{{item.dateFormatcreateDate}}</p>
+                    <div class="message_box" v-for="key in item.messageInfoList" tapmode onclick="fnOpenMessageDetail(this)" :id="key.id">
+                        <div class="message_content">
+                            <p :class="key.ifRead=='0'?'message_title message_unread':'message_title'">{{key.title}}</p>
+                            <p class="message_text">{{key.context}}</p>
+                        </div>
+                        <div class="message_del_btn" tapmode @click="fnRemoveMess(this,key.id)"><img src="../image/mine/del_message.png"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="none_data" v-else>
+                <div>
+                    <img src="../image/no_page/no_message.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>

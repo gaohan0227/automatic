@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>走向未来</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/data-flex.min.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/normal.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/header.css?v=0.0.1">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css?v=0.0.1">
+    <script type="text/javascript" src="../libs/jquery.min.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/page.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/tool.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/pageInit.js?v=0.0.1"></script>
+    <script type="text/javascript" src="../js/vue.min.js?v=0.0.1"></script>
+    <style type="text/css">
+        body {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-content">
+      <div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href="#">已发布</a>
+				</li>
+				<li>
+					 <a href="#">未发布</a>
+				</li>
+			</ul>
+			<div  class="row">
+				<div v-for="item in listData" class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" :src="item.videoCover" />
+						<div class="caption">
+							<h3>
+								{{item.videoName}}
+							</h3>
+							<h5 class="text-right">{{item.moduleName}}</h5>
+							<h5>{{item.countScore}}</h5>
+							<h5 class="text-right">{{item.clickCountNum}}</h5>
+							<h5>{{item.updateDate}}</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm;
+    // 等同于window.onload
+    function pageOnload() {
+        initPage();
+        getData();
+    }
+
+    function initPage() {
+        vm = new Vue({
+            el: "#page-content",
+            data: {
+               "listData":[]
+            }
+        });
+    }
+
+    function getData() {
+        var callback = function(data) {
+			alert(JSON.stringify(data.listData));
+            vm.listData=data.listData;
+        };
+        POST('AppModule/myModuleDue', {"custId":"034f2d37b12e4aaf837d776512d9e4b5","submitState":"2"}, callback);
+    }
+
+</script>
+
+</html>

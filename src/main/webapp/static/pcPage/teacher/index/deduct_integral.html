@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/deduct_integral.css">
+<div class="vueApp" v-cloak>
+        <div class="add_student_item" id="phone_input">
+            <form id="search_from" target="nm_iframe" style="flex:1;">
+                <input type="tel" v-model="integral" maxlength="15" data-type="_integer" data-verify="true" data-null="true" data-regular="true" name="积分值" placeholder="请输入需要扣除的积分数值~">
+            </form>
+            <iframe name="nm_iframe" style="display:none;"></iframe>
+           <!-- <img v-if="integral!=''" src="../image/login/input_clear.png" alt="" tapmode @click="fnClearVal()">-->
+        </div>
+        <div onclick="fnDeductIntegral()">
+            确定
+        </div>
+    </div>

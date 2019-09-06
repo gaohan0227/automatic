@@ -1,0 +1,78 @@
+<div class="dubDetailVue" v-cloak>
+    <div v-if="isDubDetailLoad">
+        <div class="dub_detail_top">
+            <p class="dub_title">{{videoName}}</p>
+            <div class="dub_video">
+                <video class="dub_detail_video" id="video_data" preload="meta" :poster="videoCover" :src="videoUrl"
+                    x5-playsinline="" playsinline="" webkit-playsinline="" onended="fnVideoEnd()">
+                    <source :src="videoUrl" type="video/mp4" />
+                    <source :src="videoUrl" type="video/ogg" />
+                    <source :src="videoUrl" type="video/webm" />
+                </video>
+                <img v-if="!isPlay" class="video_btn" src="../img/index/video_btn.png" alt="" @click="fnVideoPlay('1')">
+                <div class="dub_play" v-if="isPlay">
+                    <img :src="inPlay=='0'?'../img/index/dub_play_btn.png':'../img/index/dub_pause_btn.png'" alt=""
+                        @click="inPlay=='0'?fnVideoPlay('1'):fnVideoPlay('0')">
+                    <div class="dub_progress">
+                        <p class="dub_time">{{fnSecToMin(currentTime)}}/{{fnSecToMin(duration)}}</p>
+                        <div class="dub_progress_bar">
+                            <input id="range" type="range" min="0" max="100" v-model="progress" step="1"
+                                oninput="change(this)">
+                            <div class="rang_width_div">
+                                <p class="rang_width" id="rang_width" :style="'width:'+progress+'%'"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="../img/index/dub_speed.png" alt="">
+                    <img src="../img/index/dub_volume.png" alt="">
+                    <img src="../img/index/dub_full.png" alt="" onclick="fnOpenFullVideo()">
+                </div>
+            </div>
+            <div class="dub_detail_btn">开始配音</div>
+
+            <div class="dub_rank">
+                <div class="dub_rank_title">
+                    <span>排行榜</span>
+                    <div onclick="fnOpenDubRank()" v-if="rankList.length>3">
+                        <span>查看全部</span>
+                        <!-- <img src="../img/index/go_page_dub.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="dub_rank_list" v-if="rankList.length>0">
+                    <div class="dub_rank_item" v-for="item,index in rankList" v-if="index<3">
+                        <img class="rank_logo" :src="'../img/index/dub_'+(index+1)+'.png'" alt="">
+                        <div class="rank_user_avatar">
+                            <img :src="item.avatarUrl" alt="">
+                        </div>
+                        <span class="rank_user_name">{{item.studentName}}</span>
+                        <div class="dub_like">
+                            <img src="../img/index/my_dub_like.png" alt="">
+                            <span class="dub_like_num" v-text="item.praiseNum>0?item.praiseNum:'0'"></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="load_complete" v-if="rankList.length>3"><span>首页只显示前三名</span></p>
+
+                <div class="none_data" v-if="rankList.length==0" style="padding-top:0;">
+                    <div>
+                        <img :src="isClass=='1'?'../img/no_page/no_class.png':'../img/no_page/no_rank.png'" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="dub_speed_div" v-if="isChangeSpeed=='1'">
+                <div class="dub_speed_gray">
+                    <div class="dub_speed_alert">
+                        <div class="dub_speed_title">播放速度</div>
+                        <div class="dub_speed_list">
+                            <div :class="newSpeed==item.key?'dub_speed_item active':'dub_speed_item'"
+                                v-for="item in speedList" @click="fnSetNewsSpeed(item.key)">{{item.key}}X</div>
+                        </div>
+                        <div class="dub_speed_alert_back" @click="fnCloseChangeSpeed('0')">
+                            取消
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

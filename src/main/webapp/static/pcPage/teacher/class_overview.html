@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>走向未来</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../css/data-flex.min.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/normal.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/footer.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/header.css?v=0.0.1">
+		<script type="text/javascript" src="../libs/jquery.min.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../libs/bootstrap.min.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/page.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/tool.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/pageInit.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/vue.min.js?v=0.0.1"></script>
+		<style type="text/css">
+			body {
+				background-color: #f7f7f7;
+			}
+			
+			.wai_div {
+				max-width: 1440px;
+				height: auto;
+				margin: 0 auto;
+				color: #2f2f2f;
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page-content">
+			<h2>班级总览</h2>
+			<div class="wai_div">
+				<div>
+					<span>单元</span>
+					<span>作业完成率</span>
+					<span>配音秀</span>
+					<span>配音时长</span>
+					<span>测试平均分</span>
+				</div>
+				<div v-for="item in listData">
+					<span>{{item.unitName}}</span>
+					<span>{{item.workWcDu}}</span>
+					<span>{{item.moduleDubCount}}</span>
+					<span>{{item.sumDubTime}}</span>
+					<span>{{item.unitTestAvgScore}}</span>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm;
+		// 等同于window.onload
+		function pageOnload() {
+			initPage();
+			getData();
+		}
+
+		function initPage() {
+			vm = new Vue({
+				el: "#page-content",
+				data: {
+					listData:[]
+				}
+			});
+		}
+
+		function getData() {
+			var callback = function(data) {
+				vm.listData=data.listData;
+			};
+			POST('apiQuestion/findClassOverView', {
+				"classId": "ef4214145977428388e8eba822f06753"
+			}, callback);
+		}
+	</script>
+
+</html>

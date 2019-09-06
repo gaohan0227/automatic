@@ -1,0 +1,1790 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>2019最新个税计算器 - 快乐沃克官网</title>
+<meta name="keywords" content="2019年个税专项附加扣除，个税计算器， 智能节税" />
+<meta name="description" content='2019年个税计算器，快乐沃克致力于打造"为组织赋能的互联工作平台"。依托行业领先的产品研发和运营服务团队，面向中小企业打造为组织赋能的移动办公平台，从"人事管理、协同办公、企业培训和文化打造"领域切入企业SaaS服务市场，整合线上线下服务优势，为中小企业提供"三位一体"的立体式SaaS创新服务。'/>
+
+<link rel="stylesheet" type="text/css" href="plugins/website/wow/animate.css">
+<link href="plugins/website/css/style.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="plugins/website/css/tax.css">
+<style>  a[title="站长统计"]{ display: none; }  </style>
+<script src="plugins/website/js/echarts.common.min.js"></script>
+</head>
+<body>
+<div class="top">
+	<div class="wrap1200">
+    	<div class="fr">
+            <div class="personal"><a href="#">个税计算器</a></div>
+        	<div class="old"><a href="http://pc.kuailework.com/" target="_blank" rel="nofollow">旧版登录</a></div>
+            <div class="login"><a href="https://www.kuailework.com/vs3/html/account/login.html" target="_blank" rel="nofollow">登录</a> | <a href="https://www.kuailework.com/vs3/html/account/register.html" target="_blank" rel="nofollow">注册</a></div>
+        </div>
+    </div>
+</div>
+<div class="header">
+	<div class="wrap1200">
+    	<div class="logo"><a href="/"><img src="plugins/website/images/logo.png"/></a></div>
+        <div class="nav">
+        	<ul>
+            	<li><a href="/">首页</a></li>
+                <li><a href="yunrenshi.html">云人事管理</a></li>
+                <li><a href="zhaopin.html">网络招聘</a></li>
+                <li>
+                    <a href="waibao.html" class="a">人事外包</a>
+                    <div class="subnav">
+                        <ul class="subtit">
+                            <li><a href="shebao.html">社保外包</a></li>
+                            <li><a href="gangwei.html">岗位外包</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="active"><a href="#">企业培训</a></li>
+                <li id="no_bottom" class="no_bottom"><a target="_blank" href="https://www.hrbpclass.com">伙瓣课堂</a></li>
+                <li><a href="aboutus.html" rel="nofollow">关于我们</a></li>
+            </ul>
+        </div>
+        <div class="tel">
+      	<i class="telicon"></i>
+        <div class="fl">
+        全国咨询热线<br>
+        <div class="telnum">400-607-6006</div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- 内容部分 -->
+
+<div class="home">
+    <div class="content">
+        <div class="content_top">
+            <div class="content_top_bg"></div>
+            <div class="content_top_con">
+                <div class="content_top_con_input">
+                    <span>税前工资</span>
+                    <div class="ipt_salary">
+                        <input id="baseSalary" type="text" name="" placeholder="请输入税前工资薪金">
+                    </div>
+                    <p>元</p>
+                </div>
+                <div class="social">
+                    <div class="social_select_city">
+                        <label class="select_city"></label>
+                        <div class="city_wrap">
+                            <select name="" id="city_select">
+                                <option value="10000">北京</option>
+                                <option value="10001">石家庄</option>
+                                <option value="10002">上海</option>
+                                <option value="10003">广州</option>
+                                <option value="10004">深圳</option>
+                                <option value="10005">成都</option>
+                                <option value="10006">重庆</option>
+                                <option value="10007">天津</option>
+                                <option value="10008">杭州</option>
+                                <option value="10009">南京</option>
+                                <option value="10010">武汉</option>
+                                <option value="10011">西安</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="social_con">
+                        <ul>
+                            <li>
+                                <span>社保</span>
+                                <p><em id="shebao">0</em> 元</p>
+                            </li>
+                            <li>
+                                <span>公积金</span>
+                                <p><em id="gongjijin">0</em> 元</p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <span>补充公积金</span>
+                                <p><em id="last_gongjijin">0</em> 元</p>
+                            </li>
+                            <li>
+                                <span>合计</span>
+                                <p><em id="all_total">0</em> 元</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="social_edit">
+                        <label id="set_bili"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>点击选择以下扣款项</h2>
+
+        <!-- 住房支出模块 start -->
+        <div class="template">
+            <div class="template_title">
+                <i></i>
+                <span>住房支出</span>
+                <label id="house"></label>
+            </div>
+            <div class="template_tab">
+                <ul id="first_house">
+                    <li>首套房贷</li>
+                    <li>租房</li>
+                </ul>
+            </div>
+            <div class="template_list">
+                <ul  id="house_type">
+                    <li class="active">
+                        <label></label>
+                        <span>直辖／省会／计划单列市</span>
+                    </li>
+                    <li>
+                        <label></label>
+                        <span>市区人口百万以上城市</span>
+                    </li>
+                    <li>
+                        <label></label>
+                        <span>市区人口百万以下城市</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="template_bottom">
+                <div class="template_bottom_con">
+                    <span>抵扣金额</span>
+                    <p><em id="houseDikouNum">--</em>元／月</p>
+                </div>
+            </div>
+        </div>
+        <!-- 住房支出模块 end -->
+        <!-- 子女教育模块 start -->
+        <div class="template">
+            <div class="template_title">
+                <i></i>
+                <span>子女教育</span>
+                <label id="zinv"></label>
+            </div>
+            <div style="height: 36px;line-height: 38px;">
+                受教子女数（3岁以上，幼儿园至博士） 
+            </div>
+            <div class="template_tab children_tab three_item">
+                <ul id="child_education">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>
+                        <input id="childNum" type="text" placeholder="自定义">
+                    </li>
+                </ul>
+            </div>
+            <div>
+                抵扣方式
+            </div>
+            <div class="template_tab children_tab">
+                <ul id="deduction_type">
+                    <li>单独抵扣</li>
+                    <li>共同抵扣</li>
+                </ul>
+            </div>
+            <div class="template_bottom">
+                <div class="template_bottom_con">
+                    <span>抵扣金额</span>
+                    <p><em id="educationDikouNum">--</em>元／月</p>
+                </div>
+            </div>
+        </div>
+        <!-- 子女教育模块 end -->
+        <!-- 赡养老人模块 start -->
+        <div class="template">
+            <div class="template_title">
+                <i></i>
+                <span>赡养老人(60周岁以上)</span>
+                <label id="support"></label>
+            </div>
+            <div style="height: 36px;line-height: 38px;">
+                是否独生子女
+            </div>
+            <div class="template_tab">
+                <ul id="only_child">
+                    <li>是</li>
+                    <li>否</li>
+                </ul>
+            </div>
+            <div class="custom">
+                <span>自定义金额</span>
+                <div class="custom_ipt">
+                    <input id="customMoney" type="text" placeholder="不超过1000元/月">
+                </div>
+            </div>
+            <div class="template_bottom">
+                <div class="template_bottom_con">
+                    <span>抵扣金额</span>
+                    <p><em id="supportMoney">--</em>元／月</p>
+                </div>
+            </div>
+        </div>
+        <!-- 赡养老人模块 end -->
+        <!-- 继续教育模块 start -->
+        <div class="template">
+            <div class="template_title">
+                <i></i>
+                <span>继续教育</span>
+                <label id="jixu"></label>
+                <div class="select">
+                    <span><a href="javascript:void(0);">《资格目录》</a></span>
+                    <div class="drop">
+                        <ul>
+                            <li>
+                                <a href="https://klwk-online.kuailework.com/%E5%9B%BD%E5%AE%B6%E8%81%8C%E4%B8%9A%E8%B5%84%E6%A0%BC%E7%9B%AE%E5%BD%95.xls">国家职业资格目录</a>
+                            </li>
+                            <li>
+                                <a href="https://klwk-online.kuailework.com/%E6%8A%80%E8%83%BD%E4%BA%BA%E5%91%98%E8%81%8C%E4%B8%9A%E8%B5%84%E6%A0%BC.xls">技术人员资格目录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="template_tab">
+                <ul id="education_type">
+                    <li>学历教育</li>
+                    <li>技能/资格教育</li>
+                </ul>
+            </div>
+            <div class="template_bottom">
+                <div class="template_bottom_con">
+                    <span>抵扣金额</span>
+                    <p><em id="continueEducation">--</em>元／月</p>
+                </div>
+            </div>
+        </div>
+        <!-- 继续教育模块 end -->
+        <!-- 大病支出模块 start -->
+        <div class="template">
+            <div class="template_title">
+                <i></i>
+                <span>大病支出</span>
+                <!-- <label id="ill"></label> -->
+            </div>
+            <div class="template_tab">
+                <ul>
+                    <li style="background: none;">大病支出</li>
+                    <li>
+                        <input id="health_spend" type="text" placeholder="限15000以上/年">
+                    </li>
+                </ul>
+            </div>
+            <div class="template_bottom">
+                <div class="template_bottom_con">
+                    <span>抵扣金额</span>
+                    <p><em id="dabingNum">--</em>元／月</p>
+                </div>
+            </div>
+        </div>
+        <!-- 继续教育支出模块 end -->
+        <div class="btn">
+            <a href="javascript:void(0)" id="result">推算税后收入</a>
+        </div>
+    </div>
+
+    <div class="counterInfo">
+        <div class="counterInfo-con">
+            <div class="counterInfo_title">
+                个税计算器
+            </div>
+            <div class="img_wrap">
+                <img src="plugins/website/images/tax/banner_example.png" alt="">
+            </div>
+        </div>
+        
+        <div class='hotrecom'>
+            <div class="hot-title">
+                新／闻／摘／要
+            </div>
+            <ul class="recommend">
+                <li>
+                    <p class="title" style="box-sizing: border-box;
+                        height: 57px;
+                        line-height: 21px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        word-break: break-word;
+                        margin-bottom: 15px;
+                    ">新闻列表内容</p>
+                </li>
+                 <li>
+                    <p class="title" style="box-sizing: border-box;
+                        height: 57px;
+                        line-height: 21px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        word-break: break-word;
+                        margin-bottom: 15px;
+                    ">新闻列表内容</p>
+                </li>
+            </ul>
+
+        </div>
+        <div class="counterInfo_code">
+            <img src="plugins/website/images/tax/erweima.png" alt="">
+            <p class="screen">扫一扫~</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- 弹层 -->
+<div class="tanceng">
+    <div class="tan_wrap">
+        <div class="tan_content">
+            <div class="tan_close">
+                <img id="close_bili" src="plugins/website/images/tax/icon-close .png" height="28" width="28" alt="">
+            </div>
+            <div class="tan_address">
+                <label></label>
+                <span id="selectedCity">北京</span>
+            </div>
+            <div class="bili_content">
+                <ul>
+                    <li>项目</li>
+                    <li>比例</li>
+                    <li>个人缴纳</li>
+                </ul>
+            </div>
+            <div class="bili_detail">
+                <ul>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">养老</span>
+                        <div class="bili_1">
+                            <input id="yanglao_bili" class="bili" type="text" value="0.08" placeholder="0.08">
+                        </div>
+                        <span class="bili_1" id="yanglaoTotal">271</span>
+                    </li>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">医疗</span>
+                        <div class="bili_1">
+                            <input id="yiliao_bili" class="bili" type="text" value="0.02" placeholder="0.02">
+                        </div>
+                        <span class="bili_1" id="yiliaoTotal">68</span>
+                    </li>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">失业</span>
+                        <div class="bili_1">
+                            <input id="shiye_bili" class="bili" type="text" value="0.002" placeholder="0.002">
+                        </div>
+                        <span class="bili_1" id="shiyeTotal">7</span>
+                    </li>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">工伤</span>
+                        <div class="bili_1">
+                            <input id="gongshang_bili" class="bili" type="text" value="0" placeholder="0">
+                        </div>
+                        <span class="bili_1" id="gongshangTotal">0</span>
+                    </li>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">生育</span>
+                        <div class="bili_1">
+                            <input id="shengyu_bili" class="bili" type="text" value="0" placeholder="0">
+                        </div>
+                        <span class="bili_1" id="shengyuTotal">0</span>
+                    </li>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">公积金</span>
+                        <div class="bili_1">
+                            <input id="gongjijin_bili" class="bili" type="text" value="0.12" placeholder="0.12">
+                        </div>
+                        <span class="bili_1" id="gongjijinTotal">294</span>
+                    </li>
+                    <li style="border-bottom: 1px dotted #e1e4e7">
+                        <span class="bili_1">补充公积金</span>
+                        <div class="bili_1">
+                            <input id="last_gongjijin_bili" class="bili" type="text" value="0" placeholder="0">
+                        </div>
+                        <span class="bili_1" id="lastgongjijinTotal">0</span></li>
+                    <li>
+                        <span class="bili_1">合计</span>
+                        <div class="empty"></div>
+                        <span class="bili_1 bili_total" id="allTotal">640</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="shebao_base base">
+                <span>社保基数</span>
+                <div class="ipt_base">
+                    <input id="shebaoBaseid" type="text" name="" placeholder="默认与工资一致">
+                </div>
+            </div>
+            <div class="gongjijin_base base">
+                <span>公积金基数</span>
+                <div class="ipt_base">
+                    <input id="gongjijinBaseid" type="text" name="" placeholder="默认与工资一致">
+                </div>
+            </div>
+            <!-- button -->
+            <div class="bili_save">
+                <p class="save_btn" id="save">保存</p>
+            </div>
+            <div class="bili_reset">
+                <p class="reset_btn" id="reset">重置</p>
+            </div>
+            <div class="bili_footer">
+                <p class="footer_tit">
+                    结果仅供参考
+                </p>
+            </div>
+            <div id="shangxian" class="shangxian"></div>
+        </div>
+    </div>
+</div>
+<!-- 推算后结果弹层 -->
+<div class="result_cover">
+    <div class="result_wrap">
+        <div class="resultW">
+            <div class="tan_close">
+                <img id="close_result" src="plugins/website/images/tax/icon-close .png" height="28" width="28" alt="">
+            </div>
+            <div class="chart_wrap" id="chart_wrap" style="
+                    width: 580px;
+                    height: 370px;
+                    overflow: hidden;
+                    background: rgb(255, 255, 255);
+                    left: 50%;
+                    margin-top: 20px;
+                    margin-left: -290px;
+                    position: fixed;"></div>
+            <div class="result_content">
+                <ul>
+                    <li>月份</li>
+                    <li>税后收入</li>
+                    <li>免征税</li>
+                    <li>社保个人缴费</li>
+                    <li>公积金个人缴费</li>
+                    <li>个税</li>
+                </ul>
+            </div>
+            <div class="result_detail">
+                <ul class="shui_list" style="margin-top: 437px;">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 错误信息提示 -->
+<div id="errormsg" class="errormsg"></div>
+<!-- 疑问解答提示 -->
+
+
+<div class='showPop'>
+  <div class='showPop_bg'></div>
+  <div class='showPop_con'>
+    <div class='showPop_con_title'>
+      <span class='agreementModalInfo' id="title">住房支出</span>
+      <img src="plugins/website/images/tax/bg_tishi.png" class="declaration_bg" alt="">
+      <img src="plugins/website/images/tax/icon-close1.png" class="guanbi" alt="" id="guanbi">
+    </div>
+    <div class='showPop_con_list'>
+      <span id="pop_content">
+        专项附加扣除信息采集表-住房租金支出
+        政策适用条件：
+        1.本人及配偶在主要工作城市无自有住房；
+        2.本人及配偶扣除年度未扣除住房贷款利息支出；
+        3.本人及配偶主要工作城市相同的，该扣除年度配偶未享受过住房租金支出扣除。
+        不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。
+        已填写住房贷款利息支出信息的请勿填写本页，否则可能导致信息导入失败，无法享受政策。
+        专项附加扣除信息采集表-住房贷款利息支出
+        政策适用条件：
+        1.本人或者配偶购买的中国境内住房；
+        2.属于首套住房贷款（可咨询贷款银行），且扣除年度仍在还贷；
+        3.住房租金支出和住房贷款利息支出未同时扣除；
+        不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。
+        已填写住房租金支出信息的请勿填写本页，否则可能导致信息导入失败，无法享受政策。
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="clear"></div>
+<div class="footer">
+  <div class="wrap1200">
+    <div class="footer_left">2011-2019快乐沃克人力资源股份有限公司 <br>
+      冀B2-20070007 | 粤ICP备15090398号-1 | 冀公网安备 1310802000438号 </div>
+    <div class="footer_tel"> <i></i>服务热线 :<br>
+      <span>400-607-6006 </span> </div>
+    <div class="footer_dingyue">
+        <ul>
+            <li><img src="plugins/website/images/dingyue.jpg"><br>快乐沃克订阅号</li>
+            <li><img src="plugins/website/images/fuwu.jpg"><br>快乐沃克服务号</li>
+        </ul>
+    </div>
+  </div>
+</div>
+<!-- <div class="fucengbg">
+    <div class="fuceng">
+        <span class="fctext"><a href="https://www.kuailework.com/vs3/html/account/register.html" target="_blank">HR-SaaS智能人事服务平台, 注册即送<span style="color: #F04343;">30份简历</span></a></span>
+        <a href="https://www.kuailework.com/vs3/html/account/register.html" target="_blank" class="fcbtn">立即注册</a>
+    </div>
+</div> -->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1271206451'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1271206451' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript" language="javascript" src="plugins/website/js/kuaileworkbaidutongji.js"></script>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/website/js/scroll.js"></script>
+<script src="plugins/website/wow/wow.min.js"></script>
+<script type="text/javascript" src="plugins/website/js/renshi.js"></script>
+<script src="plugins/website/js/artTemplate.js"></script>
+<script type="text/html" id="guo">
+    {{each list as v}}
+        <li>
+            <span class="bili_1">{{v.month}}</span>
+            <span class="bili_1">{{v.shuihou}}</span>
+            <span class="bili_1">{{v.mianzheng}}</span>
+            <span class="bili_1">{{v.shebao}}</span>
+            <span class="bili_1">{{v.gongjijin}}</span>
+            <span class="bili_1">{{v.geshui}}</span>
+        </li>
+    {{/each}}
+</script>
+<script>
+var wow = new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: true,
+            live: true,
+            callback: function (box) {
+
+            }
+        });
+        if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+            new WOW().init();
+        };
+
+
+
+ 
+$(function(){
+    let city = {
+      10000: { // 北京
+        cityName: "北京",
+        min1: 3387,
+        min2: 2450,
+        max1: 25401,
+        max2: 25401,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.002,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: 0.12,
+        proportion7: 0,
+      },
+      10001: { // 石家庄
+        cityName: "石家庄",
+        min1: 3263,
+        min2: 3657,
+        max1: 16970,
+        max2: 18285,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.003,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.10",
+        proportion7: 0,
+      },
+      10002: { // 上海
+        cityName: "上海",
+        min1: 4279,
+        min2: 2300,
+        max1: 21396,
+        max2: 21400,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.005,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.07",
+        proportion7: 0,
+      },
+      10003: { // 广州
+        cityName: "广州",
+        min1: 2100,
+        min2: 2100,
+        max1: 24654,
+        max2: 24654,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.002,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.07",
+        proportion7: 0,
+      },
+      10004: { // 深圳
+        cityName: "深圳",
+        min1: 2200,
+        min2: 2130,
+        max1: 25044,
+        max2: 25044,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.02,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.05",
+        proportion7: 0,
+      },
+      10005: { // 成都
+        cityName: "成都",
+        min1: 2388,
+        min2: 1380,
+        max1: 17908,
+        max2: 22303,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.004,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.06",
+        proportion7: 0,
+      },
+      10006: { // 重庆
+        cityName: "重庆",
+        min1: 3664,
+        min2: 1500,
+        max1: 18318,
+        max2: 18318,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.005,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.07",
+        proportion7: 0,
+      },
+      10007: { // 天津
+        cityName: "天津",
+        min1: 3364,
+        min2: 2050,
+        max1: 16821,
+        max2: 20500,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.005,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.11",
+        proportion7: 0,
+      },
+      10008: { // 杭州
+        cityName: "杭州",
+        min1: 3055,
+        min2: 2010,
+        max1: 15275,
+        max2: 24311,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.005,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.12",
+        proportion7: 0,
+      },
+      10009: { // 南京
+        cityName: "南京",
+        min1: 3030,
+        min2: 2020,
+        max1: 19935,
+        max2: 25300,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.005,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.08",
+        proportion7: 0,
+      },
+      10010: { // 武汉
+        cityName: "武汉",
+        min1: 3400,
+        min2: 1800,
+        max1: 19921,
+        max2: 26987,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.002,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.05",
+        proportion7: 0,
+      },
+      10011: { // 西安
+        cityName: "西安",
+        min1: 3371,
+        min2: 1480,
+        max1: 19446,
+        max2: 17403,
+        proportion1: 0.08,
+        proportion2: 0.02,
+        proportion3: 0.003,
+        proportion4: 0,
+        proportion5: 0,
+        proportion6: "0.05",
+        proportion7: 0,
+      },
+    };
+    let shebaobili = 0.08;
+    let yiliaobili = 0.02;
+    let shiyebili = 0.002;
+    let gongshangbili = 0;
+    let shengyubili = 0;
+    let gongjijinbili = 0.12;
+    let lastgongjijinbili = 0;
+    let yanglaoTotal = 271;
+    let yiliaoTotal = 61;
+    let shiyeTotal = 7;
+    let gongshangTotal = 0;
+    let shengyuTotal = 0;
+    let gongjijinTotal = 294;
+    let lastgongjijinTotal = 0;
+    let allTotal = 605;
+    let cityCode = 10000;
+    let shebaoBaseNum = city[cityCode].min1;
+    let gongjijinNum = city[cityCode].min2;
+    let yearList = [];
+    let monthList = [];
+    let yearPrice = 0;
+    // month
+    let monthPrice = 0;
+    let getshui = [];
+    let shuigaiqian = [];
+	$(".kechengtab li").click(function(){
+		$(this).addClass("active").siblings().removeClass("active");
+		var index = $(this).index();
+		$(".Curriculum").hide().eq(index).show();
+	})
+	$(".Curriculum li").hover(function(){
+		$(this).find(".greenbg").stop().animate({
+			"top":"0px"
+		})
+		$(this).find(".greenbg h4").css({
+			"padding-top":"40px"
+		})
+	},function(){
+		$(this).find(".greenbg").stop().animate({
+			"top":"303px"
+		})
+		$(this).find(".greenbg h4").css({
+			"padding-top":"0px"
+		})
+	})
+	$(".lecturer li").hover(function(){
+		$(this).find(".blackbg").stop().animate({
+			"bottom":"-100px"
+		})
+	},function(){
+		$(this).find(".blackbg").stop().animate({
+			"bottom":"-240px"
+		})
+	})
+    // 贷款还是租房
+    $('#first_house').children().click(function() {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active')
+            $('#houseDikouNum').text('--')
+            if ($(this).index() == 1) {
+                $(".template_list").css('display','none'); 
+            }
+        } else {
+            $(this).addClass('active')
+            $(this).siblings().removeClass('active')
+            var index = $(this).index()
+            if (index == 0) {
+                $(".template_list").css('display','none'); 
+                let dikouNum = 1000
+                $('#houseDikouNum').text(dikouNum)
+            } else {
+                $(".template_list").css('display','block');
+                if ($('#house_type').children().eq(0).hasClass('active')) {
+                    $('#houseDikouNum').text(1500)
+                } else if ($('#house_type').children().eq(1).hasClass('active')) {
+                    $('#houseDikouNum').text(1100)
+                } else if ($('#house_type').children().eq(2).hasClass('active')) {
+                    $('#houseDikouNum').text(800)
+                }
+            }
+        }
+    })
+    // 城市大小人口数量
+    $('#house_type').children().click(function() {
+        let index = $(this).index()
+        $(this).addClass('active')
+        $(this).siblings().removeClass('active')
+        if (index == 0) {
+            $('#houseDikouNum').text(1500)
+        } else if (index == 1) {
+            $('#houseDikouNum').text(1100)
+        } else if (index == 2) {
+            $('#houseDikouNum').text(800)
+        }
+    })
+    // 子女教育
+    $('#child_education').children().click(function() {
+        if ($(this).hasClass('active')) {
+            if ($(this).index() == 2) {
+                console.log('')
+            } else {
+                $(this).removeClass('active')
+                $('#deduction_type').children('li').removeClass('active')
+                $('#educationDikouNum').text('--')
+            }
+        } else {
+            $(this).addClass('active')
+            $(this).siblings().removeClass('active')
+            var index = $(this).index()
+            if (index == 2) {
+                if ($('#childNum').val()) {
+                    if ($('#deduction_type').children().eq(0).hasClass('active')) {
+                        $('#deduction_type').children().eq(1).removeClass('active')
+                        $('#educationDikouNum').text($('#childNum').val() * 1000)
+                    } else if ($('#deduction_type').children().eq(1).hasClass('active')) {
+                        $('#deduction_type').children().eq(0).removeClass('active')
+                        $('#educationDikouNum').text($('#childNum').val() * 500)
+                    } else {
+                        $('#deduction_type').children().eq(0).addClass('active')
+                        $('#educationDikouNum').text(1000)
+                    }
+                } else {
+                    $(this).parent().children('li').removeClass('active')
+                    $('#deduction_type').children().removeClass('active')
+                    $('#educationDikouNum').text('--')
+                }
+            } else {
+                if (index == 0) {
+                    if ($('#deduction_type').children().eq(0).hasClass('active')) {
+                        $('#deduction_type').children().eq(1).removeClass('active')
+                        $('#educationDikouNum').text(1000)
+                    } else if ($('#deduction_type').children().eq(1).hasClass('active')) {
+                        $('#deduction_type').children().eq(0).removeClass('active')
+                        $('#educationDikouNum').text(500)
+                    } else {
+                        $('#deduction_type').children().eq(0).addClass('active')
+                        $('#educationDikouNum').text(1000)
+                    }
+                } else if (index == 1) {
+                    if ($('#deduction_type').children().eq(0).hasClass('active')) {
+                        $('#deduction_type').children().eq(1).removeClass('active')
+                        $('#educationDikouNum').text(2000)
+                    } else if ($('#deduction_type').children().eq(1).hasClass('active')) {
+                        $('#deduction_type').children().eq(0).removeClass('active')
+                        $('#educationDikouNum').text(1000)
+                    } else {
+                        $('#deduction_type').children().eq(0).addClass('active')
+                        $('#educationDikouNum').text(2000)
+                    }
+                }
+            }
+        }
+    })
+    // 抵扣方式
+    $('#deduction_type').children().click(function() {
+        let index = $(this).index()
+        $(this).addClass('active')
+        $(this).siblings().removeClass('active')
+        if ($('#child_education').children().eq(0).hasClass('active')) {
+            if (index == 0) {
+                $('#educationDikouNum').text(1000)
+            } else if (index == 1) {
+                $('#educationDikouNum').text(500)
+            }
+        } else if ($('#child_education').children().eq(1).hasClass('active')) {
+            if (index == 0) {
+                $('#educationDikouNum').text(2000)
+            } else if (index == 1) {
+                $('#educationDikouNum').text(1000)
+            }
+        } else if ($('#child_education').children().eq(2).hasClass('active')) {
+            let childNum = $('#childNum').val()
+            if (index == 0) {
+                $('#educationDikouNum').text(childNum * 1000)
+            } else if (index == 1) {
+                $('#educationDikouNum').text(childNum * 500)
+            }
+        }
+    })
+    // 子女数量
+    $('#childNum').on('input', function() {
+        let childNum = $('#childNum').val()
+        if (childNum == 1) {            
+            $('#child_education').children().eq(0).addClass('active')
+            $('#child_education').children().eq(0).siblings().removeClass('active')
+            $('#deduction_type').children().eq(0).addClass('active')
+            $('#educationDikouNum').text(1000)
+        } else if (childNum == 2) {
+            $('#child_education').children().eq(1).addClass('active')
+            $('#child_education').children().eq(1).siblings().removeClass('active')
+            $('#deduction_type').children().eq(0).addClass('active')
+            $('#educationDikouNum').text(2000)
+        } else if (childNum == '') { 
+            $('#child_education').children().eq(2).removeClass('active')
+            $('#deduction_type').children('li').removeClass('active')
+            $('#educationDikouNum').text('--')
+        } else {
+            $('#child_education').children().eq(2).addClass('active')
+            $('#child_education').children().eq(2).siblings().removeClass('active')
+            $('#educationDikouNum').text(childNum * 1000)
+            $('#deduction_type').children().eq(0).addClass('active');
+            if ($('#deduction_type').children().eq(0).hasClass('active')) {
+                $('#deduction_type').children().eq(1).removeClass('active')
+            } else if ($('#deduction_type').children().eq(1).hasClass('active')) {
+                $('#deduction_type').children().eq(0).removeClass('active')
+            }
+        }
+    })
+    // 赡养老人
+    // 是否为独生子女
+    $('#only_child').children().click(function() {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active')
+            $('#supportMoney').text('--')
+        } else {
+            let index = $(this).index()
+            $(this).addClass('active')
+            $(this).siblings().removeClass('active')
+            if (index == 0) {
+                $('#supportMoney').text(2000)
+                $('#customMoney').val('')
+                $('.custom').css({'display': 'none'})
+            } else {
+                $('#supportMoney').text('--')
+                $('.custom').css({'display': 'block'})
+            }
+        }
+    })
+    // 赡养老人自定义金额
+    $('#customMoney').on('input', function() {
+        let customMoney = $('#customMoney').val()
+        if (customMoney > 1000) {
+            $("#errormsg").html("不能高于1000元").show(300).delay(1000).hide(300); 
+            $('#customMoney').val('')
+            $('#supportMoney').text('--')
+        } else {
+            $('#supportMoney').text(customMoney)
+        }
+    })
+    // 是否继续教育
+    $('#education_type').children().click(function() {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active')
+            $('#continueEducation').text('--')
+        } else {
+            let index = $(this).index()
+            $(this).addClass('active')
+            $(this).siblings().removeClass('active')
+            if (index == 0) {
+                $('#continueEducation').text(400)
+            } else {
+                $('#continueEducation').text(300)
+            }
+        }
+    })
+    // 大病支出
+    $('#health_spend').on('input', function() {
+        let ill = $('#health_spend').val() > 80000? 80000 : $('#health_spend').val()
+        if ($('#health_spend').val() > 15000) {
+            $('#dabingNum').text(Math.floor((ill -15001) /12) )
+        } else {
+            $('#dabingNum').text('--')
+        }
+    })
+    // 设置比例
+    $('#set_bili').click(function(event) {
+        $('.tanceng').css({'display': 'block'})
+        $('body').css({'height':'100%','overflow':'hidden'})
+    });
+    // 关闭比例设置弹框
+    $('#close_bili').click(function(event) {
+        $('.tanceng').css({'display': 'none'})
+        $('body').css({'height':'auto','overflow':'auto'})
+    });
+    // 城市选择
+    $('#city_select').on('change',function() {
+        cityCode = $(this).val()
+        let cityBiliDetail = city[cityCode]
+        $('#selectedCity').text(city[cityCode].cityName)
+        shebaobili = cityBiliDetail.proportion1
+        yiliaobili = cityBiliDetail.proportion2
+        shiyebili = cityBiliDetail.proportion3
+        gongshangbili = cityBiliDetail.proportion4
+        shengyubili = cityBiliDetail.proportion5
+        gongjijinbili = cityBiliDetail.proportion6
+        lastgongjijinbili = cityBiliDetail.proportion7
+
+        $('#yanglao_bili').val(cityBiliDetail.proportion1)
+        $('#yiliao_bili').val(cityBiliDetail.proportion2)
+        $('#shiye_bili').val(cityBiliDetail.proportion3)
+        $('#gongshang_bili').val(cityBiliDetail.proportion4)
+        $('#shengyu_bili').val(cityBiliDetail.proportion5)
+        $('#gongjijin_bili').val(cityBiliDetail.proportion6)
+        $('#last_gongjijin_bili').val(cityBiliDetail.proportion7)
+        // 各城市算得的数值
+        let shebaominiBase = city[cityCode].min1;
+        let gongjijinminiBase = city[cityCode].min2
+        let money = $('#baseSalary').val()
+        if (city[cityCode].min1 > money) {
+            $('#shebaoBaseid').val(city[cityCode].min1)
+        }
+        console.log('aaaaddd', $('#shebaoBaseid').val())
+        if (city[cityCode].max1 < money) {
+            $('#shebaoBaseid').val(city[cityCode].max1)
+        }
+        if (city[cityCode].min2 > money) {
+            $('#gongjijinBaseid').val(city[cityCode].min2)
+        }
+        if (city[cityCode].max2 < money) {
+            $('#gongjijinBaseid').val(city[cityCode].max2)
+        }
+        let f1 = $('#shebaoBaseid').val()
+        let f2 = $('#gongjijinBaseid').val()
+        if (money) {
+            $('#yanglaoTotal').text(Math.round(f1 * shebaobili))
+            $('#yiliaoTotal').text(Math.round(f1 * yiliaobili))
+            $('#shiyeTotal').text(Math.round(f1 * shiyebili))
+            $('#gongshangTotal').text(Math.round(f1 * gongshangbili))
+            $('#shengyuTotal').text(Math.round(f1 * shengyubili))
+            $('#gongjijinTotal').text(Math.round(f2 * gongjijinbili))
+            $('#lastgongjijinTotal').text(Math.round(f2 * lastgongjijinbili))
+            
+            $('#shebao').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1)
+            
+            $('#gongjijin').text($('#gongjijinTotal').text())
+            $('#last_gongjijin').text($('#lastgongjijinTotal').text())
+            
+            $('#all_total').text($('#shebao').text() * 1 + $('#gongjijin').text() * 1 + $('#last_gongjijin').text() * 1)
+            $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+        } else {
+            $('#yanglaoTotal').text(Math.round(shebaominiBase * shebaobili))
+            $('#yiliaoTotal').text(Math.round(shebaominiBase * yiliaobili))
+            $('#shiyeTotal').text(Math.round(shebaominiBase * shiyebili))
+            $('#gongshangTotal').text(Math.round(shebaominiBase * gongshangbili))
+            $('#shengyuTotal').text(Math.round(shebaominiBase * shengyubili))
+            $('#gongjijinTotal').text(Math.round(gongjijinminiBase * gongjijinbili))
+            $('#lastgongjijinTotal').text(Math.round(gongjijinminiBase * lastgongjijinbili))
+            $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+        }
+    })
+    // 输入税前工资
+    $('#baseSalary').blur(function() {
+        let salary = $('#baseSalary').val()
+        if (salary < 1000 && salary != '') {
+            $("#errormsg").html("不能低于1000元").show(300).delay(1000).hide(300);
+            $('#baseSalary').val('')
+            return
+        } else if (salary > 1000000) {
+            $("#errormsg").html("不能超过100万元").show(300).delay(1000).hide(300);
+            $('#baseSalary').val('')
+            return
+        } else if (salary == '') {
+            return
+        }
+        $('#shebaoBaseid').val(salary)
+        $('#gongjijinBaseid').val(salary)
+        if (city[cityCode].min1 > salary) {
+            $('#shebaoBaseid').val(city[cityCode].min1)
+        }
+        console.log('aaaaddd', $('#shebaoBaseid').val())
+        if (city[cityCode].max1 < salary) {
+            $('#shebaoBaseid').val(city[cityCode].max1)
+        }
+        if (city[cityCode].min2 > salary) {
+            $('#gongjijinBaseid').val(city[cityCode].min2)
+        }
+        if (city[cityCode].max2 < salary) {
+            $('#gongjijinBaseid').val(city[cityCode].max2)
+        }
+        let a = $('#shebaoBaseid').val()
+        let b = $('#gongjijinBaseid').val()
+        if (!salary) {
+           return
+        } else {
+            $('#yanglaoTotal').text(Math.round(a * shebaobili))
+            $('#yiliaoTotal').text(Math.round(a * yiliaobili))
+            $('#shiyeTotal').text(Math.round(a * shiyebili))
+            $('#gongshangTotal').text(Math.round(a * gongshangbili))
+            $('#shengyuTotal').text(Math.round(a * shengyubili))
+            $('#gongjijinTotal').text(Math.round(b * gongjijinbili))
+            $('#lastgongjijinTotal').text(Math.round(b * lastgongjijinbili))
+            
+            $('#shebao').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1)
+            
+            $('#gongjijin').text($('#gongjijinTotal').text())
+            $('#last_gongjijin').text($('#lastgongjijinTotal').text())
+            
+            $('#all_total').text($('#shebao').text() * 1 + $('#gongjijin').text() * 1 + $('#last_gongjijin').text() * 1)
+            $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijin').text() * 1 + $('#last_gongjijin').text() * 1)
+            
+        }
+    })
+
+    // 更改比例
+    $('#yanglao_bili').on('blur', function(){
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(shebaobili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(shebaobili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#shebaoBaseid').val()
+        $('#yanglaoTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    $('#yiliao_bili').on('blur', function(){
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(yiliaobili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(yiliaobili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#shebaoBaseid').val()
+        $('#yiliaoTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    $('#shiye_bili').on('blur', function(){
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(shiyebili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(shiyebili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#shebaoBaseid').val()
+        $('#shiyeTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    $('#gongshang_bili').on('blur', function(){
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(gongshangbili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(gongshangbili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#shebaoBaseid').val()
+        $('#gongshangTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    $('#shengyu_bili').on('blur', function(){
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(shengyubili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(shengyubili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#shebaoBaseid').val()
+        $('#shengyuTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    $('#gongjijin_bili').on('blur', function(){
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(gongjijinbili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(gongjijinbili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#gongjijinBaseid').val()
+        $('#gongjijinTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    $('#last_gongjijin_bili').on('blur', function() {
+        if (isNaN($(this).val())) {
+            $("#shangxian").html("数字格式有误").show(300).delay(1000).hide(300);
+            $(this).val(lastgongjijinbili)
+            return
+        }
+        if ($(this).val() >= 1) {
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300); 
+            $(this).val(lastgongjijinbili)
+        }
+        if ($(this).val().length > 7) {
+            $("#shangxian").html("最多5位有效数字").show(300).delay(1000).hide(300);
+            $(this).val(($(this).val() * 1).toFixed(5))
+        }
+        let salary = $('#gongjijinBaseid').val()
+        $('#lastgongjijinTotal').text(Math.round($(this).val() * salary))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+    })
+    // 自定义基数
+    $('#shebaoBaseid').on('blur', function() {
+        let shebaoBase = $('#shebaoBaseid').val()
+        let min1 = city[cityCode].min1
+        let max1 = city[cityCode].max1
+        if (shebaoBase < min1) {
+            $('#shebaoBaseid').val(min1)
+            $("#shangxian").html("低于下限").show(300).delay(1000).hide(300);
+        }
+        if (shebaoBase > max1) {
+            $('#shebaoBaseid').val(max1)
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300);
+        }
+        $('#yanglaoTotal').text(Math.round($('#shebaoBaseid').val() * $('#yanglao_bili').val()))
+        $('#yiliaoTotal').text(Math.round($('#shebaoBaseid').val() * $('#yiliao_bili').val()))
+        $('#shiyeTotal').text(Math.round($('#shebaoBaseid').val() * $('#shiye_bili').val()))
+        $('#gongshangTotal').text(Math.round($('#shebaoBaseid').val() * $('#gongshang_bili').val()))
+        $('#shengyuTotal').text(Math.round($('#shebaoBaseid').val() * $('#shengyu_bili').val()))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+        
+    })
+    $('#gongjijinBaseid').on('blur',function() {
+        let gongjijinBase = $('#gongjijinBaseid').val()   
+        let min2 = city[cityCode].min2
+        let max2 = city[cityCode].max2
+        if (gongjijinBase < min2) {
+            $('#gongjijinBaseid').val(min2)
+            $("#shangxian").html("低于下限").show(300).delay(1000).hide(300);
+        }
+        if (gongjijinBase > max2) {
+            $('#gongjijinBaseid').val(max2)
+            $("#shangxian").html("超过上限").show(300).delay(1000).hide(300);
+        }
+        $('#gongjijinTotal').text(Math.round($('#gongjijinBaseid').val() * $('#gongjijin_bili').val()))
+        $('#lastgongjijinTotal').text(Math.round($('#gongjijinBaseid').val() * $('#last_gongjijin_bili').val()))
+        $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+        
+    })
+    // 保存功能
+    $('#save').on('click', function() {
+        $('body').css({'height':'auto','overflow':'auto'})
+        setTimeout(function () {
+            $('.tanceng').css({'display': 'none'})
+            $('#shebao').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1)
+            
+            $('#gongjijin').text($('#gongjijinTotal').text())
+            $('#last_gongjijin').text($('#lastgongjijinTotal').text())
+            $('#all_total').text($('#shebao').text() * 1 + $('#gongjijin').text() * 1 + $('#last_gongjijin').text() * 1)
+        }, 600);
+        
+    })
+    // 重置功能
+    $('#reset').on('click', function() {
+        let cityBiliDetail = city[cityCode]
+        let shebaominiBase = cityBiliDetail.min1
+        let gongjijinminiBase = city[cityCode].min2
+        let salary = $('#baseSalary').val()
+        $('#shebaoBaseid').val($('#baseSalary').val())
+        $('#gongjijinBaseid').val($('#baseSalary').val())
+        if (salary > city[cityCode].max1) {
+            $('#shebaoBaseid').val(city[cityCode].max1)
+        }
+        if (salary < city[cityCode].min1) {
+            $('#shebaoBaseid').val(city[cityCode].min1)
+        }
+        if (salary > city[cityCode].max2) {
+            $('#gongjijinBaseid').val(city[cityCode].max2)
+        }
+        if (salary < city[cityCode].min2) {
+            $('#gongjijinBaseid').val(city[cityCode].min2)
+        }
+        $('#yanglao_bili').val(cityBiliDetail.proportion1)
+        $('#yiliao_bili').val(cityBiliDetail.proportion2)
+        $('#shiye_bili').val(cityBiliDetail.proportion3)
+        $('#gongshang_bili').val(cityBiliDetail.proportion4)
+        $('#shengyu_bili').val(cityBiliDetail.proportion5)
+        $('#gongjijin_bili').val(cityBiliDetail.proportion6)
+        $('#last_gongjijin_bili').val(cityBiliDetail.proportion7)
+
+        shebaobili = cityBiliDetail.proportion1
+        yiliaobili = cityBiliDetail.proportion2
+        shiyebili = cityBiliDetail.proportion3
+        gongshangbili = cityBiliDetail.proportion4
+        shengyubili = cityBiliDetail.proportion5
+        gongjijinbili = cityBiliDetail.proportion6
+        lastgongjijinbili = cityBiliDetail.proportion7
+
+        let n1 = $('#shebaoBaseid').val()
+        let n2 = $('#gongjijinBaseid').val()
+
+        if ($('#baseSalary').val()) {
+            $('#yanglaoTotal').text(Math.round(n1 * shebaobili))
+            $('#yiliaoTotal').text(Math.round(n1 * yiliaobili))
+            $('#shiyeTotal').text(Math.round(n1 * shiyebili))
+            $('#gongshangTotal').text(Math.round(n1 * gongshangbili))
+            $('#shengyuTotal').text(Math.round(n1 * shengyubili))
+            $('#gongjijinTotal').text(Math.round(n2 * gongjijinbili))
+            $('#lastgongjijinTotal').text(Math.round(n2 * lastgongjijinbili))
+            $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+        } else {
+            $('#yanglaoTotal').text(Math.round(shebaominiBase * shebaobili))
+            $('#yiliaoTotal').text(Math.round(shebaominiBase * yiliaobili))
+            $('#shiyeTotal').text(Math.round(shebaominiBase * shiyebili))
+            $('#gongshangTotal').text(Math.round(shebaominiBase * gongshangbili))
+            $('#shengyuTotal').text(Math.round(shebaominiBase * shengyubili))
+            $('#gongjijinTotal').text(Math.round(gongjijinminiBase * gongjijinbili))
+            $('#lastgongjijinTotal').text(Math.round(gongjijinminiBase * lastgongjijinbili))
+            $('#allTotal').text($('#yanglaoTotal').text() * 1 + $('#yiliaoTotal').text() * 1 + $('#shiyeTotal').text() * 1 + $('#gongshangTotal').text() * 1 + $('#shengyuTotal').text() * 1 + $('#gongjijinTotal').text() * 1 + $('#lastgongjijinTotal').text() * 1)
+        }
+    })
+    // 预扣税率
+    function getTaxRate(idx, v, y){
+        let wages = $('#baseSalary').val(); // 薪资
+        let security = $('#shebao').text(); // 社保
+        let publicFund = $('#gongjijin').text() // 公积金
+        let houseMoney = $('#houseDikouNum').text() == "--" ? 0 : $('#houseDikouNum').text()
+        let childEduMoney = $('#educationDikouNum').text() == "--" ? 0 : $('#educationDikouNum').text()
+        let supportMoney = $('#supportMoney').text() == "--" ? 0 : $('#supportMoney').text()
+        let continueMoney = $('#continueEducation').text() == "--" ? 0 : $('#continueEducation').text()
+        let illMoeny = $('#dabingNum').text() == "--" ? 0 : $('#dabingNum').text()
+        let exemption = houseMoney*1 + childEduMoney*1 + supportMoney*1 + continueMoney*1 + illMoeny*1 + 5000; //免征税
+        let tax, deduction
+        if (v <= 36000) {
+          tax = 0.03
+          deduction = 0
+        } else if (v > 36000 && v <= 144000) {
+          tax = 0.1
+          deduction = 2520
+        } else if (v > 144000 && v <= 300000) {
+          tax = 0.2
+          deduction = 16920
+        } else if (v > 300000 && v <= 420000) {
+          tax = 0.25
+          deduction = 31920
+        } else if (v > 420000 && v <= 660000) {
+          tax = 0.3
+          deduction = 52920
+        } else if (v > 660000 && v <= 960000) {
+          tax = 0.35
+          deduction = 85920
+        } else if (v > 960000) {
+          tax = 0.45
+          deduction = 181920
+        }
+
+        
+        let obj = {
+
+        }
+
+
+        if(y){
+            yearList[idx] = obj  
+            yearList[idx].tax = tax
+            yearList[idx].deduction = deduction
+        }else{
+            monthList[idx] = obj
+            monthList[idx].tax = tax
+            monthList[idx].deduction = deduction
+        }
+        
+        // console.log(yearList,monthList)
+        // console.log(idx)
+        console.log('个税', monthList[idx].geTax)
+        if (monthList[idx].geTax != undefined) {
+            getshui.push(monthList[idx].geTax)
+        }   
+        // console.log(`第${++idx}个月，预扣税率${tax} 速算扣除数${deduction}`)
+      };
+      // 个税扣除
+        function lastTax(){
+            let wages = $('#baseSalary').val(); // 薪资
+        let security = $('#shebao').text(); // 社保
+        let publicFund = $('#gongjijin').text() // 公积金
+        let houseMoney = $('#houseDikouNum').text() == "--" ? 0 : $('#houseDikouNum').text()
+        let childEduMoney = $('#educationDikouNum').text() == "--" ? 0 : $('#educationDikouNum').text()
+        let supportMoney = $('#supportMoney').text() == "--" ? 0 : $('#supportMoney').text()
+        let continueMoney = $('#continueEducation').text() == "--" ? 0 : $('#continueEducation').text()
+        let illMoeny = $('#dabingNum').text() == "--" ? 0 : $('#dabingNum').text()
+        let exemption = houseMoney*1 + childEduMoney*1 + supportMoney*1 + continueMoney*1 + illMoeny*1 + 5000; //免征税
+            for (let i = 0; i < 12; i++) {
+              // 计算要缴税的部分
+              let afterTaxMoney
+              if (i == 0) {
+                // 第一个月
+                // 20000 - 5000 - 2040 - 2400 = 10600
+                afterTaxMoney = wages - 5000 - security - publicFund
+              } else {
+                // 后续每次加上上个月的扣税额
+                let idx = i
+                afterTaxMoney = wages - 5000 - security - publicFund + yearList[--idx].afterTaxMoney
+              }
+
+              if (afterTaxMoney < 0) {
+                afterTaxMoney = 0
+              }
+
+              // 获取1月份税率
+              getTaxRate(i, afterTaxMoney, true)
+
+              // 1月最终个税
+              let qTax = afterTaxMoney * yearList[i].tax - yearList[i].deduction
+              let geTax = 0
+              // 减去上个月的个税
+              let idx
+              if (i > 0) {
+                idx = i
+                geTax = qTax - yearList[--idx].qTax
+              } else {
+                geTax = qTax
+              }
+
+              // 税后收入
+              let taxMoney = wages - security - publicFund - geTax
+
+
+                yearList[i].afterTax = Math.round(taxMoney)
+                yearList[i].geTax = Math.round(geTax)
+                yearList[i].afterTaxMoney = Math.round(afterTaxMoney)
+                yearList[i].qTax = Math.round(qTax)
+            }
+        };
+
+        // 旧运算
+        function getYearRate(wages) {
+            let obj = {
+              tax: null,
+              deduction: null
+            }
+            if(wages<=3000){
+              obj.tax = 0.03
+              obj.deduction = 0
+            } else if (wages > 3000 && wages <= 12000) {
+              obj.tax = 0.1
+              obj.deduction = 210
+            } else if (wages > 12000 && wages <= 25000) {
+              obj.tax = 0.2
+              obj.deduction = 1410
+            } else if (wages > 25000 && wages <= 35000) {
+              obj.tax = 0.25
+              obj.deduction = 2660
+            } else if (wages > 35000 && wages <= 55000) {
+              obj.tax = 0.3
+              obj.deduction = 4410
+            } else if (wages > 55000 && wages <= 80000) {
+              obj.tax = 0.35
+              obj.deduction = 7160
+            } else if (wages>80000){
+              obj.tax = 0.45
+              obj.deduction = 15160
+            }
+
+            return obj
+          }
+
+    // 推算结果
+    $('#result').click(function(event) {
+        if ($('#baseSalary').val() == '') {
+            $("#errormsg").html("请输入税前薪资").show(300).delay(1000).hide(300); 
+            return
+        }
+        let afterTaxWages = []
+        let wages = $('#baseSalary').val(); // 薪资
+        let security = $('#shebao').text(); // 社保
+        let publicFund = $('#gongjijin').text() // 公积金
+        let houseMoney = $('#houseDikouNum').text() == "--" ? 0 : $('#houseDikouNum').text()
+        let childEduMoney = $('#educationDikouNum').text() == "--" ? 0 : $('#educationDikouNum').text()
+        let supportMoney = $('#supportMoney').text() == "--" ? 0 : $('#supportMoney').text()
+        let continueMoney = $('#continueEducation').text() == "--" ? 0 : $('#continueEducation').text()
+        let illMoeny = $('#dabingNum').text() == "--" ? 0 : $('#dabingNum').text()
+        let exemption = houseMoney*1 + childEduMoney*1 + supportMoney*1 + continueMoney*1 + illMoeny*1 + 5000; //免征税
+        let xiugaiqian = 5000;
+        let flag = true
+
+        // 一月工资
+    // (薪资 - 免征额 - 社保 - 公积金) * 预扣税率 - 速算扣除数
+    // 10000 - 5000 - 1023 - 1200 * 0.03% - 0
+
+    for (let i = 0; i < 12; i++) {
+      // 计算要缴税的部分
+      let afterTaxMoney
+      if (i == 0) {
+        // 第一个月
+        // 20000 - 5000 - 2040 - 2400 = 10600
+        afterTaxMoney = wages - exemption - security - publicFund
+      } else {
+        // 后续每次加上上个月的扣税额
+        let idx = i
+        afterTaxMoney = wages - exemption - security - publicFund + monthList[--idx].afterTaxMoney
+      }
+
+      if (afterTaxMoney < 0) {
+        afterTaxMoney = 0
+      }
+
+      // 获取1月份税率
+      getTaxRate(i, afterTaxMoney)
+
+      // 1月最终个税
+      let qTax = afterTaxMoney * monthList[i].tax - monthList[i].deduction
+      let geTax = 0
+      // 减去上个月的个税
+      let idx
+      if (i > 0) {
+        idx = i
+        geTax = qTax - monthList[--idx].qTax
+      } else {
+        geTax = qTax
+      }
+
+
+      // 税后收入
+      let taxMoney = wages - security - publicFund - Math.round(geTax)
+      console.log('adfas', wages,security,publicFund,geTax)
+      afterTaxWages.push(taxMoney)
+      // console.log("第" + i + "个月的个税为:" + geTax)
+      // console.log("第" + i + "个月的税后收入为:" + taxMoney)
+
+
+      // 税后收入name
+      monthList[i].afterTax = Math.round(taxMoney)
+      // 个税name
+      monthList[i].geTax = Math.round(geTax)
+      // 需要扣税的钱
+      monthList[i].afterTaxMoney = Math.round(afterTaxMoney)
+      monthList[i].qTax = Math.round(qTax)
+      // console.log('taxmoney',taxMoney)
+    }
+    // 今年税
+    let yearMoney = 0
+    for(let i = 0; i < monthList.length; i++){
+      yearMoney += monthList[i].geTax
+    }
+
+    lastTax()
+    // // 上一年税
+    // let lastYearMoney = 0
+    // for (let i = 0; i < yearList.length; i++) {
+    //   lastYearMoney += yearList[i].geTax
+    // }
+
+    let afterYearTaxNum = wages - 5000 - security - publicFund > 0 ? wages - 5000 - security - publicFund : 0
+    let taxRoteObj = getYearRate(afterYearTaxNum) 
+    let gexResult = afterYearTaxNum * taxRoteObj.tax - taxRoteObj.deduction
+    shuigaiqian = []
+    for(let l=0;l<12;l++){
+      shuigaiqian.push(Math.round(gexResult))
+    }
+
+    // 上一年税后收入
+    let afterYearMoney = Math.round(wages - security - publicFund - gexResult) * 12
+
+    // console.log(lastYearMoney)
+    // console.log(yearMoney)
+
+    
+    // yearPrice = Math.round(lastYearMoney - yearMoney),
+    // monthPrice = Math.round((lastYearMoney - yearMoney) / 12)
+    // console.log('前面的',lastYearMoney / 12)
+    // shuigaiqian = []
+    // for(var i = 0; i < 12; i++) {
+    //     shuigaiqian.push(Math.round(lastYearMoney / 12))
+    // }
+    var myChart = echarts.init(document.getElementById('chart_wrap'));
+            // 指定图表的配置项和数据
+option = {
+    title: {
+        text: '个税(元)',
+        textStyle: {　　　　　　　　　　　　//标题的文字样式
+ 　　　　   "fontSize": "20px",
+　　　　    "color": "#333",
+            "letterSpacing": "0.88px",
+            "fontWeight": "normal",
+            "marginLeft": "20px"
+ 　　　　}
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    // legend: {
+    //     data:['税改前','税改后']
+    // },
+    color:['#00B536','#FFC134'],
+     legend: {
+       itemHeight  :9,//改变圆圈大小
+       textStyle:{
+            fontSize:14,
+            color:'#B6B9BE',
+            rich:{
+                b:{color:'red'}
+           }
+       },
+        left:240,
+        top:10,
+        borderColor :'yellow',
+        icon: 'roundRect',
+        itemWidth: 19,
+        itemHeight: 5,
+    },
+    grid: {
+        left: '5%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1','2','3','4','5','6','7','8','9','10','11','12(月)']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'税改前',
+            type:'line',
+            data:shuigaiqian
+        },
+        {
+            name:'税改后',
+            type:'line',
+            data:getshui
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        $('.result_cover').css({'display': 'block'})
+        $('body').css({'height':'100%','overflow':'hidden'})
+        console.log('税后', afterTaxWages, '免征税', exemption, '社保',security, '公积金',publicFund,'个人税', getshui)
+        let geshui = getshui.splice(getshui.length - 12)
+        var data = []
+        afterTaxWages.forEach((item, index) => {
+            var dataForm = {
+                month: index + 1,
+                shuihou: item,
+                mianzheng: exemption,
+                shebao: security,
+                gongjijin: publicFund,
+                geshui: geshui[index]
+            }
+            data.push(dataForm)
+        })
+        console.log('新数据', data)
+        var str=template('guo',{list:data});
+        $('.shui_list').html(str);
+    });
+    // 关闭推算结果
+    $('#close_result').on('click', function() {
+        $('.result_cover').css({'display': 'none'})
+        $('body').css({'height':'auto','overflow':'auto'})
+    })
+    // 关闭帮助
+    $('#guanbi').on('click', function() {
+        $('.showPop').css({'display': 'none'})
+        $('body').css({'height':'auto','overflow':'auto'})
+    })
+    // 住房支出帮助
+    $('#house').on('click', function() {
+        $('body').css({'height':'100%','overflow':'hidden'})
+        let str = `专项附加扣除信息采集表-住房租金支出政策适用条件：
+                1.本人及配偶在主要工作城市无自有住房；
+                2.本人及配偶扣除年度未扣除住房贷款利息支出；
+                3.本人及配偶主要工作城市相同的，该扣除年度配偶未享受过住房租金支出扣除。
+                不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。
+                已填写住房贷款利息支出信息的请勿填写本页，否则可能导致信息导入失败，无法享受政策。
+                专项附加扣除信息采集表-住房贷款利息支出
+                政策适用条件：
+                1.本人或者配偶购买的中国境内住房；
+                2.属于首套住房贷款（可咨询贷款银行），且扣除年度仍在还贷；
+                3.住房租金支出和住房贷款利息支出未同时扣除；
+                不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。
+                已填写住房租金支出信息的请勿填写本页，否则可能导致信息导入失败，无法享受政策。`
+        $('#pop_content').html(str)
+        $('#title').html('住房支出')
+        $('.showPop').css({'display': 'block'})
+    })
+    // 子女教育
+    $('#zinv').on('click', function() {
+        $('body').css({'height':'100%','overflow':'hidden'})
+        let str = `专项附加扣除信息采集表-子女教育支出
+          政策适用条件：
+          1.有子女符合以下两个条件之一：（1）扣除年度有子女满3岁且处于小学入学前阶段；（2）扣除年度有子女正接受全日制学历教育。
+          2.同一子女的父亲和母亲扣除比例合计不超过100%。
+          不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。`
+        $('#pop_content').html(str)
+        $('#title').html('子女教育')
+        $('.showPop').css({'display': 'block'})
+    })
+    // 赡养老人帮助
+    $('#support').on('click', function() {
+        $('body').css({'height':'100%','overflow':'hidden'})
+        let str =`专项附加扣除信息采集表-赡养老人支出
+          政策适用条件：
+          1.扣除年度有一位被赡养人年满60（含）岁（被赡养人包括：①父母；②子女均已去世的祖父母或外祖父母）。
+          2.纳税人为非独生子女，且属于赡养人约定分摊的或被赡养人指定分摊的，需已经签订书面分摊协议。
+          不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。`
+        $('#pop_content').html(str)
+        $('#title').html('赡养老人')
+        $('.showPop').css({'display': 'block'})
+    })
+    // 继续教育帮助
+    $('#jixu').on('click', function() {
+        $('body').css({'height':'100%','overflow':'hidden'})
+        let str = `专项附加扣除信息采集表-继续教育支出
+          学历（学位）继续教育政策适用条件：
+          1.扣除年度内在中国境内接受学历（学位）继续教育。
+          职业资格继续教育政策适用条件：
+          1.扣除年度取得职业资格或者专业技术人员职业资格相关证书。
+          不符合上述条件者请勿填写本页，否则可能导致政策适用错误，影响个人纳税信用甚至违反税收法律。`
+        $('#pop_content').html(str)
+        $('#title').html('继续教育')
+        $('.showPop').css({'display': 'block'})
+    })
+})
+</script>
+

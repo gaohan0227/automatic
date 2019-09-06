@@ -1,0 +1,47 @@
+.deduct_record_list {
+            padding: 0 0.8rem;
+        }
+
+        .deduct_record_list .deduct_record_item {
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .deduct_record_list .deduct_record_item:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: #EAEAEA;
+        }
+
+        .deduct_record_list .deduct_record_item .deduct_record_user {
+            width: 6rem;
+        }
+
+        .deduct_record_list .deduct_record_item .deduct_record_user .deduct_phone {
+            padding-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: #2F2F2F;
+            line-height: 1.1rem;
+            font-weight: 500;
+        }
+
+        .deduct_record_list .deduct_record_item .deduct_record_user .deduct_time {
+            font-size: 0.6rem;
+            color: #6D6D6D;
+            line-height: 0.9rem;
+        }
+
+        .deduct_record_list .deduct_record_item .deduct_integral {
+            flex: 1;
+            text-align: right;
+            color: #5296FF;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }

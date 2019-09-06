@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+    <script type="text/javascript" src="../../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
+    <script type="text/javascript" src="../../js/tool.js"></script>
+    <script type="text/javascript" src="../../js/pageInit.js"></script>
+    <title>配音秀详情</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #F7F7F7;
+        }
+
+        .dub_title {
+            max-width: 1440px;
+            height: auto;
+            margin: 0 auto;
+            padding: 29px 0;
+            font-size: 36px;
+            font-weight: 500;
+            color: rgba(47, 47, 47, 1);
+            line-height: 50px;
+        }
+
+        .dub_success_top {
+            max-width: 1440px;
+            height: auto;
+            margin: 0 auto;
+            padding-top: 0px;
+            padding-bottom: 51px;
+            display: flex;
+            justify-content: flex-start;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .dub_success_top .dub_success_video {
+            width: 61.2%;
+            margin-right: 2%;
+            background: #fff;
+            padding-bottom: 30px;
+        }
+
+        .dub_success_top .dub_clause_info {
+            width: 36.8%;
+            background: #fff;
+            position: absolute;
+            top: 0px;
+            bottom: 51px;
+            right: 0;
+            padding: 32px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dub_video {
+            width: 100%;
+            position: relative;
+        }
+
+        .dub_video:before {
+            content: "";
+            padding-top: 47.73%;
+            background: url(../../img/no_page/dub_detail.png) no-repeat;
+            background-size: cover;
+            display: block;
+        }
+
+
+
+        .dub_video .dub_play {
+            background: linear-gradient(360deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            padding-right: 15px;
+        }
+
+        .dub_video .dub_play img {
+            margin: 12px 15px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .dub_video .dub_play img:first-child {
+            margin: 12px 10px;
+        }
+
+        .dub_video .dub_play .dub_progress {
+            display: flex;
+            flex: 1;
+            height: 40px;
+            margin-left: 10px;
+            margin-right: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dub_video .dub_play .dub_progress .dub_time {
+            font-size: 12px;
+            color: #fff;
+            padding-right: 12px;
+        }
+
+        .dub_video .dub_play .dub_progress .dub_progress_bar {
+            flex: 1;
+            position: relative;
+        }
+
+        .dub_video .dub_detail_video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            /*object-fit: cover;*/
+        }
+
+        .rang_width_div {
+            position: absolute;
+            top: 50%;
+            left: 0rem;
+            right: 0rem;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        .rang_width_div .rang_width {
+            background: #fff;
+            width: 0;
+            border-radius: 2px;
+            height: 2px;
+            position: relative;
+            z-index: 9;
+            width: 0%;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.4);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 2px;
+            border-radius: 2px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            -webkit-appearance: none;
+            height: 10px;
+            width: 10px;
+            transform: translateY(-40%);
+            border-radius: 100%;
+            background: #fff;
+            position: relative;
+            border: none;
+            z-index: 99;
+        }
+
+
+
+        .dub_success_btn {
+            width: 216px;
+            height: 44px;
+            margin: 0 auto;
+            background: rgba(255, 212, 70, 1);
+            box-shadow: 0px 6px 20px -7px rgba(255, 188, 13, 1);
+            border-radius: 100px;
+            font-size: 22px;
+            color: rgba(47, 47, 47, 1);
+            line-height: 44px;
+            text-align: center;
+            margin-top: 36px;
+            margin-bottom: 17px;
+        }
+
+        .dub_success_btn.dub_success_btn_gray {
+            background: #D5D5D5;
+            box-shadow: 0px 6px 20px -7px #ACACAC;
+        }
+
+        .dub_clause_list {
+            margin-top: 30px;
+            margin-bottom: 8px;
+            background: #f7f7f7;
+            flex: 0 1 auto;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .dub_clause_list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dub_clause_list .dub_clause_item .dub_clause_text {
+            padding: 30px 45px;
+            padding-top: 25px;
+            color: #ACACAC;
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 50px;
+            position: relative;
+        }
+
+        .dub_clause_list .dub_clause_item .dub_clause_text:before {
+            content: "";
+            position: absolute;
+            top: 46px;
+            left: 16px;
+            width: 10px;
+            height: 10px;
+            background: #FFD446;
+            border-radius: 100%;
+        }
+
+        .dub_clause_list .dub_clause_item .dub_clause_text.dub_clause_success {
+            position: relative;
+        }
+
+        .dub_clause_list .dub_clause_item .dub_clause_text.dub_clause_success:after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 0;
+            height: 0;
+            border-color: #88DF97 #88DF97 transparent transparent;
+            border-width: 11px 11px 11px 11px;
+            border-style: solid;
+            border-radius: 2px 0;
+        }
+
+        .dub_clause_info .dub_clause_title {
+            height: 22px;
+            line-height: 22px;
+            font-size: 16px;
+            position: relative;
+            display: flex;
+            color: #2f2f2f;
+            align-items: center;
+        }
+
+        .dub_clause_info .dub_clause_title:before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            background: #F7D76D;
+            border-radius: 2px;
+            width: 3px;
+        }
+
+        .dub_clause_info .dub_clause_title span {
+            padding: 0 10px;
+            font-weight: 500;
+        }
+
+
+
+        .dub_video .video_btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+        }
+
+        .recording_item {
+            padding-top: 37px;
+        }
+
+        .recording_item .success_dub {
+            text-align: center;
+        }
+
+        .recording_item .success_dub img {
+            width: 23.86%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .recording_item .dub_score {
+            color: #3376DE;
+            padding-top: 26px;
+            padding-bottom: 23px;
+        }
+
+        .recording_item .dub_score span:first-child {
+            padding-right: 12px;
+            font-size: 23px;
+            font-weight: 500;
+            line-height: 32px;
+        }
+
+        .recording_item .dub_success_tips {
+            font-size: 12px;
+            color: rgba(172, 172, 172, 1);
+            line-height: 17px;
+            padding-bottom:26px;
+        }
+        .recording_item .dub_save_btn{
+            width:216px;
+            height:44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin:0 auto;
+            border-radius:100px;
+            border:1px solid rgba(109,109,109,1);
+            font-size:16px;
+            color: #2f2f2f;
+            margin-top:19px;
+            margin-bottom:17px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dubSuccessVue" v-cloak>
+        <p class="dub_title">{{videoName}}视频名称</p>
+        <div class="dub_success_top">
+            <div class="dub_success_video">
+                <div class="dub_video">
+                    <video id="video_data" preload="meta" :poster="videoCover" :src="videoUrl" x5-playsinline=""
+                        playsinline="" webkit-playsinline="" onended="fnVideoEnd()">
+                        <source :src="videoUrl" type="video/mp4" />
+                        <source :src="videoUrl" type="video/ogg" />
+                        <source :src="videoUrl" type="video/webm" />
+                    </video>
+                    <img v-if="!isPlay" class="video_btn" src="../../img/index/video_btn.png" alt=""
+                        @click="fnVideoPlay('1')">
+                    <div class="dub_play" v-if="isPlay">
+                        <img :src="inPlay=='0'?'../../img/index/dub_play_btn.png':'../../img/index/dub_pause_btn.png'"
+                            alt="" @click="inPlay=='0'?fnVideoPlay('1'):fnVideoPlay('0')">
+                        <div class="dub_progress">
+                            <p class="dub_time">{{fnSecToMin(currentTime)}}/{{fnSecToMin(duration)}}</p>
+                            <div class="dub_progress_bar">
+                                <input id="range" type="range" min="0" max="100" v-model="progress" step="1"
+                                    oninput="change(this)">
+                                <div class="rang_width_div">
+                                    <p class="rang_width" id="rang_width" :style="'width:'+progress+'%'"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="../../img/index/dub_speed.png" alt="">
+                        <img src="../../img/index/dub_volume.png" alt="">
+                        <img src="../../img/index/dub_full.png" alt="" onclick="fnOpenFullVideo()">
+                    </div>
+                </div>
+                <div class="recording_item">
+                    <div class="success_dub">
+                        <img src="../../img/index/dub_works.png" alt="">
+                        <p class="dub_score"><span>总分:</span><span>99分</span></p>
+                        <p class="dub_success_tips">祝贺您,作品高达99分,赶快去发布吧!</p>
+                        <p class="dub_save_btn">保存</p>
+                    </div>
+                    <!-- <div class="dub_button_item">
+                        <p class="dub_clause_num"><span>{{newIndex+1}}</span>/{{dubClauseList.length}}</p>
+                        <p class="dub_clause_content">{{dubClauseList[newIndex].contentSentence}}</p>
+                        <div class="dub_clause_btn">
+                            <img v-if="!isRecord" src="../../img/index/dub_btn_play.png" alt=""
+                                @click="fnPlayVideoPart(this,newIndex,'0')">
+                            <img class="dub_btn_record"
+                                :src="isRecord?'../../img/index/dub_btn_record_gray.png':'../../img/index/dub_btn_record.png'"
+                                alt="" @click="isRecord?'':fnRecord(this,newIndex)">
+                            <img v-if="!isRecord"
+                                :src="dubClauseList[newIndex].dubAudioUrl!=''?'../../img/index/dub_btn_listen.png':'../../img/index/dub_btn_listen_gray.png'"
+                                alt="" @click="fnPlayVideoPart(this,newIndex,'1')">
+                        </div>
+                        <p v-if="!isRecord" class="dub_clause_tips">点击开始录音</p>
+                        <p v-if="!isRecord&&dubClauseList[newIndex].scoreNum!=''" class="dub_clause_score">
+                            {{dubClauseList[newIndex].scoreNum}}分</p>
+                        <p v-if="isRecord" class="dub_record_time">{{dubClauseList[newIndex].dubPlayTime}}s</p>
+                        <p v-if="isRecord" class="dub_record_progress"
+                            :style="'width:'+dubClauseList[newIndex].recordWidth+';'"></p>
+                    </div> -->
+                </div>
+                <!-- <div v-if="!isRecord" :class="isFinish?'dub_success_btn':'dub_success_btn dub_success_btn_gray'"
+                    @click="isFinish?fnOpenDubSuccess():fnOpenSuccess()">预览作品</div> -->
+                <!-- <div class="dub_success_fixed" > -->
+                <!-- </div> -->
+            </div>
+            <div class="dub_clause_info">
+                <div class="dub_clause_title">
+                    <span>配音列表</span>
+                </div>
+                <!-- <div class="dub_clause_list">
+                    <div class="dub_clause_item" v-for="item,index in dubClauseList"
+                        @click="isRecord?'':fnItemClickOpen(index)">
+                        <div :class="item.scoreNum!=''?'dub_clause_text dub_clause_success':'dub_clause_text'"
+                            :style="newIndex==index?'background:#fff':'background:#f7f7f7'">
+                            {{item.contentSentence}}</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../js/vue.min.js"></script>
+<script type="text/javascript" src="../../js/service/service-tool.js"></script>
+<script type="text/javascript" src="../../js/service/service-verify.js"></script>
+<script type="text/javascript">
+    var vm;
+    var _video;
+    window.onload = function () {
+        fnInit();
+        _video = document.getElementById("video_data");
+        if (vm.dubType == "book") {
+            // var postData = {
+            //     "booksId": api.pageParam.bookId || "",
+            //     "modelType": "4",
+            // }
+            // $S.POST("AppBooks/updateReadStart", postData, function(ret, err) {
+            //     if (ret && ret.status == "200") {
+            //         api.execScript({
+            //             name: 'index/bookshelf_win',
+            //             frameName: 'index/bookshelf',
+            //             script: 'fnInitPage();'
+            //         });
+            //         api.execScript({
+            //             name: 'index/book_detail_win',
+            //             frameName: 'index/book_detail',
+            //             script: 'fnInitPage();'
+            //         });
+            //     }
+            // })  
+        }
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".dubSuccessVue",
+            data: {
+                dubType: "dub",
+                progress: '0',
+                isChangeSpeed: "0",
+                currentTime: 0,
+                duration: 0,
+                isSaveDub: false,
+                score: "",
+                videoUrl: "",
+                videoCover: "",
+                videoName: "",
+                studentDubId: "",
+                isPlay: false, //视频是否播放过
+                inPlay: "0", //视频是否在播放中 0否 1是
+                newSpeed: "1",
+                speedList: [{
+                    key: "0.5"
+                }, {
+                    key: "0.75"
+                }, {
+                    key: "1"
+                }, {
+                    key: "1.25"
+                }, {
+                    key: "1.5"
+                }, {
+                    key: "2"
+                }]
+            },
+            methods: {
+                fnCloseChangeSpeed: function (key) {
+                    this.isChangeSpeed = key;
+                },
+                fnSetNewsSpeed: function (key) {
+                    this.newSpeed = key;
+                    _video = document.getElementById("video_data");
+                    _video.playbackRate = key;
+                    this.isChangeSpeed = '0';
+                }
+            }
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin()
+    }
+
+    function change(el) {
+        //用于修改时间
+        vm.progress = $(el).val();
+        _video = document.getElementById("video_data");
+        _video.currentTime = _video.duration * (vm.progress / 100);
+        vm.currentTime = _video.duration * (vm.progress / 100);
+        vm.duration = _video.duration && _video.duration > 0 ? _video.duration : 0;
+    }
+
+    function fnVideoPlay(key) {
+        _video = document.getElementById("video_data");
+        if (!vm.isPlay) {
+            vm.isPlay = true;
+        }
+        vm.inPlay = key;
+        if (key == '1') { //播放
+            _video.play();
+            // vm.progress = _video.duration && _video.duration > 0 ? (_video.currentTime / _video.duration) * 100 : '0'; //已播放百分比
+            // vm.currentTime = _video.currentTime
+            vm.duration = _video.duration && _video.duration > 0 ? _video.duration : 0;
+            fnEvevtVideo()
+        } else { //暂停
+            _video.pause();
+        }
+    }
+
+    function fnEvevtVideo() {
+        _video = document.getElementById("video_data");
+        _video.addEventListener("timeupdate", function () {
+            vm.progress = _video.duration && _video.duration > 0 ? (_video.currentTime / _video.duration) * 100 : '0'; //已播放百分比
+            vm.currentTime = _video.currentTime;
+            vm.duration = _video.duration && _video.duration > 0 ? _video.duration : 0;
+        })
+    }
+    //视频播放完成
+    function fnVideoEnd() {
+        vm.inPlay = '0';
+        fnLock();
+    }
+
+    function fnSecToMin(pSec) { //秒数变分钟数
+        var min = Math.floor(pSec / 60),
+            second = Math.floor(pSec % 60),
+            hour, newMin, time;
+
+        if (min > 60) {
+            hour = Math.floor(min / 60);
+            newMin = min % 60;
+        }
+
+        if (second < 10) {
+            second = '0' + second;
+        }
+        if (min < 10) {
+            min = '0' + min;
+        }
+        return time = hour ? (hour + ':' + newMin + ':' + second) : (min + ':' + second);
+    }
+    //视频全屏
+    function fnOpenFullVideo() {
+        var tParam = {
+            name: "video_full_detail_win",
+            url: "./video_full_detail.html",
+            slidBackEnabled: false,
+            pageParam: {
+                progress: vm.progress,
+                currentTime: vm.currentTime,
+                duration: vm.duration,
+                videoUrl: vm.videoUrl,
+                videoCover: vm.videoCover,
+                videoName: vm.videoName,
+                inPlay: vm.inPlay, //视频是否在播放中 0否 1是
+                newSpeed: vm.newSpeed,
+            }
+        }
+        fnOpenWin(tParam);
+        vm.inPlay = '0';
+        fnVideoPlay(vm.inPlay)
+    }
+
+
+    function fnOpenShare() {
+        $S.ShowProgress();
+        var postData = {
+            "studentDubId": vm.studentDubId,
+            "saveType": '2',
+            "videoUrl": vm.videoUrl
+        }
+        $S.POST("AppModule/moduleDubSave", postData, function (ret, err) {
+            if (ret && ret.status == "200") {
+                // vm.isSaveDub = true;
+                var pageData = {
+                    studentDubId: vm.studentDubId,
+                    "videoName": vm.videoInfo.videoName,
+                    "videoCover": vm.videoInfo.videoCover,
+                    "studentName": vm.videoInfo.studentName
+                }
+                fnOpenPublicWin("", "share", pageData)
+            }
+            $S.CloseProgress();
+        })
+    }
+
+    function fnSaveDub() {
+        $S.ShowProgress();
+        var postData = {
+            "studentDubId": vm.studentDubId,
+            "saveType": '1',
+            "videoUrl": vm.videoUrl
+        }
+        $S.POST("AppModule/moduleDubSave", postData, function (ret, err) {
+            if (ret && ret.status == "200") {
+                vm.isSaveDub = true;
+            }
+            $S.CloseProgress();
+        })
+    }
+
+    function fnOpenMyDub() {
+        var pageData = {
+            newIndex: "1"
+        }
+        fnOpenPublicWin("", "mine/my_dub_win", pageData)
+    }
+
+</script>
+
+</html>

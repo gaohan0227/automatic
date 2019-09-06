@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/dub.css">
+    <link rel="stylesheet" type="text/css" href="../../css/book.css">
+    <script type="text/javascript" src="../../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
+    <script type="text/javascript" src="../../js/tool.js"></script>
+    <script type="text/javascript" src="../../js/pageInit.js"></script>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/service/service-tool.js"></script>
+    <script type="text/javascript" src="../../js/service/service-verify.js"></script>
+    <style>
+        .read_exercises_content {
+            max-width: 1440px;
+            padding: 80px;
+            padding-top: 90px;
+            background: #fff;
+            border-radius: 8px;
+            margin-top: 34px;
+        }
+
+        .read_exercises_content .read_exercises_question_text {
+            font-size: 28px;
+            color: rgba(47, 47, 47, 1);
+            line-height: 48px;
+        }
+
+        .read_exercises_question_text * {
+            word-break: break-all;
+        }
+
+        .question_list {
+            margin-top: 20px;
+            padding: 0 80px;
+            /* padding-bottom: 0.7rem; */
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .question_list .question_item {
+            padding: 22px 0;
+            position: relative;
+        }
+
+        .question_list .question_item .question_item_title {
+            font-size: 24px;
+            font-weight: 500;
+            color: rgba(47, 47, 47, 1);
+            line-height: 33px;
+            word-break: break-all;
+        }
+
+        .question_list .question_item .question_item_title.question_item_title_36 {
+            padding-right: 3rem;
+        }
+
+        .question_list .question_item .question_item_title_tips {
+            width: 46px;
+            position: absolute;
+            top: 1.4rem;
+            right: 0rem;
+            height: 24px;
+            background: rgba(51, 118, 222, 0.06);
+            border-radius: 12px;
+            font-size: 12px;
+            color: #3376DE;
+            text-align: center;
+            line-height: 24px;
+        }
+
+        .question_list .question_item .question_item_info {
+            padding-top: 20px;
+        }
+
+        /*对错题*/
+
+        .question_list .question_item .question_item_info.question_item_info_35 {
+            display: flex;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_36 {
+            display: flex;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_38 {
+            padding-top: 0.15rem;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_35 .question_item_option {
+            width: 35%;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_36 .question_item_option {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_37 .question_item_option textarea {
+            width: 100%;
+            height: 94px;
+            background: rgba(247, 247, 247, 1);
+            border-radius: 8px;
+            padding: 14px;
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+            font-size: 18px;
+            line-height: 25px;
+            outline: none;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_37 .question_item_option textarea.do_it_fail {
+            color: #FF5332;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_37 .question_item_option textarea.do_it_null {
+            border: 1px solid #FF5332;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_38 .question_item_option {
+            width: 100%;
+            min-height: 2.7rem;
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_36 .question_item_option .div_img {
+            width: 90px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_36 .question_item_option .div_img:before {
+            content: "";
+            padding-top: 100%;
+            background: url(../../img/no_page/goods.png) no-repeat;
+            background-size: 100% 100%;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_36 .question_item_option .div_img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .question_list .question_item .question_item_info .question_item_option p {
+            flex: 1;
+            word-break: break-all;
+            font-size: 18px;
+            color: #2F2F2F;
+            padding: 0 11px;
+        }
+
+        .question_list .question_item .question_item_info.question_item_info_38 .question_item_option p {
+            font-size: 20px;
+            padding-right: 0;
+        }
+
+        .question_list .question_item .question_item_info .question_item_option .question_item_num {
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            font-size: 13px;
+            color: #2f2f2f;
+            font-weight: 500;
+            background: url(../../img/topic/question_card.png) no-repeat;
+            background-size: 100% 100%;
+            border-radius: 100%;
+        }
+
+        .question_list .question_item .question_item_info .question_item_option .question_item_num.question_do_it {
+            background: url(../../img/topic/question_do.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .question_list .question_item .question_item_info .question_item_option .question_item_num.question_item_success {
+            background: url(../../img/topic/test_success.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .question_list .question_item .question_item_info .question_item_option .question_item_num.question_item_fail {
+            background: url(../../img/topic/test_fail.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .question_submit_btn {
+            width: 226px;
+            height: 48px;
+            background: rgba(255, 212, 70, 1);
+            box-shadow: 0px 6px 20px -7px rgba(255, 188, 13, 1);
+            border-radius: 100px;
+            margin: 0 auto;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 22px;
+            color: rgba(47, 47, 47, 1);
+            line-height: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bookDetailVue" v-cloak>
+        <div class="bookshelf_content" v-if="isLoad">
+            <div class="book_detail_select">
+                <div class="book_detail_now" @click="fnIsSelect()">
+                    <p>{{selectList[read_model-1].text}}</p>
+                    <img src="../../img/index/book_select.png" alt="">
+                </div>
+                <div class="book_detail_select_list" v-if="isSelect">
+                    <div :class="index==read_model-1?'book_detail_select_item active':'book_detail_select_item'"
+                        v-for="item,index in selectList" @click="fnSelectModel(index)">
+                        <p>{{item.text}}</p>
+                        <img src="../../img/index/book_lock.png" alt="" v-if="index>1&&bookProgress<50">
+                    </div>
+                </div>
+            </div>
+            <div class="book_detail_title">
+                <span>{{selectList[read_model-1].text}}</span>
+            </div>
+            <div v-if="read_model=='1'">
+                <div class="book_detail_info">
+                    <div class="word_practise_header">
+                        <div class="word_practise_progress">
+                            <p :style="'width:'+(wordNewNum/wordCardsNums*100)+'%'"></p>
+                        </div>
+                        <p class="word_practise_header_right"><span>{{wordNewNum}}</span>/{{wordCardsNums}}</p>
+                    </div>
+                    <div class="word_practise_info">
+                        <div class="word_practise_img" v-if="wordList[wordNewNum-1].readPicture!=''">
+                            <img :src="wordList[wordNewNum-1].readPicture" alt="">
+                        </div>
+                        <span class="word_practise_e">{{wordList[wordNewNum-1].readWord}}</span>
+                        <div class="word_practise_c">
+                            <img src="../../img/index/word_listen.png" alt=""
+                                @click="!wordList[wordNewNum-1].isTape?fnListen(wordList[wordNewNum-1].wordAudio):''">
+                            <span>{{wordList[wordNewNum-1].readChinese}}</span>
+                        </div>
+                    </div>
+                    <audio :src="wordList[wordNewNum-1].wordAudio" id="audio_data"></audio>
+                    <p class="word_practise_sentence">{{wordList[wordNewNum-1].englishSentence}}</p>
+                    <p class="word_practise_sentence_c">{{wordList[wordNewNum-1].chineseSentence}}</p>
+                    <div class="word_practise_bottom_div"></div>
+                    <div class="word_practise_card_bottom">
+                        <img src="../../img/index/dub_btn_record.png" alt="" v-if="!wordList[wordNewNum-1].isTape"
+                            @click="fnTape('startTape')">
+                        <div class="dub_tape" v-if="wordList[wordNewNum-1].isTape" @click="fnTape('stopTape')">
+                            <img src="../../img/index/dub_tape.png" alt="">
+                        </div>
+                        <p class="word_practise_tips"
+                            v-if="!wordList[wordNewNum-1].isTape&&wordList[wordNewNum-1].isHaveScore">录音评测结果：</p>
+                        <p class="word_practise_score"
+                            v-if="!wordList[wordNewNum-1].isTape&&wordList[wordNewNum-1].isHaveScore">
+                            <span>{{wordList[wordNewNum-1].score}}</span>分</p>
+                    </div>
+                </div>
+                <div class="word_practise_btn" v-if="!wordList[wordNewNum-1].isTape&&wordNewNum<wordCardsNums"
+                    @click="fnSwitchWord()">下一题
+                </div>
+            </div>
+            <div v-if="read_model=='2'">
+
+            </div>
+            <div v-if="read_model=='3'">
+                <div class="read_exercises_content">
+                    <div class="read_exercises_question_text" v-html="exeData.questionWord"></div>
+                </div>
+                <div class="question_list">
+                    <div class="question_item" v-for="item,index in exeData.questionList">
+                        <p :class="'question_item_title question_item_title_'+item.questionTypeCode">
+                            {{index+1}}、{{item.questionName}}</p>
+                        <span class="question_item_title_tips" v-if="item.questionTypeCode=='36'&&!isSubmit"
+                            @click="fnClearSort(index)">清空</span>
+                        <!-- 判断正误 -->
+                        <div :class="'question_item_info question_item_info_'+item.questionTypeCode">
+                            <div class="question_item_option" v-for="key,val in item.optionList"
+                                v-if="item.questionTypeCode=='35'||item.questionTypeCode=='38'"
+                                @click="fnSetAnswer(index,val)">
+                                <div :class="fnSetAnswerClass(index,val)">{{val|fnIndex}}</div>
+                                <p>{{key.optionContent}}</p>
+                            </div>
+                            <div class="question_item_option" v-for="key,val in item.optionList"
+                                v-if="item.questionTypeCode=='36'" @click="fnSetSort(index,val)">
+                                <div class="div_img">
+                                    <img :src="key.optionContent" alt="">
+                                </div>
+                                <div :class="fnSetAnswerClass(index,val)">{{key.answerText}}</div>
+                            </div>
+                            <div class="question_item_option" v-if="item.questionTypeCode=='37'">
+                                <textarea :class="fnSetAnswerBg(index)" v-if="!isSubmit" name="name"
+                                    v-model="item.answerText" rows="3" cols="80"></textarea>
+                                <textarea :class="fnSetAnswerBg(index)" v-else-if="isSubmit" readonly name="name"
+                                    v-model="item.answerText" rows="3" cols="80"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question_submit_btn" @click="!isSubmit?fnSubmit():fnBack()" v-text="!isSubmit?'提交':'完成'">
+                </div>
+            </div>
+            <div v-if="read_model=='4'">
+                <div class="dub_detail_top">
+                    <!-- <p class="dub_title">{{videoName}}视频名称</p> -->
+                    <div class="dub_video">
+                        <video class="dub_detail_video" id="video_data" preload="meta" :poster="videoCover" :src="videoUrl"
+                            x5-playsinline="" playsinline="" webkit-playsinline="" onended="fnVideoEnd()">
+                            <source :src="videoUrl" type="video/mp4" />
+                            <source :src="videoUrl" type="video/ogg" />
+                            <source :src="videoUrl" type="video/webm" />
+                        </video>
+                        <img v-if="!isPlay" class="video_btn" src="../../img/index/video_btn.png" alt=""
+                            @click="fnVideoPlay('1')">
+                        <div class="dub_play" v-if="isPlay">
+                            <img :src="inPlay=='0'?'../../img/index/dub_play_btn.png':'../../img/index/dub_pause_btn.png'"
+                                alt="" @click="inPlay=='0'?fnVideoPlay('1'):fnVideoPlay('0')">
+                            <div class="dub_progress">
+                                <p class="dub_time">{{fnSecToMin(currentTime)}}/{{fnSecToMin(duration)}}</p>
+                                <div class="dub_progress_bar">
+                                    <input id="range" type="range" min="0" max="100" v-model="progress" step="1"
+                                        oninput="change(this)">
+                                    <div class="rang_width_div">
+                                        <p class="rang_width" id="rang_width" :style="'width:'+progress+'%'"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="../../img/index/dub_speed.png" alt="">
+                            <img src="../../img/index/dub_volume.png" alt="">
+                            <img src="../../img/index/dub_full.png" alt="" onclick="fnOpenFullVideo()">
+                        </div>
+                    </div>
+                    <div class="dub_detail_btn">开始配音</div>
+    
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm;
+    $(function () {
+        fnInit();
+        // fnInitPage();
+        fnGetBookStatus();
+    })
+    function fnGetBookStatus() {
+        // $S.ShowProgress();
+        var postData = {
+            "id": vm.bookId
+        }
+        POST("AppBooks/booksStatus", postData, function (ret, err) {
+            if (ret && ret.status == '200') {
+                vm.bookProgress = ret.data.percentage;
+            }
+            // $S.CloseProgress();
+        })
+    }
+    function fnInit() {
+        vm = new Vue({
+            el: ".bookDetailVue",
+            data: {
+                wordList: [],
+                selectList: [{ "text": "阅读准备" }, { "text": "阅读理解" }, { "text": "阅读练习" }, { "text": "阅读配音" }],
+                bookId: "b65853ac85b14bc9b69aedbc803d2185" || "",
+                wordCardsNums: "0",
+                wordNewNum: "0",
+                isLoad: false,
+                tapeDub: null,
+                exeData: "",
+                isSubmit: false,
+                read_model: "1",
+                isSelect: false,
+                bookProgress: "0",//书的进度
+                imgUrl: "",
+                progress: '0',
+                isChangeSpeed: "0",
+                currentTime: 0,
+                duration: 0,
+                videoUrl: "",
+                videoCover: "",
+                videoName: "",
+                isPlay: false, //视频是否播放过
+                inPlay: "0", //视频是否在播放中 0否 1是
+                newSpeed: "1",
+                speedList: [{
+                    key: "0.5"
+                }, {
+                    key: "0.75"
+                }, {
+                    key: "1"
+                }, {
+                    key: "1.25"
+                }, {
+                    key: "1.5"
+                }, {
+                    key: "2"
+                }]
+            },
+            mounted: function () {
+                this.fnIndexInfo();
+            },
+            methods: {
+                fnCloseChangeSpeed: function(key) {
+                    this.isChangeSpeed = key;
+                },
+                fnSetNewsSpeed: function(key) {
+                    this.newSpeed = key;
+                    _video = document.getElementById("video_data");
+                    _video.playbackRate = key;
+                    this.isChangeSpeed = '0';
+                },
+                fnSelectModel: function (index) {
+                    this.read_model = index * 1 + 1;
+                    if (this.read_model == '3') {
+                        fnInitPage()
+                    }else if (this.read_model == '4') {
+                        fnGetDubDetail();
+                    }
+                    this.isSelect = false;
+                },
+                fnIsSelect: function () {
+                    this.isSelect = !this.isSelect;
+                },
+                fnIndexInfo: function () {
+                    var postData = {
+                        "booksId": "b65853ac85b14bc9b69aedbc803d2185" || "",
+                    }
+                    POST("AppBooks/booksReadyList", postData, function (ret, err) {
+                        if (ret && ret.status == "200") {
+                            for (var i = 0; i < ret.data.wordList.length; i++) {
+                                ret.data.wordList[i].score = '0'; //跟读得分
+                                ret.data.wordList[i].isTape = false; //是否正在跟读中
+                                ret.data.wordList[i].isHaveScore = false; //是否有得分
+                            }
+                            vm.wordList = ret.data.wordList;
+                            vm.wordCardsNums = ret.data.wordCardsNums;
+                        }
+                        // $S.CloseProgress();
+                        vm.isLoad = true;
+                        vm.fnSwitchWord();
+                    })
+                },
+                fnTape: function (type) {
+                    if (vm.tapeDub && vm.tapeDub != null) {
+                        clearTimeout(vm.tapeDub)
+                    }
+                    if (type == 'startTape') {
+                        _audio = document.getElementById("audio_data");
+                        _audio.pause();
+                        var recMp3 = api.require('recMp3');
+                        recMp3.start(function (ret, err) {
+                            if (ret) {
+                                if (ret.db != undefined) {
+                                    // 在这里做ui 处理
+                                } else {
+                                    fnSoundStart("1", vm.wordList[vm.wordNewNum - 1].readWord, function (val) {
+                                        if (val && val != "") {
+                                            recMp3.stop(function (ret, err) {
+                                                //ret.path
+                                                vm.wordList[vm.wordNewNum - 1].isTape = false; //是否正在跟读中
+                                                vm.wordList[vm.wordNewNum - 1].score = val; //跟读得分
+                                                vm.wordList[vm.wordNewNum - 1].isHaveScore = true; //是否有得分
+                                            });
+                                        }
+                                    })
+
+                                    vm.wordList[vm.wordNewNum - 1].isTape = true; //是否正在跟读中
+                                    vm.tapeDub = setTimeout(function () {
+                                        fnSoundStop();
+                                    }, 10000)
+                                }
+                            }
+                        });
+                    } else if (type == 'stopTape') {
+                        fnSoundStop();
+                    }
+                },
+                fnSwitchWord: function () {
+                    this.wordNewNum = this.wordNewNum * 1 + 1;
+                    if (this.wordNewNum == this.wordCardsNums) { //调用修改解锁状态的接口
+                        var postData = {
+                            "booksId": "b65853ac85b14bc9b69aedbc803d2185" || "",
+                            "modelType": "1",
+                        }
+                        POST("AppBooks/updateReadStart", postData, function (ret, err) {
+                            if (ret && ret.status == "200") {
+
+                            }
+                        })
+                    }
+                },
+                fnSetSort: function (key, val) {
+                    if (!this.isSubmit) {
+                        if (vm.exeData.questionList[key].optionList[val].answerText == "") {
+                            vm.exeData.questionList[key].answerNum = vm.exeData.questionList[key].answerNum * 1 + 1;
+                            vm.exeData.questionList[key].optionList[val].answerText = vm.exeData.questionList[key].answerNum;
+                        }
+                    }
+                },
+                fnSetAnswer: function (key, val) {
+                    if (!this.isSubmit) {
+                        if (vm.exeData.questionList[key].optionList[val].answerText == "1") {
+                            vm.exeData.questionList[key].optionList[val].answerText = "";
+                        } else {
+                            for (var i = 0; i < vm.exeData.questionList[key].optionList.length; i++) {
+                                vm.exeData.questionList[key].optionList[i].answerText = "";
+                            }
+                            vm.exeData.questionList[key].optionList[val].answerText = "1";
+                        }
+                    }
+                },
+                fnClearSort: function (key) {
+                    vm.exeData.questionList[key].answerNum = 0;
+                    for (var i = 0; i < vm.exeData.questionList[key].optionList.length; i++) {
+                        vm.exeData.questionList[key].optionList[i].answerText = "";
+                    }
+                },
+                fnSetAnswerClass: function (key, val) {
+                    var _class = ['question_item_num'];
+                    var questionCode = vm.exeData.questionList[key].questionTypeCode;
+                    var standardAnswer = vm.exeData.questionList[key].optionList[val].isAnswer > '0' ? vm.exeData.questionList[key].optionList[val].isAnswer : '0';
+                    var fillInAnswer = vm.exeData.questionList[key].optionList[val].answerText > '0' ? vm.exeData.questionList[key].optionList[val].answerText : '0';
+                    if (vm.exeData.questionList[key].questionTypeCode == '36') {
+                        standardAnswer = vm.exeData.questionList[key].optionList[val].optionContentSortNum;
+                    }
+                    if (!this.isSubmit) {
+                        if (fillInAnswer > '0') {
+                            _class.push("question_do_it")
+                        }
+                    } else {
+                        if (fillInAnswer == '0') {
+                            if (standardAnswer > '0') {
+                                if (questionCode != 36) {
+                                    _class.push("question_item_success")
+                                } else {
+                                    _class.push("question_item_fail")
+                                }
+                            }
+                        } else if (fillInAnswer > '0') {
+                            if (fillInAnswer == standardAnswer) {
+                                _class.push("question_item_success")
+                            } else {
+                                _class.push("question_item_fail")
+                            }
+                        }
+                    }
+                    return _class.join(" ");
+                },
+                fnSetAnswerBg: function (key) {
+                    var standardAnswer = vm.exeData.questionList[key].answerStr.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, " ").replace(/\s+/g, " ").replace(/(^\s*)|(\s*$)/g, "");
+                    var fillInAnswer = vm.exeData.questionList[key].answerText.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, " ").replace(/\s+/g, " ").replace(/(^\s*)|(\s*$)/g, "");
+                    if (this.isSubmit) {
+                        console.log(standardAnswer + "--" + fillInAnswer + "-----");
+                        if (fillInAnswer == "") {
+                            return "do_it_null";
+                        } else if (standardAnswer != fillInAnswer) {
+                            return "do_it_fail";
+                        }
+                    }
+                    return ""
+                },
+                fnSubmit: function () {
+                    this.isSubmit = true;
+                    var postData = {
+                        "booksId": "b65853ac85b14bc9b69aedbc803d2185" || "",
+                        "modelType": "3",
+                    }
+                    POST("AppBooks/updateReadStart", postData, function (ret, err) {
+                        if (ret && ret.status == "200") {
+
+                        }
+                    })
+                }
+
+            },
+            filters: {
+                fnIndex: function (val) {
+                    return String.fromCharCode(64 + parseInt(val * 1 + 1))
+                }
+            }
+        })
+    }
+
+
+    function fnListen(audio) {
+        _audio = document.getElementById("audio_data");
+        _audio.currentTime = 0;
+        _audio.play();
+    }
+
+    function fnInitPage() {
+        // $S.ShowProgress();
+        var postData = {
+            "dynamicMaterialId": "b65853ac85b14bc9b69aedbc803d2185" || "",
+            "bussActivityKindCode": "8",
+        }
+        POST("apiQuestion/findQuestionList", postData, function (ret, err) {
+            if (ret && ret.status == "200") {
+                if (ret.data.listData.length > 0) {
+                    for (var i = 0; i < ret.data.listData[0].questionList.length; i++) {
+                        if (ret.data.listData[0].questionList[i].questionTypeCode != '37') {
+                            for (var x = 0; x < ret.data.listData[0].questionList[i].optionList.length; x++) {
+                                ret.data.listData[0].questionList[i].optionList[x].answerText = "";
+                                ret.data.listData[0].questionList[i].answerNum = 0;
+                            }
+                        } else {
+                            ret.data.listData[0].questionList[i].answerText = "";
+                        }
+                    }
+                    vm.exeData = ret.data.listData[0];
+                }
+            }
+            // $S.CloseProgress();
+            vm.isLoad = true;
+        })
+    }
+    function fnGetDubDetail() {
+        // $S.ShowProgress();
+        var postData = {
+            "booksId": vm.bookId
+        }
+        POST("AppBooks/booksDueList", postData, function(ret, err) {
+            if (ret && ret.status == "200") {
+                vm.videoUrl = ret.data.moduleBean.videoUrl;
+                vm.videoCover = ret.data.moduleBean.videoCover;
+                vm.dubId = ret.data.moduleBean.id;
+            }
+            // $S.CloseProgress();
+            // vm.isLoad = true;
+        })
+    }
+    function change(el) {
+        //用于修改时间
+        vm.progress = $(el).val();
+        _video = document.getElementById("video_data");
+        _video.currentTime = _video.duration * (vm.progress / 100);
+        vm.currentTime = _video.duration * (vm.progress / 100);
+        vm.duration = _video.duration && _video.duration > 0 ? _video.duration : 0;
+    }
+
+    function fnVideoPlay(key) {
+        _video = document.getElementById("video_data");
+        if (!vm.isPlay) {
+            vm.isPlay = true;
+        }
+        vm.inPlay = key;
+        if (key == '1') { //播放
+            _video.play();
+            // vm.progress = _video.duration && _video.duration > 0 ? (_video.currentTime / _video.duration) * 100 : '0'; //已播放百分比
+            // vm.currentTime = _video.currentTime
+            vm.duration = _video.duration && _video.duration > 0 ? _video.duration : 0;
+            fnEvevtVideo()
+        } else { //暂停
+            _video.pause();
+        }
+    }
+
+    function fnEvevtVideo() {
+        _video = document.getElementById("video_data");
+        _video.addEventListener("timeupdate", function () {
+            vm.progress = _video.duration && _video.duration > 0 ? (_video.currentTime / _video.duration) * 100 : '0'; //已播放百分比
+            vm.currentTime = _video.currentTime;
+            vm.duration = _video.duration && _video.duration > 0 ? _video.duration : 0;
+        })
+    }
+    //视频播放完成
+    function fnVideoEnd() {
+        vm.inPlay = '0';
+    }
+
+    function fnSecToMin(pSec) { //秒数变分钟数
+        var min = Math.floor(pSec / 60),
+            second = Math.floor(pSec % 60),
+            hour, newMin, time;
+
+        if (min > 60) {
+            hour = Math.floor(min / 60);
+            newMin = min % 60;
+        }
+
+        if (second < 10) {
+            second = '0' + second;
+        }
+        if (min < 10) {
+            min = '0' + min;
+        }
+        return time = hour ? (hour + ':' + newMin + ':' + second) : (min + ':' + second);
+    }
+    //视频全屏
+    function fnOpenFullVideo() {
+        var tParam = {
+            name: "video_full_detail_win",
+            url: "./video_full_detail.html",
+            slidBackEnabled: false,
+            pageParam: {
+                progress: vm.progress,
+                currentTime: vm.currentTime,
+                duration: vm.duration,
+                videoUrl: vm.videoUrl,
+                videoCover: vm.videoCover,
+                videoName: vm.videoName,
+                inPlay: vm.inPlay, //视频是否在播放中 0否 1是
+                newSpeed: vm.newSpeed,
+            }
+        }
+        fnOpenWin(tParam);
+        vm.inPlay = '0';
+        fnVideoPlay(vm.inPlay)
+    }
+</script>
+
+</html>

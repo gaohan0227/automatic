@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+    <script type="text/javascript" src="../../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
+    <script type="text/javascript" src="../../js/tool.js"></script>
+    <script type="text/javascript" src="../../js/pageInit.js"></script>
+    <title>配音秀排行榜</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f7f7f7;
+        }
+
+        .dub_rank_content {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+
+        .dub_rank_content .dub_rank_title {
+            width: 328px;
+            height: 130px;
+            line-height: 130px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            margin-bottom: 12;
+        }
+
+        .dub_rank_content .dub_rank_title img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .dub_rank_content .dub_rank_title span {
+            font-size: 26px;
+            font-weight: 500;
+            color: rgba(47, 47, 47, 1);
+            position: relative;
+        }
+
+        .dub_rank_info .dub_my_rank {
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 212, 70, 1);
+            border-radius: 8px 8px 0px 0px;
+            padding: 0 35px;
+            line-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #2f2f2f;
+        }
+
+        .dub_rank_info .dub_my_rank .rank_num {
+            font-weight: 500;
+        }
+
+        .dub_rank_info .dub_my_rank .rank_user_avatar {
+            margin: 0 28px;
+            width: 38px;
+            height: 38px;
+            border: 1px solid #fff;
+            border-radius: 100%;
+        }
+
+        .dub_rank_info .dub_my_rank .dub_rank_user_name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-right: 28px;
+        }
+
+        .dub_rank_info .dub_my_rank .dub_like {
+            width: 14px;
+            height: 14px;
+        }
+
+        .dub_rank_info .dub_my_rank .dub_like_num {
+            color: #FE4973;
+            font-weight: bold;
+            padding-left: 10px;
+            padding-right: 5px;
+        }
+
+        .dub_rank_list {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            padding: 35px 0;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 50px;
+        }
+
+        .dub_rank_list .dub_rank_item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 20%;
+            color: #2f2f2f;
+            font-size: 18px;
+            overflow: hidden;
+            padding: 45px 10px;
+            text-align: center;
+        }
+
+        .dub_rank_list .dub_rank_item .rank_num {
+            font-weight: 600;
+            line-height: 25px;
+            padding-bottom: 26px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dub_rank_list .dub_rank_item .rank_user_avatar {
+            margin-bottom: 14px;
+            width: 46px;
+            height: 46px;
+            border-radius: 100%;
+        }
+
+        .dub_rank_list .dub_rank_item .dub_rank_user_name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-bottom: 29px;
+            width: 100%;
+        }
+
+        .dub_rank_list .dub_rank_item .dub_like {
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .dub_rank_list .dub_rank_item .dub_like img {
+            width: 14px;
+            height: 14px;
+        }
+
+        .dub_rank_list .dub_rank_item .dub_like .dub_like_num {
+            flex: 0 1 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #FE4973;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 19px;
+            padding: 0 10px;
+        }
+
+        .aspnetPager {
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .aspnetPager .aspnetPager_item {
+            margin: 0 5px;
+            min-width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 8px;
+            border: 1px solid rgba(213, 213, 213, 1);
+            text-align: center;
+            padding:0 5px;
+            color: #2F2F2F;
+            font-size: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .aspnetPager .aspnetPager_item img{
+            
+            width:auto;
+            height:12px;
+        }
+        .aspnetPager .aspnetPager_item span{
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dubShowVue" v-cloak>
+        <div class="dub_rank_div">
+            <div class="dub_rank_content">
+                <div class="dub_rank_title">
+                    <img src="../../img/index/textbook_title.png" alt="">
+                    <span>排行榜</span>
+                </div>
+                <div class="dub_rank_info">
+                    <div class="dub_my_rank">
+                        <span class="rank_num">3</span>
+                        <img class="rank_user_avatar" src="../../img/index/mine.png" alt="">
+                        <span class="dub_rank_user_name">ssssss</span>
+                        <img class="dub_like" src="../../img/index/my_dub_like.png" alt="">
+                        <span class="dub_like_num">22</span>
+                    </div>
+                    <div class="dub_rank_list">
+                        <div class="dub_rank_item">
+                            <span class="rank_num">3</span>
+                            <img class="rank_user_avatar" src="../../img/index/mine.png" alt="">
+                            <span class="dub_rank_user_name">ssssss</span>
+                            <div class="dub_like">
+                                <img src="../../img/index/my_dub_like.png" alt="">
+                                <span class="dub_like_num">222222</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aspnetPager">
+                    <div class="aspnetPager_item"><span>1</span></div>
+                    <div class="aspnetPager_item"><img src="../../img/index/page_right.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../js/vue.min.js"></script>
+<script type="text/javascript" src="../../js/service/service-tool.js"></script>
+<script type="text/javascript" src="../../js/service/service-verify.js"></script>
+<script type="text/javascript">
+    var size = '5';
+    window.onload = function () {
+        fnInit();
+    }
+    function fnInit() {
+        vm = new Vue({
+            el: ".dubShowVue",
+            data: {
+                bookList: [{}, {}, {}, {}, {}, {}, {}],
+                manageList: [],
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    fnArrManage();
+                })
+            },
+            methods: {
+                fnHeaderClick: function (key) {
+                    this.newIndex = key;
+                },
+                fnHover: function (index, val, type) {
+                    this.dubList[index].list[val].isHover = type;
+                }
+            }
+        })
+    }
+    function fnArrManage() {
+        var _resultArr = [];
+        for (var x = 0; x < Math.ceil(vm.bookList.length / size); x++) {
+            var start = x * size;
+            var end = start + size;
+            _resultArr.push(vm.bookList.slice(start, end));
+        }
+        vm.manageList = _resultArr;
+        console.log(JSON.stringify(vm.manageList))
+    }
+</script>
+
+</html>

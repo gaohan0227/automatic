@@ -1,0 +1,38 @@
+.message_detail {
+            padding: 1.2rem 0.8rem;
+            position: relative;
+        }
+
+        .message_detail .message_detail_title {
+            font-size: 0.9rem;
+            line-height: 1.25rem;
+            color: #2F2F2F;
+            font-weight: bold;
+            padding-bottom: 0.6rem;
+            word-wrap: break-word;
+        }
+
+        .message_detail .message_detail_time {
+            font-size: 0.6rem;
+            line-height: 0.9rem;
+            color: #6D6D6D;
+            padding-bottom: 0.9rem;
+            word-wrap: break-word;
+        }
+
+        .message_detail .message_detail_content {
+            color: #2F2F2F;
+            font-size: 0.75rem;
+            line-height: 1.2rem;
+            word-wrap: break-word;
+            padding-bottom: 2rem;
+        }
+
+        .message_detail .message_detail_publisher {
+            font-size: 0.65rem;
+            line-height: 0.9rem;
+            color: #6D6D6D;
+            padding-bottom: 1rem;
+            word-wrap: break-word;
+            text-align: right;
+        }

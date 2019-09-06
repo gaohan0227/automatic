@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/teacher_test_detail.css">
+<div class="vueApp" v-cloak>
+        <div v-if="isLoad">
+            <header>
+                <div class="teacher_test_detail_header">
+                    <img src="../image/index/read_back.png" alt="" tapmode onclick="fnBack()">
+                    <p>单项选择</p>
+                    <span>{{newIndex*1+1}}/{{questionList.length}}</span>
+                </div>
+            </header>
+            <div class="teacher_test_detail_card">
+                <div class="teacher_test_detail_question_name">
+                    <div class="teacher_test_detail_question_title">
+                        <img src="../image/index/question_tips.png" alt="">
+                        <p>{{questionList[newIndex].questionName}}</p>
+                    </div>
+                    <div class="teacher_test_question_item_option" v-for="item,index in questionList[newIndex].optionList" tapmode @click="fnSetAnswer(newIndex,item.optionId,item.isAnswer)">
+                        <div :class="questionList[newIndex].answerStr==item.optionId?'question_item_num question_do_it':'question_item_num'">{{index|fnIndex}}</div>
+                        <p>{{item.optionContent}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

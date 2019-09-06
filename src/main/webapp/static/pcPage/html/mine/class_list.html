@@ -1,0 +1,31 @@
+<div class="classListVue" v-cloak>
+    <div class="my_class" v-if="isLoad">
+        <div class="my_class_title">
+            <p>我的班级</p>
+        </div>
+        <div class="my_class_list">
+            <div class="my_class_item" v-for="item,index in classList">
+                <div class="my_class_item_info" :style="{background:bgColor[Math.floor(index%5)]}">
+                    <img :src="item.classLogoUrl?item.classLogoUrl:'../img/index/mine.png'" alt="">
+                    <p class="teacher_name">{{item.teacherName}}</p>
+                    <p class="class_name">{{item.classNames}}</p>
+                    <div class="class_info">
+                        <div>
+                            <p>课程</p>
+                            <p>{{item.materialName}}</p>
+                        </div>
+                        <div>
+                            <p>级别</p>
+                            <p>{{item.materialLevelName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="none_data" v-if="classList.length==0">
+            <div>
+                <img src="../img/no_page/no_class.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>

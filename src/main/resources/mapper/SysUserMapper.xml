@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.bigant.aotomatic.autoCode.dao.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="priv.bigant.aotomatic.autoCode.bean.SysUser">
+        <id column="id" property="id" />
+        <result column="company_id" property="companyId" />
+        <result column="office_id" property="officeId" />
+        <result column="login_name" property="loginName" />
+        <result column="password" property="password" />
+        <result column="no" property="no" />
+        <result column="name" property="name" />
+        <result column="email" property="email" />
+        <result column="phone" property="phone" />
+        <result column="mobile" property="mobile" />
+        <result column="user_type" property="userType" />
+        <result column="photo" property="photo" />
+        <result column="login_ip" property="loginIp" />
+        <result column="login_date" property="loginDate" />
+        <result column="login_flag" property="loginFlag" />
+        <result column="remarks" property="remarks" />
+        <result column="del_flag" property="delFlag" />
+        <result column="qrcode" property="qrcode" />
+        <result column="sign" property="sign" />
+        <result column="created_id" property="createdId" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_id" property="updatedId" />
+        <result column="updated_time" property="updatedTime" />
+    </resultMap>
+
+</mapper>

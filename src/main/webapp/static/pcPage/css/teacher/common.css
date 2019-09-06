@@ -1,0 +1,50 @@
+.teacher-sec-header {
+    position: relative;
+    color: #2F2F2F;
+    font-size: 24px;
+    padding-left: 15px;
+}
+
+.teacher-sec-header:before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 24px;
+    background-color: #FFD446;
+    border-radius: 2px;
+}
+
+.blue-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.blue-btn div {
+    width: 260px;
+    height: 60px;
+    background: rgba(82, 150, 255, 1);
+    box-shadow: 0px 6px 20px -7px rgba(82, 150, 255, 0.3);
+    border-radius: 35px;
+    color: #FFFFFF;
+    font-size: 28px;
+    line-height: 60px;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.vueApp {
+    padding: 50px;
+    max-width: 1440px;
+    margin: 35px auto;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.blue {
+    background: rgba(82, 150, 255, 1);
+    box-shadow: 0px 6px 20px -7px rgba(82, 150, 255, 0.3);
+    border-radius: 35px;
+    color: #FFFFFF;
+}

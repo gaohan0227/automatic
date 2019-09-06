@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/dub.css">
+    <link rel="stylesheet" type="text/css" href="../css/book.css">
+    <link rel="stylesheet" type="text/css" href="../css/mine.css">
+    <script type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="../js/tool.js"></script>
+    <script type="text/javascript" src="../js/pageInit.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js"></script>
+    <script type="text/javascript" src="../js/service/service-tool.js"></script>
+    <script type="text/javascript" src="../js/service/service-verify.js"></script>
+    <title>首页</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="homeheaderVue" v-cloak>
+            <div class="homeHeader">
+                <div class="homeHeaderBar">
+                    <img class="header_logo" src="../img/index/header_logo.png" alt="">
+                    <div class="header_bar">
+                        <div :class="item.pageUrl==indexPageUrl?'header_bar_item header_active':'header_bar_item'"
+                            v-for="item,index in headerBar"
+                            @click="fnIndexClick(item.pageName,item.pageUrl,item.pageJs,item.pageData,item.nextPage)"
+                            style="cursor:pointer;">
+                            {{item.pageName}}
+                        </div>
+                    </div>
+                    <div class="header_icon">
+                        <img :src="item.img" alt="" v-for="item in headerIcon"
+                            @click="fnIndexClick(item.pageName,item.pageUrl,item.pageJs,item.pageData,item.nextPage)">
+                    </div>
+                </div>
+            </div>
+            <div class="homeNavbar" v-if="pageNavigation.length>1">
+                <div v-for="item,index in pageNavigation">
+                    <img src="../img/index/page_line.png" alt="" v-if="index>0">
+                    <span
+                        @click="fnOpenPage(item.pageName,item.pageUrl,item.pageJs,item.pageData,item.nextPage,item.isMine)">{{item.pageName}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="homeContent">
+
+        </div>
+        <div class="homeFooterVue homeFooter" v-cloak>
+            <div class="homeFooterBar">
+                <div class="homeFooterInfo">
+                    <img class="footer_logo" src="../img/index/footer_logo.png" alt="">
+                    <div class="footer_bar">
+                        <div class="footer_bar_list" v-for="item in footerBar">
+                            <p>{{item.title}}</p>
+                            <div class="footer_bar_item">
+                                <span v-for="val in item.list"
+                                    @click="fnIndexClick(val.pageName, val.pageUrl, val.pageJs, val.pageData, val.nextPage)">{{val.pageName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer_line"></div>
+                    <div class="footer_download">
+                        <p>App手机下载</p>
+                        <div class="downLoad_img">
+                            <div class="downLoad_item">
+                                <img src="../img/index/android.png" alt="">
+                                <div>
+                                    <img src="../img/index/android.png" alt="">
+                                    <span>| 安卓</span>
+                                </div>
+                            </div>
+                            <div class="downLoad_item">
+                                <img src="../img/index/ios.png" alt="">
+                                <div>
+                                    <img src="../img/index/ios.png" alt="">
+                                    <span>| 苹果</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="homeFooterTips">
+                    <p>Copyright ©2018.All Rights Reserved 京ICP备05027956号-1</p>
+                    <p>北京走向未来教育机构</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var headerVm, footerVm;
+    var _home = { "pageName": "首页", "pageUrl": "home", "pageJs": "home", "pageData": "", "nextPage": "" };
+    var _dubShow = { "pageName": "配音秀", "pageUrl": "dub/dub_show", "pageJs": "dub_show", "pageData": "", "nextPage": "" };
+    var _read = { "pageName": "阅读", "pageUrl": "dub/bookshelf", "pageJs": "bookshelf", "pageData": "", "nextPage": "" };
+    var _topic = { "pageName": "勇闯关", "pageUrl": "", "pageJs": "", "pageData": "", "nextPage": "" };
+    var _goods = { "pageName": "商品展示", "pageUrl": "goods_list", "pageJs": "goods_list", "pageData": "", "nextPage": "" };
+    var _aboutUs = { "pageName": "关于我们", "pageUrl": "", "pageJs": "", "pageData": "", "nextPage": "" };
+    var _contactUs = { "pageName": "联系我们", "pageUrl": "", "pageJs": "", "pageData": "", "nextPage": "" };
+    var _calendar = { "img": "../img/index/calendar.png", "pageName": "个人中心", "pageUrl": "mine/personal_center", "pageJs": "personal_center", "pageData": "", "nextPage": "mine/calendar" };
+    var _message = { "img": "../img/index/message.png", "pageName": "个人中心", "pageUrl": "mine/personal_center", "pageJs": "personal_center", "pageData": "", "nextPage": "mine/message_list" };
+    var _personalCenter = { "img": "../img/index/mine.png", "pageName": "个人中心", "pageUrl": "mine/personal_center", "pageJs": "personal_center", "pageData": "", "nextPage": "mine/personal_index" };
+    $(function () {
+        var _studentId = localStorage.custId || "";
+        if (_studentId && _studentId != '') {
+            fnIndexInit();
+            headerVm.fnIndexClick("首页", "home", "home");
+        } else {
+            window.location.href = 'http://' + window.location.host + '/FutureEducation/static/pcPage/html/login.html';
+        }
+    })
+    function fnIndexInit() {
+        headerVm = new Vue({
+            el: ".homeheaderVue",
+            data: {
+                indexPageUrl: "",
+                headerBar: [_home, _dubShow, _read, _topic, _goods],
+                headerIcon: [_calendar, _message, _personalCenter],
+                pageNavigation: [],
+            },
+            methods: {
+                fnIndexClick: function (pageName, pageUrl, pageJs, pageData, nextPage) {
+                    if (pageUrl == "") {
+                        return;
+                    }
+                    if (pageUrl != 'home' && pageUrl != 'topic' && pageUrl != 'mine/personal_center' && pageUrl != 'goods_list') {
+                        headerVm.pageNavigation = [{ "pageName": "首页", "pageUrl": "home", "pageJs": "home", "pageData": "", "nextPage": "" }]
+                    }
+                    fnOpenPage(pageName, pageUrl, pageJs, pageData, nextPage);
+                },
+                fnHover: function (index, type) {
+                    this.dubList[index].isHover = type;
+                }
+            }
+        });
+        footerVm = new Vue({
+            el: ".homeFooterVue",
+            data: {
+                footerBar: [{ "title": "走向未来", list: [_dubShow, _read, _topic] }, { "title": "商品展示", list: [_goods] }, { "title": "关于我们", list: [_aboutUs, _contactUs] }],
+            },
+            methods: {
+                fnIndexClick: function (pageName, pageUrl, pageJs, pageData, nextPage) {
+                    headerVm.pageNavigation = [{ "pageName": "首页", "pageUrl": "home", "pageJs": "home", "pageData": "", "nextPage": "" }]
+                    fnOpenPage(pageName, pageUrl, pageJs, pageData, nextPage);
+                },
+                fnHover: function (index, type) {
+                    this.dubList[index].isHover = type;
+                }
+            }
+        })
+    }
+    function fnOpenPage(pageName, pageUrl, pageJs, pageData, nextPage, isMine) {
+        // 点击相同页面不跳转。
+        if (headerVm.pageNavigation.length > 0) {
+            if (pageUrl != 'mine/personal_center') {
+                if (pageUrl == headerVm.pageNavigation[headerVm.pageNavigation.length - 1].pageUrl) {
+                    return;
+                }
+            } else {
+                if (pageUrl == headerVm.pageNavigation[headerVm.pageNavigation.length - 1].pageUrl) {
+                    if (nextPage == headerVm.pageNavigation[headerVm.pageNavigation.length - 1].nextPage) {
+                        return;
+                    }
+                }
+            }
+        }
+        pageName = pageName || "";
+        pageUrl = pageUrl || "";
+        pageJs = pageJs || "";
+        pageData = pageData || "";
+        nextPage = nextPage || "";
+        isMine = isMine || "0";
+        var isRemove = true;
+        //当前显示个人中心, 当点击个人中心里的页面时,不重新load整个页面,而是load子页面
+        if (pageUrl == 'mine/personal_center') {
+            for (var i = 0; i < headerVm.pageNavigation.length; i++) {
+                if (headerVm.pageNavigation[i].pageUrl == 'mine/personal_center') {
+                    // headerVm.pageNavigation.splice(i);
+                    isRemove = false;
+                }
+            }
+        }
+        if (pageUrl == 'home' || pageUrl == 'topic' || pageUrl == 'goods_list' || pageUrl == 'mine/personal_center') {
+            headerVm.pageNavigation = [];
+        }
+        for (var i = 0; i < headerVm.pageNavigation.length; i++) {
+            if (headerVm.pageNavigation[i].pageUrl == pageUrl) {
+                if (i < headerVm.pageNavigation.length - 1) {
+                    headerVm.pageNavigation.splice(i);
+                }
+            }
+        }
+        if (isMine == '0') {
+            var pageInfo = { "pageName": pageName, "pageUrl": pageUrl, "pageJs": pageJs, "pageData": pageData, "nextPage": nextPage, "isMine": isMine };
+            headerVm.pageNavigation.push(pageInfo);
+            headerVm.indexPageUrl = pageUrl;
+            if (isRemove) {
+                fnLoadPageAndJs("homeContent", pageUrl, pageJs);
+            } else {
+                fnLoadPersonalPage();
+            }
+        } else {
+            fnOpenNextPageUrl(pageName, pageUrl, pageJs, pageData, nextPage)
+        }
+    }
+    function fnGetUnitList(el) {
+        var postData = {
+            "studentMaterialLevelId": localStorage.studentMaterialLevelId || "",
+        }
+        POST("apiTeacherLogin/findMaterialUnitList", postData, function (ret) {
+            if (ret && ret.status == "200") {
+                el.unitList = ret.data.listData;
+                if (ret.data.listData.length > 0) {
+                    localStorage.materialUnitList = JSON.stringify(ret.data.listData);
+                }
+            }
+        })
+    }
+    function fnLoadPageAndJs(dom, pageUrl, pageJs) {
+        $("." + dom).load("../html/" + pageUrl + ".html", function (response, status, xhr) {
+            if (status == "success") {
+                fnLoadJS("../js/student_page/" + pageJs + ".js");
+            } else if (status == "error") {
+                fnLoadPageAndJs(dom, pageUrl, pageJs)
+            }
+        });
+    }
+</script>
+
+</html>

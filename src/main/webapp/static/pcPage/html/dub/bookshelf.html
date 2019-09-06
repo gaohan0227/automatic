@@ -1,0 +1,44 @@
+<div class="bookshelfVue" v-cloak>
+    <div class="bookshelf_content" v-if="isLoad">
+        <div class="bookshelf_title">
+            <img src="../img/index/book.png" alt="">
+            <p>推荐书籍</p>
+            <div class="bookshelf_search">
+                <input type="text" placeholder="请输入书籍名称" v-model="searchVal" />
+                <span onclick="fnGetBookList('search')">搜索</span>
+            </div>
+        </div>
+        <div class="book_info" v-for="item in manageList">
+            <div class="book_info_list">
+                <div class="book_info_item" v-for="key in item" @click="fnOpenBookDetail(key.id,key.booksName)">
+                    <div class="book_info_item_cover">
+                        <img :src="key.booksCoverUrl" alt="">
+                    </div>
+                    <p>{{key.booksName}}</p>
+                    <div class="book_progress">
+                        <p class="book_progress_bar"><span :style="{width:key.percentage+'%'}"></span></p>
+                        <span>{{key.percentage}}%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bookshelf_bg">
+                <img src="../img/index/textbook_bottom.png" alt="">
+            </div>
+        </div>
+        <div v-if="manageList.length==0">
+            <div class="none_data"v-if="search==''">
+                <div>
+                    <img src="../img/no_page/no_book.png" alt="">
+                </div>
+            </div>
+            <div class="none_data" v-else-if="search!=''">
+                <div>
+                    <img src="../img/no_page/no_search.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="add_book_btn" onclick="fnOpenInputAlert('书籍','fnAddBook')">
+            添加书籍
+        </div>
+    </div>
+</div>

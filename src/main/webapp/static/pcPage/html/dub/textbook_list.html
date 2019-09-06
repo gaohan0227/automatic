@@ -1,0 +1,34 @@
+<div class="dubShowVue" v-cloak>
+    <div v-if="isLoad">
+        <div class="textbook_info_content">
+            <div class="textbook_info_title">
+                <img src="../img/index/textbook_title.png" alt="">
+                <span>切换教材</span>
+            </div>
+            <div class="book_info" v-for="item in manageList">
+                <div class="dub_info_list">
+                    <div class="book_info_item" v-for="key in item" @click="fnChangeBook(key.studentMaterialLevelId)">
+                        <div class="book_info_item_cover">
+                            <img :src="key.materialCoverUrl" alt="">
+                            <img v-if="studentMaterialLevelId==key.studentMaterialLevelId" class="check_book" src="../img/index/check_book.png" alt="">
+                        </div>
+                        <!-- <p>书籍名称</p> -->
+                    </div>
+                </div>
+                <div class="textbook_info_bg">
+                    <img src="../img/index/textbook_bottom.png" alt="">
+                </div>
+            </div>
+            <div v-if="manageList.length==0">
+                <div class="none_data">
+                    <div>
+                        <img src="../img/no_page/no_teach_book.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="add_textbook_btn" onclick="fnOpenInputAlert('教材','fnAddMaterial')">
+                添加教材
+            </div>
+        </div>
+    </div>
+</div>

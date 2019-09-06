@@ -1,0 +1,37 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/home.css">
+<div class="vueApp" v-cloak>
+    <div class="index_swiper">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <ol class="carousel-indicators">
+                <li data-target='#myCarousel' :data-slide-to="index" :class="index=='0'?'active':''"
+                    v-for="item,index in indexInfo.schoolBannerList"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div :class="index=='0'?'item active':'item'" v-for="item,index in indexInfo.schoolBannerList">
+                    <img :src="item.schoolRotationchartUrl" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="index_teacher_region" data-flex="dir:left main:center">
+        <img class="one" onclick="fnOpenClassManage()" src="../img/teacher/index/class_management.png" alt="">
+        <img class="two" onclick="fnOpenJobPublish()" src="../img/teacher/index/homework_assignment.png" alt="">
+        <img class="three" v-if="indexInfo.teacherRole=='1'" tapmode onclick="fnOpenLessonCenter()" src="../img/teacher/index/lesson_preparation_center.png" alt="">
+    </div>
+    <div v-if="indexInfo!=''">
+        <div class="hot_recommend" v-if="indexInfo.hotList.length>0">
+            <div class="hot_recommend_title">
+                <p>热门推荐</p>
+            </div>
+            <div class="hot_recommend_list">
+                <div class="hot_recommend_item" v-for="item,index in indexInfo.hotList" tapmode @click="fnOpenVideoDetail(item.videoUrl,item.videoCover,item.videoName)">
+                    <div class="hot_recommend_item_img">
+                        <img class="hot_recommend_item_cover" :src="item.videoCover" alt="">
+                        <img class="hot_recommend_item_btn" src="../img/teacher/index/video_btn.png" alt="">
+                    </div>
+                    <p class="hot_recommend_item_title">{{item.videoName}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

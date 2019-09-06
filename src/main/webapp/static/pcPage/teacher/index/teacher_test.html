@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/teacher_test.css">
+<div class="vueApp" v-cloak>
+        <img class="teacher_test_bg" src="../image/index/teacher_test_bg.png">
+        <header>
+            <div class="teacher_test_header">
+                <img src="../image/release/back_w.png" alt="" tapmode onclick="fnBack()">
+                <span>教师测试</span>
+            </div>
+        </header>
+        <div class="teacher_test_card">
+            <div v-if="isLoad">
+                <div class="teacher_test_title" v-if="listData.length>'0'">答题卡</div>
+                <div class="teacher_test_line" v-if="listData.length>'0'"></div>
+                <div class="teacher_test_question" v-if="listData.length>'0'">
+                    <div class="teacher_test_question_item" v-for="item,index in listData">
+                        <div :class="item.doStatus=='1'?'question_item_num question_item_success':(item.doStatus=='2'?'question_item_num question_item_fail':'question_item_num')">
+                            <span>{{index|fnIndexNum}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="teacher_test_btn" v-if="listData.length>'0'" tapmode @click="answerStatus=='1'?fnBack():fnOpenTestDetail()" v-text="answerStatus=='1'?'完成':'开始测试'"></div>
+                <div class="none_data" v-else-if="listData.length=='0'">
+                    <div>
+                        <img src="../image/no_page/no_test.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

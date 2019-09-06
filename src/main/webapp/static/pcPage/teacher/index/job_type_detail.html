@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/job_type_detail.css">
+<div class="vueApp" v-cloak>
+        <div class="job_type_list">
+            <div class="job_type_item" tapmode @click="fnOpenJobTypeQuestion(item.id)" v-for="item in jobModule">
+                <!-- <img class="checkImg" src="../image/release/no_check.png" alt=""> -->
+                <p class="job_type_title">{{item.moduleName}}</p>
+                <img src="../image/index/go_page_job.png" alt="">
+            </div>
+        </div>
+        <div style="height:5rem;width:100%;"></div>
+        <div class="job_type_fixed">
+            <div :class="questionIdList.length>0?'job_type_btn':'job_type_btn gray_bg'" v-text="questionIdList.length>0?'立即发布('+questionIdList.length+')':'立即发布'" tapmode @click="questionIdList.length>0?fnSubmit():''"></div>
+        </div>
+    </div>

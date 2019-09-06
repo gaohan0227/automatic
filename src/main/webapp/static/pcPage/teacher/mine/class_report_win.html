@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="../js/tool.js"></script>
+    <script type="text/javascript" src="../js/pageInit.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js"></script>
+   <script type="text/javascript" src="../js/service/service-tool.js"></script>
+   <script type="text/javascript" src="../js/service/service-verify.js"></script>
+    <!-- <link href="../css/public_win.css" rel="stylesheet" type="text/css"> -->
+    <style media="screen">
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+        }
+
+        .class_report_header {
+            height: 2.2rem;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 0 0.3rem;
+            color: #2f2f2f;
+            border-bottom: 1px solid #EAEAEA;
+        }
+
+        .class_report_header .header_back_btn {
+            width: 1rem;
+            height: 1rem;
+            margin: 0.5rem;
+        }
+
+        .class_report_header p {
+            padding-left: 1.5rem;
+            flex: 1;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .class_report_header p img {
+            margin-left: 0.25rem;
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .class_report_header .header_right_btn {
+            width: 3.5rem;
+            padding-right: 0.5rem;
+            text-align: right;
+            font-size: 0.7rem;
+        }
+
+        .class_report {
+            height: 2.5rem;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .class_report:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0rem;
+            right: 0rem;
+            height: 1px;
+            background: #EAEAEA;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .class_report .class_report_btn {
+            flex: 1;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #2F2F2F;
+        }
+
+        .class_report .class_report_btn.active {
+            font-weight: bold;
+            position: relative;
+        }
+
+        .class_report .class_report_btn.active:after {
+            content: "";
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            width: 1.4rem;
+            height: 0.15rem;
+            transform: translateX(-50%);
+            background: #5296FF;
+            border-radius: 0.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <header>
+            <div class="class_report_header">
+                <img class="header_back_btn" src="../image/back.png" tapmode @click="fnBack()">
+                <p tapmode @click="fnChangeUnit()"><span>{{unitName}}</span>
+                    <img src="../image/mine/change_unit.png" alt="">
+                </p>
+                <span class="header_right_btn" tapmode onclick="fnOpenClassOverview()">班级总览</span>
+            </div>
+            <div class="class_report">
+                <div v-for="item,index in groupList" :class="newIndex==index?'class_report_btn active':'class_report_btn'" tapmode @click="fnSetPage(index)">{{item.text}}</div>
+                <!-- <div :class="newIndex=='1'?'class_report_btn active':'class_report_btn'">我的作业</div>
+                <div :class="newIndex=='2'?'class_report_btn active':'class_report_btn'">单元测试</div> -->
+            </div>
+        </header>
+    </div>
+</body> 
+<script type="text/javascript">
+    var vm;
+     window.onload = function() {
+        fnInit();
+//      api.addEventListener({
+//          name: 'setUnit'
+//      }, function(ret, err) {
+//          if (ret) {
+//              vm.unitId = ret.value.unitId;
+//              vm.unitName = ret.value.unitName;
+//          }
+//      });
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                classId:"",
+                unitList: [],
+                unitId: "",
+                unitName: "",
+                newIndex: "0",
+                groupList: [{
+                    "text": "配音秀",
+                    "key": "0"
+                }, {
+                    "text": "我的作业",
+                    "key": "1"
+                }, {
+                    "text": "单元测试",
+                    "key": "2"
+                }]
+            },
+            mounted: function() {
+                this.fnGetUnitList();
+            },
+            methods: {
+                fnGetUnitList: function() {
+//                  $S.ShowProgress();
+                    var postData = {
+                        "classId": "d38a1da2b7e14b51862661199b35e55d",
+                    };
+                   POST("apiTeacherLogin/findMaterialUnitListByClassId", postData, function(ret, err) {
+                        if (ret && ret.status == "200") {
+                            vm.unitList = ret.data.listData;
+                            vm.unitId = ret.data.listData[0].materialUnitId;
+                            vm.unitName = ret.data.listData[0].moduleName;
+                        }
+//                      $S.CloseProgress();
+                        vm.$nextTick(function() {
+                            fnOpenReportGroup();
+                        })
+                    })
+                }
+            }
+        })
+    }
+
+    function fnOpenReportGroup() {
+//      var frames = [];
+//      for (var i = 0; i < vm.groupList.length; i++) {
+//          frames.push({
+//              name: 'class_report_student_list' + i,
+//              url: './class_report_student_list.html',
+//              bgColor: 'rgba(255,255,255,0)',
+//              pageParam: {
+//                  newIndex: i,
+//                  status: vm.groupList[i].key,
+//                  classId: api.pageParam.classId,
+//                  unitId: vm.unitId,
+//                  unitName: vm.unitName,
+//              }
+//          })
+//      }
+//      console.log(frames);
+//      var _top = AD("header").offsetH() * 1;
+//      var _footerH = localStorage.safeBottom;
+//      var param = {
+//          name: 'class_report_group',
+//          background: 'rgba(255,255,255,0)',
+//          rect: {
+//              x: "0",
+//              y: _top,
+//              w: "auto",
+//              h: api.winHeight - _top - _footerH, //相对父window下外边距的距离
+//          },
+//          index: 0,
+//          preload: 2,
+//          frames: frames
+//      }
+//      fnOpenFrameGroup(param, function(ret, err) {
+//          fnSetNavMenuIndex(ret.index)
+//      });
+    }
+
+    function fnSetPage(key) {
+        key = key + "";
+//      api.setFrameGroupIndex({
+//          name: 'class_report_group',
+//          index: key
+//      });
+    }
+
+    function fnSetNavMenuIndex(key) {
+        vm.newIndex = key;
+    }
+    function fnChangeUnit() {
+        var param = {
+            name: 'change_unit_alert',
+            url: '../release/change_unit_alert.html',
+            useWKWebView: true,
+            bgColor: 'rgba(0,0,0,0)',
+            rect: {
+                x: 0,
+                y: 0,
+                w: "auto",
+                h: "auto"
+            },
+            pageParam: {
+                classId: vm.classId,
+                unitId: vm.unitId,
+                unitList: vm.unitList,
+            }
+        }
+        fnOpenFrame(param);
+    }
+    function fnOpenClassOverview() {
+        var postData = {
+            "classId": vm.classId,
+        }
+        fnOpenPublicWin("班级总览", "mine/class_overview",postData)
+    }
+    //页面返回
+    function fnBack() {
+        fnDelayCloseWin(0);
+    }
+</script>
+
+</html>

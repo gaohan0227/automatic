@@ -1,0 +1,51 @@
+.job_type_list {
+            padding: 0 0.8rem;
+        }
+
+        .job_type_list .job_type_item {
+            width: 100%;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .job_type_list .job_type_item img{
+            width:0.5rem;
+            height: 0.5rem;
+        }
+        .job_type_list .job_type_item .job_type_title{
+            padding-right:0.7rem;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+            color: #2F2F2F;
+            font-size: 0.8rem;
+        }
+        .job_type_fixed{
+            padding:1rem 0.8rem;
+            padding-top:0.6rem;
+            position: fixed;
+            bottom:0rem;
+            left:0;
+            width:100%;
+            height:4rem;
+            background: #fff;
+            /*box-shadow:0 0.1rem 0.5rem 0 rgba(0,0,0,0.1);*/
+        }
+        .job_type_fixed .job_type_btn{
+            width:100%;
+            height:2.4rem;
+            background:#5296FF;
+            border-radius:1.2rem;
+            color: #fff;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 2.4rem;
+            box-shadow:0 0.2rem 0.7rem -0.2rem rgba(82,150,255,1);
+        }
+        .job_type_fixed .job_type_btn.gray_bg{
+            background:#EAEAEA;
+            color:#acacac;
+            box-shadow:0 0.2rem 1.5rem -0.2rem rgba(172,172,172,0.13);
+        }

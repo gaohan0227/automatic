@@ -1,0 +1,53 @@
+<div class="personalIndexVue" v-cloak>
+    <div class="personal_index_class" v-if="isClassList">
+        <div class="personal_index_title">
+            <p>我的班级</p>
+            <span onclick="fnOpenNextPage('7')">查看全部</span>
+        </div>
+        <div class="my_class_list" v-if="classList.length>0">
+            <div class="my_class_item" v-for="item,index in classList" v-if="index<4">
+                <div class="my_class_item_info" :style="{background:bgColor[Math.floor(index%5)]}">
+                    <img :src="item.classLogoUrl?item.classLogoUrl:'../img/index/mine.png'" alt="">
+                    <p class="teacher_name">{{item.teacherName}}</p>
+                    <p class="class_name">{{item.classNames}}</p>
+                    <div class="class_info">
+                        <div>
+                            <p>课程</p>
+                            <p>{{item.materialName}}</p>
+                        </div>
+                        <div>
+                            <p>级别</p>
+                            <p>{{item.materialLevelName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="none_data" v-if="classList.length==0">
+            <div>
+                <img src="../img/no_page/no_class.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="personal_index_unit_test" v-if="isUnitList">
+        <div class="personal_index_title">
+            <p>单元测试</p>
+            <span v-if="classId!=''" onclick="fnOpenNextPage('5')">查看全部</span>
+        </div>
+        <div class="my_unit_test_list" v-if="unitTestList.length>0">
+            <div class="my_unit_test_item" v-for="item,index in unitTestList" v-if="index<4">
+                <div class="my_unit_test_item_info">
+                    <img src="../img/mine/unit_test.png" alt="">
+                    <p class="unit_name">{{item.moduleName}}</p>
+                    <p class="unit_text_btn">去测试</p>
+                </div>
+            </div>
+        </div>
+        <div class="none_data" v-if="unitTestList.length==0">
+            <div>
+                <img src="../img/no_page/no_test.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>

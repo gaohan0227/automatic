@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/add_class.css">
+</link>
+<div class="vueApp" v-cloak>
+    <div class="class_search" data-flex="main:justify">
+        <div class="teacher-sec-header">
+            创建班级
+        </div>
+    </div>
+    <div v-if="!success" class="add_class">
+        <div class="avatar_info" data-flex="main:center cross:center" onclick="fnIsAlbum()">
+            <img class="avatar" :src="classLogoUrl?classLogoUrl:'../image/mine/default_avatar.png'" alt="">
+        </div>
+        <div class="add_class_item" data-flex="main:center cross:center" tapmode @click="classType=='add'?fnOpenModifyInfo():''">
+            <span>班级名称:</span>
+            <div>
+                <input :value="classNames" type="text" placeholder="请输入班级名称">
+            </div>
+        </div>
+        <div class="add_class_item" data-flex="main:center cross:center" tapmode @click="classType=='add'?fnChooseCourseLevel('course'):''">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;课程:</span>
+            <div>
+                <span>{{materialName}}</span>
+                <img src="../image/down.png" alt="">
+            </div>
+        </div>
+        <div class="add_class_item" data-flex="main:center cross:center" tapmode @click="classType=='add'?fnChooseCourseLevel('level'):''">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级别:</span>
+            <div>
+                <span>{{studentMaterialLevelText}}</span>
+                <img src="../image/down.png" alt="">
+            </div>
+        </div>
+        <div class="add_class_item" data-flex="main:center cross:center" tapmode onclick="fnOpenSelectSize()">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人数:</span>
+            <div>
+                <span>{{classNum}}</span>
+                <img src="../image/down.png" alt="">
+            </div>
+        </div>
+        <div class="add_class_item" data-flex="main:center cross:center">
+            <span>开始时间:</span>
+            <div>
+                <span>{{classStartTime}}</span>
+                <img src="../image/down.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div v-else class="success">
+        <img src="../image/success.png" alt="">
+        <p>创建成功</p>
+    </div>
+    <div v-if="!success" class="add_class_fixed blue-btn" tapmode onclick="fnAddClass()">
+        <div class="add_class_btn">提交</div>
+    </div>
+</div>

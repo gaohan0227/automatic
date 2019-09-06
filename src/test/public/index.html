@@ -1,0 +1,328 @@
+{% extends "./public/defaultTemp.html" %} {% block content %} {% import "./public/adsPannel.html" as adsPannel %}
+<!-- 首页 -->
+<link rel="stylesheet" type="text/css" href="/plugins/website/wow/animate.css">
+<link href="/plugins/website/css/style.css" type="text/css" rel="stylesheet"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<link rel="canonical" href="https://www.kuailework.com/"/> 
+ <style>  a[title="站长统计"]{ display: none; }  </style>
+
+<div class="top">
+    <div class="wrap1200">
+        <div class="fr">
+            <div class="personal"><a href="/tax">个税计算器</a></div>
+            <div class="old"><a href="http://pc.kuailework.com/" target="_blank" rel="nofollow">旧版登录</a></div>
+            <div class="login"><a href="https://www.kuailework.com/vs3/html/account/login.html" target="_blank" rel="nofollow">登录</a> | <a href="https://www.kuailework.com/vs3/html/account/register.html" target="_blank" rel="nofollow">注册</a></div>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <div class="wrap1200">
+        <div class="logo"><a href="/"><img src="plugins/website/images/logo.png"/></a></div>
+        <div class="nav">
+            <ul>
+                <li class="active"><a href="/">首页</a></li>
+                <li><a href="yunrenshi.html">云人事管理</a></li>
+                <li><a href="zhaopin.html">网络招聘</a></li>
+                <li>
+                    <a href="waibao.html" class="a">人事外包</a>
+                    <div class="subnav">
+                        <ul class="subtit">
+                            <li><a href="shebao.html">社保外包</a></li>
+                            <li><a href="gangwei.html">岗位外包</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="peixun.html">企业培训</a></li>
+                <li id="no_bottom" class="no_bottom"><a target="_blank" href="https://www.hrbpclass.com">伙瓣课堂</a></li>
+                <li><a href="aboutus.html" rel="nofollow">关于我们</a></li>
+            </ul>
+        </div>
+        <div class="tel">
+        <i class="telicon"></i>
+        <div class="fl">
+        全国咨询热线<br>
+        <div class="telnum">400-607-6006</div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="banner">
+    <ul>
+        <li style="background:url('/plugins/website/images/banner.jpg') no-repeat center top; background-size:auto 100%">
+            <div style="width:1000px; margin:0 auto;">
+                <h3>让HR更简单</h3>
+                <h4>企业HR-SaaS智能服务领导者</h4>
+                <!-- <img style="width: 615px;height: 238px; display: block;" src="/plugins/website/images/banner_txt.png" alt="">
+                <div style="width: 615px; text-align: center;">
+                  <a class="tiyan" href="https://www.kuailework.com/vs3/html/account/register.html" target="_blank">立即体验</a>  
+                </div> -->
+                <a class="tiyan" href="https://www.kuailework.com/vs3/html/account/register.html" target="_blank">立即体验</a>
+            </div>
+        </li>
+        <li style="background:url('/plugins/website/images/banner2.jpg') no-repeat center top; background-size:auto 100%"><a href="http://www.hbsc.cn/adother/HReSite/" style="width:100%; height:100%;display:block" target="_blank"></a></li>
+        
+    </ul>
+    <div class="banbtn" id="banbtn"></div>
+</div>
+<div class="wrap1200">
+	<div class="blocktit mt60"><h2>产品体系</h2>Product system</div>
+    <div class="center mt20"><img src="/plugins/website/images/happy.jpg"></div>
+	<div class="producttab">
+    	<ul>
+        	<li class="tab1 active"></li>
+            <li class="tab2"></li>
+            <li class="tab3"></li>
+            <li class="tab4"></li>
+            
+        </ul>
+    </div>
+    <div class="producttabcon" style="display:block">
+    	<div class="fl text">
+        	<div class="tit">云人事管理</div>
+            <div class="con">快乐沃克云人事管理是基于全国首家效能型HR SaaS平台，以提升HR效率和能力为核心目标，集七大核心智能模块为一体，帮助HR在线轻松、高效、规范的处理人力资源相关工作。</div>
+            <a href="yunrenshi.html" class="btn">了解更多<i></i></a>
+        </div>
+        <div class="fr pic"><img src="/plugins/website/images/p1.jpg"></div>
+    </div>
+    <div class="producttabcon">
+    	<div class="fl text">
+        	<div class="tit">网络招聘</div>
+            <div class="con">快乐沃克的网络招聘服务从2005年开始运营，是一个集网络招聘、就业指导、职业交流社区、HR俱乐部于一体的人力资源综合性招聘服务平台。</div>
+            <a href="zhaopin.html" class="btn">了解更多<i></i></a>
+        </div>
+        <div class="fr pic"><img src="/plugins/website/images/p2.jpg"></div>
+    </div>
+    <div class="producttabcon">
+    	<div class="fl text">
+        	<div class="tit">人事外包</div>
+            <div class="con">人事外包立足企业"减轻事务压力、专注核心业务"的深层次需求，包括社保代缴、劳务派遣、招聘外包、业务外包、岗位外包等多元化人力资源服务，利用自主研发的HR SaaS云平台，实现了社保增减业务的线上办理、业务办理进度即时查询、数据永久备份等便捷服务。</div>
+            <a href="waibao.html" class="btn">了解更多<i></i></a>
+        </div>
+        <div class="fr pic"><img src="/plugins/website/images/p3.jpg"></div>
+    </div>
+    <div class="producttabcon">
+    	<div class="fl text">
+        	<div class="tit">企业培训</div>
+            <div class="con">快乐沃克企业培训服务是基于企业经营管理需求开设的多模式呈现、应用化和体验式为主的系列培训课程。通过线上和线下相结合、理论和与实践相结合，切实的满足企业管理、人力资源管理和参训个人的专属提升需求。</div>
+            <a href="peixun.html" class="btn">了解更多<i></i></a>
+        </div>
+        <div class="fr pic"><img src="/plugins/website/images/p4.jpg"></div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="bg2">
+	<div class="blocktit2"><h2>我们的优势</h2>Our advantages</div>
+    <div class="advantages">
+    	<ul>
+        	<li class="wow slideInUp"><img src="/plugins/website/images/p5.png"><br><h3>深厚的行业积淀</h3>
+            	<p>• 专注人力资源服务行业17年<br>
+• 累计服务客户超过20万家<br>
+• 累计服务人次超过1000万<br>
+• 率先在新三板挂牌的人力资源机构<br>
+</p>
+            </li>
+            <li class="wow slideInUp"><img src="/plugins/website/images/p6.png"><br><h3>一站式智能人事服务</h3>
+            	<p>• HR-SaaS一站式智能人事服务的开创者和领跑者<br>
+• 通过全国首家效能型HR-SaaS一站式服务平台，为企业提供云人事管理、网络招聘、人事外包、企业培训"四位一体"的产品服务体系</p>
+            </li>
+            <li class="wow slideInUp"><img src="/plugins/website/images/p7.png"><br><h3>集团荣誉</h3>
+            	<p>• 2012-2014年度全国人力资源诚信<br>
+   服务示范机构<br>
+• 2017年中国人力资源开发研究会"
+   常务理事单位"<br>
+• 2017年度中国人才发展服务优秀供
+   应商<br>
+• 中国人力资源外包联盟理事
+
+</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="wrap1200">
+	<div class="blocktit mt60"><h2>真实用户案例</h2>Real user cases</div>
+    <div id="tuwrap">
+    	<div class="caseLeft" id="tubtnleft"></div>
+    	<div class="caseRight" id="tubtnright"></div>
+        <div class="case">
+            <ul>
+                <li><span class="pic"><img src="/plugins/website/images/p8.png"></span><br><h3>中正国瑞商银<br>
+    刘女士  HR经理</h3>
+                    <p>解决的问题：员工档案智能化管理
+       </p><p><span class="markgreen">"</span>告别那些躺在档案袋里，存在EXCEL里的员工档案，让快乐沃克更高效的把你从事务性工作中解放出来！<span class="markgreen">"</span></p>
+                </li>
+                <li><span class="pic"><img src="/plugins/website/images/p9.png"></span><br><h3>河北金手指投资管理有限公司<br>
+    党女士  HR经理</h3>
+                    <p>解决的问题：报增报减补缴线上办理，电子发票下载。
+       </p><p><span class="markgreen">"</span>快乐沃克可以在线上同时管理多家子公司的社保报增报减缴纳，还可以查每月账单和下载发票，非常方便。
+    <span class="markgreen">"</span></p>
+                </li>
+                <li><span class="pic"><img src="/plugins/website/images/p10.png"></span><br><h3>百胜软件<br>
+    园园  招聘HR</h3>
+                    <p>解决的问题：清晰地安排招聘日程</p>
+                    <p><span class="markgreen">"</span>快乐沃克的招聘小日历让我清楚知道每天的招聘安排，不需要再花时间核对下次邀约面试者的时间。<span class="markgreen">"</span></p>
+                </li>
+                <li><span class="pic"><img src="/plugins/website/images/p11.png"></span><br><h3>深圳市阿里优网络<br>
+    SUKI  HR负责人</h3>
+                    <p>解决的问题：考勤数据展现与统计
+       </p><p><span class="markgreen">"</span>自从用了快乐沃克的智能考勤功能，一键导出考勤结果，再也不用在月底去用excel统计了<span class="markgreen">"</span></p>
+                </li>
+                <li><span class="pic"><img src="/plugins/website/images/p12.png"></span><br><h3>杭州开锹网络<br>
+    杨女士  HR负责人</h3>
+                    <p>解决的问题：高效邀约
+       </p><p><span class="markgreen">"</span>免费邀约短信一键送达，多方提醒应聘者、面试官、HR，让面试邀约更高效！<span class="markgreen">"</span></p>
+                </li>
+            </ul>
+        </div>
+   </div>
+   <!-- 最新资讯 -->
+   <div class="blocktit mt60"><h2>动态资讯</h2>News</div>
+   <div class="yf_add_news_more"><a href="/news">更多&nbsp;></a></div>
+   <div class="yf_add_news">
+       {% include "./public/itemListTemp.html" %}
+   </div>
+
+   <div class="blocktit mt60"><h2>合作伙伴</h2>Cooperative partner</div>
+   <div class="partner">
+   	<ul>
+    	<li><img src="/plugins/website/images/partner/p1.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p2.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p3.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p4.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p5.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p6.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p7.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p8.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p9.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p10.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p11.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p12.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p13.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p14.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p15.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p16.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p17.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p18.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p19.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p20.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p21.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p22.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p23.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p24.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p25.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p26.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p27.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p28.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p29.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p30.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p31.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p32.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p33.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p34.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p35.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p36.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p37.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p38.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p39.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p40.jpg"></li>
+        <div class="line"></div>
+        <li><img src="/plugins/website/images/partner/p41.jpg"></li>
+        <li><img src="/plugins/website/images/partner/p42.jpg"></li>
+        
+    </ul>
+   </div>
+   <div class="lookmore">查看更多</div>
+</div>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1271206451'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1271206451' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript" language="javascript" src="/plugins/website/js/kuaileworkbaidutongji.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script> -->
+<script type="text/javascript" src="/plugins/website/js/scroll.js"></script>
+<script src="/plugins/website/wow/wow.min.js"></script>
+<script type="text/javascript" src="plugins/website/js/renshi.js"></script>
+<script>
+var wow = new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: true,
+            live: true,
+            callback: function (box) {
+
+            }
+        });
+        if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+            new WOW().init();
+        };
+$(function(){
+	$(".producttab li").click(function(){
+		$(this).addClass("active").siblings().removeClass("active");
+		var index = $(this).index();
+		$(".producttabcon").hide().eq(index).show();
+	})
+	$(".lookmore").click(function(){
+		$(".partner").toggleClass("heightauto");
+		var text = $(this).html()=="查看更多"?"收起全部":"查看更多"
+		$(this).html(text)
+	})
+})
+
+function tu_scroll(tuwrap,tubtnleft,tubtnright,speed,or){
+	var tuwrap = $(tuwrap);
+	var tuUl = tuwrap.find("ul");
+	var tuLi = tuUl.find("li");
+	var len = tuLi.length;
+	var tubtnleft = $(tubtnleft);
+	var tubtnright = $(tubtnright);
+	var w = tuLi.outerWidth(true)
+	tubtnright.click(function(){
+		tuUl.stop().animate({
+			"margin-left":-w
+		},function(){
+			tuUl.find('li:lt(1)').appendTo(tuUl);
+			tuUl.css({
+				"margin-left":0
+			})
+		})
+	})
+	tubtnleft.click(function(){
+		tuUl.find('li:last').prependTo(tuUl);
+		tuUl.css({"margin-left":-w});
+		tuUl.stop().animate({"margin-left":0})
+	})
+	var tu = null;
+	function tuTimer(){
+		tu=setInterval(function(){
+			tubtnright.click();
+		},speed)
+	}
+	tuwrap.hover(function(){
+		clearInterval(tu)
+	},function(){
+		tuTimer()
+	})
+	if(or==true){
+		tuTimer();
+	}
+}
+tu_scroll("#tuwrap","#tubtnleft","#tubtnright",3000,true)
+
+    function goPAGE(){
+        if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            window.location.href="https://m.kuailework.com/";
+        } else {
+            // window.location.href="pc端url";
+            console.log('open use pc')
+        }
+    }
+    goPAGE()
+</script>
+
+
+{% endblock %}

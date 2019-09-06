@@ -1,0 +1,75 @@
+<div class="vueApp" v-cloak>
+        <div v-if="studentInfo!=''">
+            <header>
+                <div class="student_info_header">
+                    <img src="../image/index/back_gray.png" tapmode @click="fnBack()">
+                    <span></span>
+                </div>
+            </header>
+            <div class="student_header" :style="studentInfo.avatarUrl?'background-image:url('+studentInfo.avatarUrl+')':'background-image:url(../image/mine/default_avatar.png)'"></div>
+            <div class="student_info">
+                <img class="student_info_avatar" :src="studentInfo.avatarUrl?studentInfo.avatarUrl:'../image/mine/default_avatar.png'" alt="">
+                <p class="student_info_name">{{studentInfo.studentName}}</p>
+            </div>
+            <div class="basic_info">
+                <div class="basic_info_title">
+                    <span>基本信息</span>
+                </div>
+                <div class="basic_info_detail">
+                    <div class="basic_info_list">
+                        <div class="basic_info_item">
+                            <span class="info_name">姓名</span>
+                            <p class="info_name_info">{{studentInfo.studentName}}</p>
+                        </div>
+                        <div class="basic_info_item">
+                            <span class="info_name">英文名</span>
+                            <p class="info_name_info">{{studentInfo.studentEnglishName}}</p>
+                        </div>
+                        <div class="basic_info_item">
+                            <span class="info_name">出生年月</span>
+                            <p class="info_name_info">{{studentInfo.birthday|fnSetDate('date')}}</p>
+                        </div>
+                        <div class="basic_info_item">
+                            <span class="info_name">性别</span>
+                            <p class="info_name_info">{{studentInfo.sex|fnSexText}}</p>
+                        </div>
+                        <div class="basic_info_item">
+                            <span class="info_name">年龄</span>
+                            <p class="info_name_info">{{studentInfo.age}}</p>
+                        </div>
+                    </div>
+                    <div class="basic_info_list">
+                        <div class="basic_info_item">
+                            <span class="info_name">课程</span>
+                            <p class="info_name_info">{{studentInfo.materialName}}</p>
+                        </div>
+                        <div class="basic_info_item">
+                            <span class="info_name">级别</span>
+                            <p class="info_name_info">{{studentInfo.materialLevelName}}</p>
+                        </div>
+                    </div>
+                    <div class="basic_info_list">
+                        <div class="basic_info_item" tapmode @click="fnDeductIntegral()">
+                            <span class="info_name">积分值</span>
+                            <p class="info_name_info" v-text="studentInfo.integral>0?studentInfo.integral:'0'"></p>
+                            <span>扣除</span>
+                            <img src="../image/index/go_page_class.png" alt="">
+                        </div>
+                    </div>
+                    <div class="basic_info_list" style="padding-bottom:0;">
+                        <div class="basic_info_item" tapmode @click="classList.length>0?fnChangeClass():''">
+                            <span class="info_name">学生换班</span>
+                            <p class="info_name_info"></p>
+                            <span v-text="classList.length>0?'选择班级':'暂无可换班级'"></span>
+                            <img src="../image/index/go_page_class.png" alt="">
+                        </div>
+                        <div class="basic_info_item" tapmode @click="fnRemove()">
+                            <span class="info_name">移除学生</span>
+                            <p class="info_name_info"></p>
+                            <img src="../image/index/go_page_class.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

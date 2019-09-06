@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>选择班级或单元测试的底部按钮</title>
+    <link href="../../css/api.css" rel="stylesheet" type="text/css">
+    <link href="../../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../../css/index.css" rel="stylesheet" type="text/css">
+    <style>
+        .class_fixed {
+            padding: 0.35rem 0.8rem;
+            position: fixed;
+            bottom: 0rem;
+            left: 0;
+            width: 100%;
+            height: 2.7rem;
+            background: #fff;
+            position: relative;
+        }
+
+        .class_fixed:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: #eaeaea;
+            transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .class_fixed .class_btn {
+            width: 100%;
+            height: 2rem;
+            background: #5296FF;
+            border-radius: 1rem;
+            color: #fff;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 2rem;
+        }
+
+        .class_fixed .class_btn.gray_bg {
+            background: #EAEAEA;
+            color: #acacac;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="class_fixed" tapmode @click="fnSubmit()">
+            <div class="class_btn">{{bottomText}}</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.min.js"></script>
+<script type="text/javascript" src="../../script/service/service-app.js"></script>
+<script type="text/javascript" src="../../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../../script/service/service-font.js"></script>
+<script type="text/javascript" src="../../script/service/service-user.js"></script>
+<script type="text/javascript" src="../../script/service/service-login.js"></script>
+<script type="text/javascript" src="../../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        fnInit();
+        if (api.pageParam.listData.length == 0) {
+            api.setFrameAttr({
+                name: 'index/change_student_bottom',
+                hidden: true
+            });
+        }
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                bottomText: api.pageParam.bottomText,
+            },
+            methods: {
+                fnSubmit: function() {
+                    api.sendEvent({
+                        name: 'submitBottom',
+                        extra: {
+                            key1: 'submit',
+                        }
+                    });
+
+                }
+            }
+        })
+    }
+</script>
+
+</html>

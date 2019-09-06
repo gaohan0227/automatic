@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/class_detail.css">
+<div class="vueApp" v-cloak>
+    <div style="padding: 50px;">
+        <div class="class_search" data-flex="main:justify">
+            <div class="teacher-sec-header">
+                班级详情
+            </div>
+        </div>
+        <div class="class_header">
+            <div data-flex="main:justify cross:center" class="class_detail_item" tapmode @click="fnOpenClassInfo()" v-if="classInfo!=''">
+                <div class="class_info">
+                    <p class="class-name">{{classInfo.classNames}}</p>
+                    <div class="book">
+                        <span>课程：{{classInfo.materialName}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>级别：{{classInfo.materialLevelName}}</span>
+                    </div>
+                    <div class="blue-btn">
+                        <div>详情</div>
+                    </div>
+                </div>
+                <div class="tearch_info">
+                    <img :src="classInfo.classLogoUrl?classInfo.classLogoUrl:'../image/mine/default_avatar.png'" alt="">
+                    <p>{{classInfo.teacherName}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="class_student" style="padding: 50px;" v-if="classInfo!=''">
+        <div class="class_search" data-flex="main:justify">
+            <div class="teacher-sec-header">
+                学生列表
+            </div>
+        </div>
+        <div class="class_student_list" data-flex="dir:left" v-if="classInfo.studentList&&classInfo.studentList.length>0">
+            <div class="class_student_item" v-for="item in classInfo.studentList" tapmode @click="fnOpenStudentInfo(item.studentId)">
+                <div class="student_avatar"><img :src="item.avatarUrl?item.avatarUrl:'../image/mine/default_avatar.png'" alt=""></div>
+                <p>{{item.studentName}}</p>
+            </div>
+        </div>
+        <div class="none_data" v-else>
+            <div>
+                <img src="../image/no_page/no_student.png" alt="">
+            </div>
+        </div>
+        <div class="bottom-btn" data-flex="main:center cross:center">
+            <div>添加学生</div>
+            <div class="blue" onclick="fnChangeStudent()">选择学生</div>
+        </div>
+    </div>
+</div>

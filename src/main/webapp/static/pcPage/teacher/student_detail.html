@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>走向未来</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../css/data-flex.min.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/normal.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/footer.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../css/header.css?v=0.0.1">
+		<script type="text/javascript" src="../libs/jquery.min.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../libs/bootstrap.min.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/page.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/tool.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/pageInit.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../js/vue.min.js?v=0.0.1"></script>
+		<style type="text/css">
+			body {
+				background-color: #f7f7f7;
+			}
+			
+			.wai_div {
+				max-width: 1440px;
+				height: auto;
+				margin: 0 auto;
+				color: #2f2f2f;
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page-content">
+			<div class="wai_div">
+				<div style="text-align: center;">
+					<img :src="studentInfo.avatarUrl"/>
+					<p>中文名：{{studentInfo.studentName}}</p>
+					<p>英文名：{{studentInfo.studentEnglishName}}</p>
+					<p>课程：{{studentInfo.materialName}}</p>
+					<p>级别：{{studentInfo.materialLevelName}}</p>
+					<p>出生年月：{{studentInfo.birthday}}</p>
+					<p>性别：{{studentInfo.sex}}</p>
+					<p>年龄：{{studentInfo.age}}</p>
+					<p>积分值：{{studentInfo.integral}} &nbsp;<button>扣除</button></p>
+					<p>学生换班：{{}}</p>
+					<p><button>保存</button> <button>移除学生</button></p>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm;
+		// 等同于window.onload
+		function pageOnload() {
+			initPage();
+			getData();
+		}
+
+		function initPage() {
+			vm = new Vue({
+				el: "#page-content",
+				data: {
+					studentInfo:""
+				}
+			});
+		}
+
+		function getData() {
+			var callback = function(data) {
+				vm.studentInfo=data;
+			};
+			POST('apiTeacherLogin/findStudentInfo', {
+				"classInfoId": "ef4214145977428388e8eba822f06753",
+				"id": "0089526f4dbe4d9595d2b31f9b143b9a"
+			}, callback);
+		}
+	</script>
+
+</html>

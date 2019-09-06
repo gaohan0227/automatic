@@ -1,0 +1,53 @@
+.change_student_list {
+            padding: 0 0.8rem;
+            position: relative;
+            /*border-bottom: 1px solid #eaeaea;*/
+        }
+
+        .change_student_list:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 1.2rem;
+            right: 0.8rem;
+            height: 1px;
+            background: #eaeaea;
+            /*transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);*/
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+
+        .change_student_list .change_student_item {
+            width: 100%;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            /*border-bottom: 1px solid #eaeaea;*/
+        }
+        /*.change_student_list .change_student_item img{
+            width:0.6rem;
+            height: 0.6rem;
+        }*/
+
+        .change_student_list .change_student_item .student_avatar {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.7rem;
+        }
+
+        .change_student_list .change_student_item .student_info {
+            flex: 1;
+            height: 3rem;
+            line-height: 3rem;
+            font-size: 0.8rem;
+            color: #2F2F2F;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            border-top: 1px solid #EAEAEA;
+        }
+
+        .change_student_list .change_student_item:first-child .student_info {
+            border-top: none;
+        }

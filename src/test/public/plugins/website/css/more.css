@@ -1,0 +1,375 @@
+@charset "utf-8";
+/*!
+   * @名称：base.css
+   * @功能：1、重设浏览器默认样式
+   *       2、设置通用原子类
+   */
+
+
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+
+html {
+    background: white;
+    font-family: '微软雅黑';
+    color: #333; font-size:14px; line-height:1.6
+}
+
+
+/*@font-face {font-family: abc;src:url(../font/abc.ttf) format("truetype");color: #333;}*/
+
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+    outline: none;
+}
+li{list-style: none;}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+
+body,
+button,
+input,
+select,
+textarea {
+    font: 14px;
+}
+
+input,
+select,
+textarea {
+    font-size: 100%;
+}
+input::placeholder{
+    color: red;
+}
+
+/* 去掉 table cell 的边距并让其边重合 */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* ie bug：th 不继承 text-align */
+
+th {
+    text-align: inherit;
+}
+
+
+/* 去除默认边框 */
+
+fieldset,
+img {
+    border: none;
+}
+
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+
+iframe {
+    display: block;
+}
+
+
+/* 去掉 firefox 下此元素的边框 */
+
+abbr,
+acronym {
+    border: none;
+    font-variant: normal;
+}
+
+
+/* 一致的 del 样式 */
+
+del {
+    text-decoration: line-through;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+    font-style: normal;
+    font-weight: 500;
+}
+
+
+/* 去掉列表前的标识，li 会继承 */
+
+ol,
+ul,li {
+    list-style: none;
+}
+
+
+/* 对齐是排版最重要的因素，别让什么都居中 */
+
+caption,
+th {
+    text-align: left;
+}
+
+
+/* 来自yahoo，让标题都自定义，适应多个系统应用 */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: 500;
+}
+
+q:before,
+q:after {
+    content: '';
+}
+
+
+/* 统一上标和下标 */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+
+/* 让链接在 hover 状态下显示下划线 */
+
+a:hover {
+    text-decoration: none;
+}
+
+
+/* 默认不显示下划线，保持页面简洁 */
+
+ins,
+a {
+    text-decoration: none;
+}
+
+
+/* 去除 ie6 & ie7 焦点点状线 */
+
+a:focus,
+*:focus {
+    outline: none;
+}
+
+
+/* 清除浮动 */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+    /* for ie6 & ie7 */
+}
+
+.clear {
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+
+/* 设置显示和隐藏，通常用来与 js 配合 */
+
+.hide {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+
+/* 设置浮动，减少浮动带来的 bug */
+
+.fl,
+.fr {
+    display: inline;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+.pr{ position:relative}
+.tc{ text-align:center}
+.fixed {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #fff;
+    z-index: 9999;
+    box-shadow: 0px 2px 4px #bdbdbd;
+}
+body{ overflow-x:hidden}
+.wrap{ width:1100px; margin:0 auto;position:relative; z-index:1}
+
+.banner{ height:600px; background:#6FBA44;  position:relative; color:#fff; line-height:1.6}
+.banner .bg{ height:600px;  position:absolute;top:0; left:50%; margin-left:-300px;right:0; background:url(../images/bannerbg.jpg) left center no-repeat; z-index:0}
+.top{ padding-top:35px; clear:both; overflow:hidden; position:relative; z-index:1}
+.top .logo{ float:left}
+.top a.home{ display:inline-block; background:url(../images/home.png) left no-repeat; height:22px; padding-left:30px; color:#fff; float:right}
+.top a.home:hover{ text-decoration:underline}
+
+.line{ width:75px; height:1px;font-size:0; line-height:0; border-top:2px solid #fff; margin:10px auto}
+.line.gray{border-color:#656565}
+
+.banner .tedian{ width:90px; height:90px; border-radius:50%; border:2px solid #fff; text-align:center; display:inline-block; margin:20px 60px; font-size:26px; line-height:1.1;  }
+.banner .tedian span{ padding-top:16px; display:block}
+.banner h1{ font-size:50px;}
+.banner h2{ font-size:30px;}
+
+.footer{ text-align:center; font-size:12px; color:#666; padding-top:50px; padding-bottom:50px }
+
+.title{ text-align:center; padding-top:50px; padding-bottom:40px; line-height:1.3}
+.title h4{ font-size:30px; color:#666;line-height:1.3}
+.title h2{ font-size:40px; color:#d3d3d3; text-transform:uppercase}
+.title .info{ color:#666; font-size:14px;}
+
+.indexrow1{ background:url(../images/indexbg1.png) center no-repeat; height:700px}
+.indexrow1 .text{ position:absolute;}
+.indexrow1 .text h4{ font-size:30px; color:#666}
+.indexrow1 .text h2{font-size:16px; color:#666}
+.indexrow1 .textAll{ text-align:center; width:235px; top:400px; left:50%; margin-left:-118px}
+.indexrow1 .text1,.indexrow1 .text2{ text-align:left; width:430px; top:290px; left:0; }
+.indexrow1 .text2{top:520px;}
+.indexrow1 .text3,.indexrow1 .text4{ text-align:right; width:430px; top:290px; right:0; }
+.indexrow1 .text4{top:520px;}
+
+.indexrow2{ background:url(../images/probg.png) top repeat-x; height:900px}
+.indexrow2 .prolist{ overflow:hidden}
+.indexrow2 .prolist li{ float:left; width:350px; height:300px; text-align:center; margin-right:25px; margin-bottom:25px; font-size:16px; color:#fff; position:relative; overflow:hidden}
+.indexrow2 .prolist li i{ display:inline-block; width:60px; border-top:2px solid #fff; position:absolute}
+.indexrow2 .prolist li:last-child{ margin-right:0}
+.indexrow2 .prolist li .one,.indexrow2 .prolist li .two{ font-size:30px; position:absolute; width:100%; top:0; left:0; height:300px; line-height:300px}
+.indexrow2 .prolist li .one i{ left:50%; margin-left:-30px; bottom:30px}
+.indexrow2 .prolist li .two{ top:300px; line-height:30px}
+.indexrow2 .prolist li .two i{ left:50%; margin-left:-30px; top:30px}
+.indexrow2 .prolist li .two span{ padding-top:50px; display:block}
+.indexrow2 .prolist li .two small{  font-size:16px; line-height:20px}
+.indexrow2 .prolist li .two a.btn-more{ display:block; width:90px; height:26px; background:#fff; border-radius:6px; text-align:center; font-size:16px; line-height:26px; position:absolute; left:50%; margin-left:-45px; bottom:20px}
+
+.indexrow3{ height:600px}
+.indexrow3 .btmline{border-top:2px solid #54B555; position:absolute; bottom:78px; left:0; width:100%}
+.indexrow3 .cusBg{ background:url(../images/customerline.png) center bottom no-repeat ; position: absolute; height:200px; width:1100px; bottom:75px;left:50%; margin-left:-550px; z-index:1}
+.indexrow3 .text-kh1,.indexrow3 .text-kh2,.indexrow3 .text-kh3,.indexrow3 .text-kh4,.indexrow3 .text-kh5,.indexrow3 .text-kh6,.indexrow3 .text-kh7{position: absolute; font-size:16px; color:#666; height:20px; left:58px; bottom:-20px}
+.indexrow3 .text-kh2{ left:222px; }
+.indexrow3 .text-kh3{ left:370px; }
+.indexrow3 .text-kh4{left:537px; }
+.indexrow3 .text-kh5{ left:675px; }
+.indexrow3 .text-kh6{ left:848px; }
+.indexrow3 .text-kh7{left:990px;}
+.indexrow3 .pic1,.indexrow3 .pic2,.indexrow3 .pic3,.indexrow3 .pic4,.indexrow3 .pic5,.indexrow3 .pic6,.indexrow3 .pic7{ position:absolute; top:-105px}
+.indexrow3 .pic2,.indexrow3 .pic4,.indexrow3 .pic6{top:-35px}
+
+.indexrow4{ height:600px; background:url(../images/shenqing.jpg) center no-repeat; position:relative; text-align:center}
+.indexrow4 .mask{ background:rgba(0,0,0,.3); position:absolute; height:600px; left:0; width:100%; bottom:0; z-index:0}
+.indexrow4 a.btn-sq{ display:inline-block; width:200px; height:40px; text-align:center; color:#fff; line-height:40px; background:#54B555; box-shadow:5px 5px 5px rgba(0,0,0.6); font-size:16px; border-radius:6px}
+.indexrow4 a.btn-sq:hover{ background:#468B46}
+
+.xingqu {font-size:20px; border:2px solid #ffff00; border-radius:5px; width:200px; height:40px; line-height:40px;margin:55px auto 55px; text-align:center; display:block; color:#fff}
+.xingqu:hover {color:#6eba44; background:#fff; border:2px solid #fff;}
+.mb20 {margin-bottom:20px;}
+.intro { font-size:20px; margin:50px 0px; color:#666;}
+
+.wrap514 {width:514px; margin:0 auto; font-size:18px; color:#666;}
+.wrap514 p {width:500px; height:50px; line-height:50px; position:relative; margin-bottom:30px;}
+.inp_style {width:500px; height:50px; border:1px solid #a3a3a3; background:#f5f5f5; box-shadow:0px 0px 5px #ccc; border-radius:5px; padding-left:116px; box-sizing:border-box; font-family:Microsoft Yahei; font-size:18px; color:#999}
+.inptit { position:absolute; left:0px; width:104px; text-align:right;}
+.inp_btn {width:500px; height:50px; line-height:50px; background:#7cc156; box-shadow:0px 0px 5px #ccc; border-radius:5px;font-family:Microsoft Yahei; font-size:18px;color:#fff; text-align:center; border:0px;cursor:pointer;}
+.greenline {width:100%; height:20px; border-bottom:2px solid #6eba44;}
+.getyzm {border:1px solid #999999; border-radius:5px; position:absolute; right:10px; top:13px; background:#f5f5f5; width:100px; text-align:center;color:#666666; font-size:18px; font-family:Microsoft Yahei; cursor:pointer;}
+.grey {color:#999}
+
+.tanceng { text-align:center; display:none}
+.tanceng h3 {color:#6eba44; font-size:30px;padding-top:50px}
+.tanceng h2 {color:#999;font-size:18px;}
+.tcbtn { width:100px; height:30px; background:#6eba44; border-radius:5px; color:#fff; font-size:14px; text-align:center; line-height:30px; margin:40px auto 0px; cursor:pointer}
+.layui-layer-title { background:#6eba44!important;color:#fff!important; font-size:18px!important;height:50px!important; line-height:50px!important;}
+.layui-layer-ico { background:url(../images/iconclose.png) no-repeat!important}
+.layui-layer-setwin a {width:19px!important; height:19px!important;}

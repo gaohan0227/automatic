@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>走向未来</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../../css/data-flex.min.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../../css/normal.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../../css/header.css?v=0.0.1">
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css?v=0.0.1">
+		<script type="text/javascript" src="../../libs/jquery.min.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../../libs/bootstrap.min.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../../js/page.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../../js/tool.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../../js/pageInit.js?v=0.0.1"></script>
+		<script type="text/javascript" src="../../js/vue.min.js?v=0.0.1"></script>
+		<style type="text/css">
+			body {
+				background-color: #f7f7f7;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page-content">
+			<div class="vueApp" v-cloak>
+				<div class="goods_list" v-if="isLoad">
+					<div class="goods_item" v-for="item in listData">
+						<div class="goods_item_img">
+							<img :src="item.goodsPicture" alt="">
+						</div>
+						<p class="goods_name">{{item.goodsName}}</p>
+						<p><span>{{item.goodsNum}}</span>积分</p>
+					</div>
+					<div class="none_data" v-if="listData.length==0">
+						<div>
+							<img src="../../image/no_page/no_goods.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+<script type="text/javascript">
+    var vm;
+    apiready = function() {
+        fnInit();
+        fnInitPage();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                listData: [],
+                isLoad:false,
+                pageNo:1
+            }
+        })
+    }
+    function fnInitPage() {
+        fnGetGoodsList();
+        fnAddHeaderRefreshingEvent(function() { //设置下拉刷新
+            fnGetGoodsList('headerRefreshing');
+        });
+
+        fnAddFooterLoadingEvent(function() { // 设置上拉加载
+            fnGetGoodsList('load');
+        });
+
+    }
+
+    function fnGetGoodsList(pSign) {
+        if (pSign != "load") { //刷新
+            if (pSign != "headerRefreshing") {
+                $S.ShowProgress();
+            }
+            vm.pageNo = 1;
+        } else { //加载
+            $S.ShowProgress();
+        }
+        var postData = {
+            "pageNo": vm.pageNo,
+            "pageSize": "10"
+        }
+        $S.POST("apiTeacherLogin/findGoodsList", postData, function(ret, err) {
+            if (ret && ret.status == "200") {
+                if (vm.pageNo == '1') {
+                    vm.listData = [];
+                }
+                vm.listData.push.apply(vm.listData, ret.data.listData);
+                vm.pageNo++;
+            }
+            $S.CloseProgress();
+            api.refreshHeaderLoadDone();
+            vm.isLoad = true;
+        })
+    }
+</script>
+
+
+</html>

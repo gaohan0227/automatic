@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
+    <script type="text/javascript" src="../../libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
+    <script type="text/javascript" src="../../js/tool.js"></script>
+    <script type="text/javascript" src="../../js/pageInit.js"></script>
+    <title>个人中心</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f7f7f7;
+        }
+
+        .classDetailVue {
+            width: 100%;
+            padding-bottom:100px;
+        }
+
+        .my_class {
+            width: 100%;
+            padding: 31px 30px;
+            padding-bottom: 40px;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .my_class .my_class_title {
+            height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            position: relative;
+            display: flex;
+            color: #2f2f2f;
+            align-items: center;
+            padding: 0;
+        }
+
+        .my_class .my_class_title:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            background: #F7D76D;
+            border-radius: 2px;
+            width: 3px;
+        }
+
+        .my_class .my_class_title p {
+            padding: 0 18px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .my_class .class_detail_info {
+            width: 100%;
+            height: 189px;
+            background: linear-gradient(147deg, rgba(254, 189, 117, 1) 0%, rgba(254, 139, 139, 1) 100%);
+            border-radius: 8px;
+            padding: 0 33px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .my_class .class_detail_info div {
+            overflow: hidden;
+            color: #fff;
+            flex: 2;
+        }
+
+        .my_class .class_detail_info div:last-child {
+            text-align: center;
+            flex: 1;
+        }
+
+        .my_class .class_detail_info div p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .my_class .class_detail_info div img {
+            width: 73px;
+            height: 73px;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 1);
+            border-radius: 100%;
+            margin-bottom: 18px;
+        }
+
+        .my_class .class_detail_info div .class_name {
+            font-size: 29px;
+            font-weight: 600;
+            line-height: 41px;
+            padding-bottom: 28px;
+        }
+
+        .my_class .class_detail_info div .class_material {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 30px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .my_class .class_detail_info div .class_material span {
+            width: 50%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .my_class .class_detail_info div .class_teacher_name {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+        }
+
+        .my_class_student {
+            margin-top: 20px;
+            width: 100%;
+            padding: 31px 2px;
+            padding-bottom: 40px;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .my_class_student .my_class_student_title {
+            height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            position: relative;
+            display: flex;
+            color: #2f2f2f;
+            align-items: center;
+            padding: 0 31px;
+        }
+
+        .my_class_student .my_class_student_title:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            background: #F7D76D;
+            border-radius: 2px;
+            width: 3px;
+        }
+
+        .my_class_student .my_class_student_title p {
+            padding: 0 18px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .my_class_student .class_detail_student_list {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .my_class_student .class_detail_student_list .class_detail_student_item {
+            width: 12.5%;
+            overflow: hidden;
+            text-align: center;
+            padding-top: 38px;
+            padding-bottom: 12px;
+        }
+
+        .my_class_student .class_detail_student_list .class_detail_student_item img {
+            width: 77px;
+            height: 77px;
+            margin: 0 auto;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+
+        .my_class_student .class_detail_student_list .class_detail_student_item .student_name {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 10px;
+            padding-top: 12px;
+            font-size: 22px;
+            color: #2f2f2f;
+            line-height: 30px;
+        }
+
+        .my_class_student .class_student_btn {
+            width: 260px;
+            margin: 0 auto;
+            text-align: center;
+            height: 56px;
+            line-height: 56px;
+            background: rgba(255, 212, 70, 1);
+            box-shadow: 0px 6px 20px -7px rgba(255, 188, 13, 1);
+            border-radius: 35px;
+            margin-top: 153px;
+            margin-bottom: 177px;
+            font-size: 28px;
+            color: #2f2f2f;
+            letter-spacing: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="classDetailVue" v-cloak>
+        <div class="my_class">
+            <div class="my_class_title">
+                <p>我的班级</p>
+            </div>
+            <div class="class_detail_info">
+                <div>
+                    <p class="class_name">班级名称</p>
+                    <div class="class_material">
+                        <span>课程：Going Plase</span>
+                        <span>级别：3</span>
+                    </div>
+                </div>
+                <div>
+                    <img src="../../img/index/mine.png" alt="">
+                    <p class="class_teacher_name">姜帅帅老师</p>
+                </div>
+            </div>
+        </div>
+        <div class="my_class_student">
+            <div class="my_class_student_title">
+                <p>学生列表</p>
+            </div>
+            <div class="class_detail_student_list">
+                <div class="class_detail_student_item">
+                    <img src="../../img/index/mine.png" alt="">
+                    <p class="student_name">学生姓名</p>
+                </div>
+            </div>
+            <div class="class_student_btn">返回</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../js/vue.min.js"></script>
+<script type="text/javascript" src="../../js/service/service-tool.js"></script>
+<script type="text/javascript" src="../../js/service/service-verify.js"></script>
+<script type="text/javascript">
+    var vm;
+    window.onload = function () {
+        fnInit();
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".classDetailVue",
+            data: {
+                classList: [{}, {}, {}, {}],
+                bgColor: ['linear-gradient(147deg,#FEBD75 0%,#FE8B8B 100%)', 'linear-gradient(147deg,#75D0FE 0%,#8BB0FE 100%)', 'linear-gradient(147deg,#63EBB4 0%,#50E5AB 100%)', 'linear-gradient(147deg,#FFB5B5 0%,#FB90AB 100%)',
+                    'linear-gradient(147deg,#B68EFD 0%,#7E72FF 100%)'
+                ],
+            },
+            methods: {
+
+            },
+            watch: {
+
+            }
+        })
+    }
+</script>
+
+</html>

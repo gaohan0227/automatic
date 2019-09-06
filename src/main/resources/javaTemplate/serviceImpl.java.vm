@@ -1,0 +1,92 @@
+package ${package.ServiceImpl};
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import ${cfg.query};
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+@Transactional
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+
+    @Autowired
+    private ${table.mapperName} ${table.entityPath}Mapper;
+
+    @Override
+    public IPage<${entity}> selectPage(${entity} ${table.entityPath},${cfg.queryName} ${cfg.queryParamName}){
+        LambdaQueryWrapper<${entity}> entityWrapper=new QueryWrapper<${entity}>().lambda();
+        getEntityWrapper(entityWrapper,${table.entityPath});
+        #if(${cfg.timeBetween})
+                getEntityWrapperTimeBetween(entityWrapper,${cfg.queryParamName});
+        #end
+
+        #if(${cfg.orderBy})
+                getEntityWrapperTimeOrderBy(entityWrapper);
+        #end
+        return ${table.entityPath}Mapper.selectPage(${cfg.queryParamName},entityWrapper);
+    }
+
+
+        /**
+         *  公共查询条件
+         * @param entityWrapper
+         * @return
+         */
+    private LambdaQueryWrapper<${entity}> getEntityWrapper(LambdaQueryWrapper<${entity}> entityWrapper,${entity} ${table.entityPath}){
+        //条件拼接
+        #foreach($field in ${table.fields})
+        if(ObjectUtils.isNotNull(${table.entityPath}.get${field.capitalName}())){
+            entityWrapper.eq(${entity}::get${field.capitalName},${table.entityPath}.get${field.capitalName}());
+        }
+        #end
+        return entityWrapper;
+    }
+#if(${cfg.timeBetween})
+    /**
+     *  时间查询条件
+     * @param entityWrapper
+     * @return
+     */
+    private LambdaQueryWrapper<${entity}> getEntityWrapperTimeBetween(LambdaQueryWrapper<${entity}> entityWrapper,${cfg.queryName} ${cfg.queryParamName}){
+        //条件拼接
+        if(ObjectUtils.isNotNull(${cfg.queryParamName}.getBeginTime())){
+            entityWrapper.ge(${entity}::${cfg.timeBetweenLambdaColumn},${cfg.queryParamName}.getBeginTime());
+        }
+        if(ObjectUtils.isNotNull(${cfg.queryParamName}.getEndTime())){
+            entityWrapper.le(${entity}::${cfg.timeBetweenLambdaColumn},${cfg.queryParamName}.getEndTime());
+        }
+        return entityWrapper;
+    }
+#end
+#if(${cfg.orderBy})
+    /**
+     *  排序查询条件
+     * @param entityWrapper
+     * @return
+     */
+    private LambdaQueryWrapper<${entity}> getEntityWrapperTimeOrderBy(LambdaQueryWrapper<${entity}> entityWrapper){
+
+        entityWrapper.orderBy(true,${cfg.orderIsAsc},${entity}::${cfg.orderByLambdaColumn});
+
+        return entityWrapper;
+    }
+#end
+}

@@ -1,0 +1,163 @@
+.index_header {
+    padding: 0 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2rem;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.index_header img {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+.index_header p {
+    flex: 1;
+    padding-left: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.index_swiper .swiper-container {
+    width: 100%;
+    padding: 0.5rem 0;
+    padding-bottom: 0.7rem;
+}
+
+.index_swiper .swiper-container .swiper-wrapper .swiper-slide {
+    width: 91.5%;
+    position: relative;
+    /*border-radius: 0.4rem;*/
+}
+
+.index_swiper .swiper-container .swiper-wrapper .swiper-slide:before {
+    content: "";
+    padding-top: 50%;
+    background: url(../../image/no_page/index_banner.png) no-repeat;
+    background-size: 100% 100%;
+    display: block;
+    border-radius: 0.4rem;
+}
+
+.index_swiper .swiper-container .swiper-wrapper .swiper-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.4rem;
+}
+
+.swiper-container>.swiper-pagination-bullets {
+    bottom: 0rem;
+    line-height: 0.2rem;
+}
+
+.swiper-pagination-bullet {
+    width: 0.2rem;
+    height: 0.2rem;
+    background: #eaeaea;
+    border-radius: 0.1rem;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    width: 0.6rem;
+    height: 0.2rem;
+    background: #5296FF;
+    border-radius: 0.1rem;
+}
+
+.index_teacher_region {
+    padding: 2.2% 12.5%;
+    background: #fff;
+}
+.index_teacher_region .one {
+    box-shadow:0px 24px 32px -24px rgba(89,201,143,1);
+}
+.index_teacher_region .two {
+    box-shadow:0px 24px 32px -24px rgba(249,117,85,1);
+    margin: 0 1.56%;
+}
+.index_teacher_region .three {
+    box-shadow:0px 24px 32px -24px rgba(85,150,250,1);
+}
+
+.hot_recommend {
+    padding: 0 11.78%;
+}
+
+.hot_recommend .hot_recommend_title p {
+    color: #2F2F2F;
+    text-align: center;
+    font-size: 44px;
+    font-weight: bolder;
+    padding: 30px 0 15px;
+}
+
+.hot_recommend .hot_recommend_list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    padding-bottom: 35px;
+}
+
+.hot_recommend .hot_recommend_list .hot_recommend_item {
+    width: 50%;
+    padding: 15px 0.78%;
+    background-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow:0px 4px 34px 0px rgba(0,0,0,0.06);
+}
+
+.hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img {
+    width: 100%;
+    position: relative;
+}
+
+.hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img:before {
+    content: "";
+    padding-top: 62.5%;
+    background: url(../../image/no_page/index_dub.png) no-repeat;
+    background-size: 100% 100%;
+    display: block;
+}
+
+.hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img .hot_recommend_item_cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.3rem;
+}
+
+.hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_img .hot_recommend_item_btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.1rem;
+    height: 2.1rem;
+    transform: translate(-50%, -50%);
+}
+
+.hot_recommend .hot_recommend_list .hot_recommend_item .hot_recommend_item_title {
+    font-size: 26px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 130px;
+    line-height: 130px;
+    color: #2f2f2f;
+    background: #fff;
+    padding: 0 28px;
+    box-sizing: border-box;
+}

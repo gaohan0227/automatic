@@ -1,0 +1,11 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/message_detail.css">
+<div class="vueApp" v-cloak>
+        <div class="message_detail" v-if="mesInfo!=''">
+            <div class="message_detail_info">
+                <p class="message_detail_title">{{mesInfo.title}}</p>
+                <p class="message_detail_time">{{mesInfo.createDate|fnSetDate('release_date')}}</p>
+            </div>
+            <div class="message_detail_content" id="message_detail" v-html="mesInfo.context"></div>
+            <p class="message_detail_publisher">发布人: {{mesInfo.userName}}</p>
+        </div>
+    </div>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="date=no" />
+    <title>系统设置</title>
+    <link href="../css/api.css" rel="stylesheet" type="text/css">
+    <link href="../css/aui.css" rel="stylesheet" type="text/css">
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .setting_list {
+            padding: 0 0.8rem;
+        }
+
+        .setting_list .setting_item {
+            position: relative;
+            height: 2.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .setting_list .setting_item:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #EAEAEA;
+        }
+
+        .setting_list .setting_item p {
+            flex: 1;
+            font-size: 0.75rem;
+            color: #2F2F2F;
+            padding-right: 0.8rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .setting_list .setting_item span {
+            width: auto;
+            font-size: 0.75rem;
+            color: #6D6D6D;
+            padding-right: 0.15rem;
+        }
+
+        .setting_list .setting_item img {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .setting_fixed {
+            padding: 1rem 0.8rem;
+            padding-top: 0.7rem;
+            position: fixed;
+            bottom: 0rem;
+            left: 0;
+            width: 100%;
+            height: 4rem;
+            background: #fff;
+        }
+
+        .setting_fixed .setting_btn {
+            width: 100%;
+            height: 2.4rem;
+            border-radius: 1.2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            line-height: 2.4rem;
+            background: #fff;
+            color: #2F2F2F;
+            border: 1px solid #D5D5D5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vueApp" v-cloak>
+        <div class="setting_list">
+            <div class="setting_item" tapmode onclick="fnClearCache()">
+                <p>清除缓存</p>
+                <span v-text="cache=='0B'?'暂无缓存':cache"></span>
+                <img src="../image/mine/go_page_mine.png" alt="">
+            </div>
+            <div class="setting_item">
+                <p>检查更新</p>
+                <span>最新版本</span>
+                <img src="../image/mine/go_page_mine.png" alt="">
+            </div>
+        </div>
+        <div style="height:5rem;width:100%;"></div>
+        <div class="setting_fixed" tapmode onclick="fnLogout()">
+            <div class="setting_btn">退出登录</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.min.js"></script>
+<script type="text/javascript" src="../script/service/service-app.js"></script>
+<script type="text/javascript" src="../script/service/service-tool.js"></script>
+<script type="text/javascript" src="../script/service/service-font.js"></script>
+<script type="text/javascript" src="../script/service/service-user.js"></script>
+<script type="text/javascript" src="../script/service/service-login.js"></script>
+<script type="text/javascript" src="../script/service/service-verify.js"></script>
+<script type="text/javascript">
+    var $S, USER;
+    var vm;
+    var appVersion;
+    apiready = function() {
+        $S = SERVICE();
+        USER = USER();
+        appVersion = api.appVersion;
+        fnInit();
+        fnCache();//获取缓存的大小
+    }
+
+    function fnInit() {
+        vm = new Vue({
+            el: ".vueApp",
+            data: {
+                appVersion: appVersion,
+                cache:"0B"
+            }
+        })
+    }
+
+    function fnBack() {
+        fnDelayCloseWin()
+    }
+    // 退出登录
+    function fnLogout() {
+        var param = {
+            alertFn: "logount()",
+            alertType: "3"
+        }
+        fnOpenAlert(param)
+    }
+
+    function logount() {
+        USER.Clear();
+        api.sendEvent({
+            name: 'loginStatus',
+            extra: {
+                login: false,
+            }
+        });
+    }
+
+    //获取缓存的大小
+    function fnCache() {
+        api.getCacheSize(function(ret) {
+            var size = ret.size;
+            if (size > 0) {
+                vm.cache = bytesToSize(size)
+            } else {
+                vm.cache = "0B";
+            }
+        });
+    }
+    //清除缓存
+    function fnClearCache() {
+        if (vm.cache != "0B") {
+            api.clearCache(function() {
+                var param = {
+                    name: 'clear_cache',
+                    url: './clear_cache.html',
+                    useWKWebView: true,
+                    bgColor: 'rgba(0,0,0,0)',
+                    rect: {
+                        x: 0,
+                        y: 0,
+                        w: "auto",
+                        h: "auto"
+                    }
+                }
+                fnOpenFrame(param);
+                vm.cache = "0B";
+            });
+        } else {
+            //因为存在清除缓存没有清除干净的情况，所以暂无缓存时，也走一次清除缓存。
+            api.clearCache(function() {});
+        }
+    }
+
+
+    //计算缓存大小
+    function bytesToSize(bytes) {
+        if (bytes === 0) return '0B';
+        var k = 1024;
+        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.floor((bytes / Math.pow(k, i))) + ' ' + sizes[i];
+    }
+</script>
+
+</html>

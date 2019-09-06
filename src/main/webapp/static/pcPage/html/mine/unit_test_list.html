@@ -1,0 +1,22 @@
+
+    <div class="unitTestVue" v-cloak>
+        <div class="my_unit_test" v-if="isLoad">
+            <div class="my_unit_test_title">
+                <p>单元测试</p>
+            </div>
+            <div class="my_unit_test_list">
+                <div class="my_unit_test_item" v-for="item,index in unitTestList">
+                    <div class="my_unit_test_item_info">
+                        <img src="../img/mine/unit_test.png" alt="">
+                        <p class="unit_name">{{item.moduleName}}</p>
+                        <p class="unit_text_btn">去测试</p>
+                    </div>
+                </div>
+            </div>
+            <div class="none_data" v-if="unitTestList.length==0">
+                <div>
+                    <img src="../img/no_page/no_test.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,37 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/job_publish.css">
+<div class="vueApp" v-cloak>
+        <div class="release_list">
+            <div class="release_item" tapmode onclick="fnChangeClass()">
+                <img class="release_type_img" src="../img/teacher/release/class_name.png" alt="">
+                <div class="release_type" v-if="classId==''">选择班级</div>
+                <div class="release_type" v-else-if="classId!=''">
+                    <p>{{className}}</p>
+                    <p>{{unitName}}</p>
+                </div>
+                <img src="../img/teacher/index/go_page_job.png" alt="">
+            </div>
+        </div>
+        <div v-if="classId!=''">
+            <div class="job_type_list" v-if="!readyRelease">
+                <div class="job_type_item" tapmode @click="fnOpenJobTypeDeatil(item.id)" v-for="item in jobModule">
+                    <span>{{item.moduleName}}</span>
+                    <img src="../img/teacher/index/go_page_job.png" alt="">
+                </div>
+            </div>
+            <div class="job_question" v-else-if="readyRelease">
+                <div class="job_question_title">
+                    <span>题型内容</span>
+                </div>
+                <div class="job_question_list">
+                    <div class="job_question_item" tapmode v-for="item in questionIdList">
+                        <span>{{item.questionName}}</span>
+                        <img src="../img/teacher/index/go_page_job.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:5rem;width:100%;"></div>
+        <div class="release_fixed">
+            <div :class="questionIdList.length>0?'release_btn':'release_btn gray_bg'" v-text="questionIdList.length>0?'立即发布('+questionIdList.length+')':'立即发布'" tapmode @click="questionIdList.length>0?fnSubmit():''"></div>
+        </div>
+    </div>

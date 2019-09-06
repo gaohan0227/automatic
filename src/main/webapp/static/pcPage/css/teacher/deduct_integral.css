@@ -1,0 +1,64 @@
+.vueApp {
+            width: 100%;
+            height: 100%;
+            background-color: #F7F7F7;
+            padding-top: 0.3rem;
+        }
+
+        .add_student_tips {
+            font-size: 0.65rem;
+            color: #6D6D6D;
+            line-height: 0.9rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .add_student_item {
+            height: 2.5rem;
+            width: 100%;
+            display: flex;
+            padding: 0 0.8rem;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFF;
+        }
+
+        .add_student_item input {
+            flex: 1;
+            height: 2.5rem;
+            padding: 0.6rem 0;
+            line-height: 1.3rem;
+            width: 100%;
+            font-size: 0.7rem;
+            color: #2F2F2F;
+        }
+
+        .add_student_item img {
+            width: 0.9rem;
+            height: 0.9rem;
+            margin: 0.5rem 0;
+            margin-left: 0.5rem;
+        }
+
+        .add_student_item input::-webkit-input-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        .add_student_item input:-moz-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        .add_student_item input::-moz-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }
+
+        .add_student_item input:-ms-input-placeholder {
+            line-height: 1.3rem;
+            color: #ACACAC;
+            font-size: 0.7rem;
+        }

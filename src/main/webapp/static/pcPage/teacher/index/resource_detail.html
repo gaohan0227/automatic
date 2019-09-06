@@ -1,0 +1,20 @@
+<link rel="stylesheet" type="text/css" href="../css/teacher/resource_detail.css">
+<div class="vueApp" v-cloak>
+        <header>
+            <div class="resource_detail_header">
+                <img src="../image/release/back_w.png" alt="" tapmode onclick="fnBack()">
+                <span>{{name}}</span>
+            </div>
+        </header>
+        <div class="resource_detail_card">
+            <div class="resource_detail_list">
+                <div class="resource_detail_item" v-for="item,index in listData" tapmode @click="fnOpenDetail(item.moduleName,item.id)">
+                    <span :style="{background:bgColor[Math.floor(index%6)]}"></span>
+                    <p class="resource_detail_item_name">{{item.moduleName}}</p>
+                    <img v-if="item.ifDeblovk!='1'" class="resource_detail_lock" src="../image/index/resource_detail_lock.png" alt="">
+                    <img src="../image/index/go_page_resource.png" alt="">
+                </div>
+            </div>
+            <div :class="isLock?'resource_detail_btn':'resource_detail_btn gray_bg'" tapmode @click="isLock?fnOpenTeacherTest():''" v-text="answerStatus=='1'?'测试历史':'前往测试'"></div>
+        </div>
+    </div>

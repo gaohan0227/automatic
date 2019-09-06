@@ -1,0 +1,89 @@
+<div class="homeVue" v-cloak>
+    <div class="index_swiper">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <ol class="carousel-indicators">
+                <li data-target='#myCarousel' :data-slide-to="index" :class="index=='0'?'active':''"
+                    v-for="item,index in indexInfo.schoolBannerList"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div :class="index=='0'?'item active':'item'" v-for="item,index in indexInfo.schoolBannerList">
+                    <img :src="item.schoolRotationchartUrl" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home_info">
+        <div class="home_info_div">
+            <div class="home_info_content">
+                <div class="home_info_title">
+                    <img src="../img/index/material.png" alt="">
+                    <span>当前教材</span>
+                </div>
+                <div class="material_info">
+                    <div class="material_img">
+                        <div class="material_content">
+                            <div class="material_cover">
+                                <img :src="schoolInfo.materialInfoId!=''?schoolInfo.materialCoverUrl:'../img/index/material_left.pn'" alt="">
+                            </div>
+                            <div class="material_detail">
+                                <p v-text="schoolInfo.materialInfoId!=''?'教材名称':'暂无教材'"></p>
+                                <p class="material_name" v-if="schoolInfo.materialInfoId!=''"><span>{{schoolInfo.materialName}}</span><em>&nbsp;{{schoolInfo.materialLevelName}}</em></p>
+                                <p class="material_btn" onclick="fnOpenPage('选择教材','dub/textbook_list','textbook_list')">选择教材</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="material_model_btn">
+                        <img src="../img/index/topic.png" alt="">
+                        <img src="../img/index/dub_show.png" alt="" onclick="fnOpenPage('dub/dub_show','dub_show')">
+                        <img src="../img/index/read.png" alt="" onclick="fnOpenPage('dub/bookshelf','bookshelf')">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home_info_div home_dub_show" v-if="indexInfo.hotList.length>0">
+            <div class="home_info_content">
+                <div class="home_info_title">
+                    <img src="../img/index/dub.png" alt="">
+                    <span>热门配音</span>
+                    <span class="my_dub_line"></span>
+                    <span class="my_dub">我的配音</span>
+                </div>
+                <div class="dub_show_info">
+                    <div class="dub_show_item" v-for="item,index in indexInfo.hotList">
+                        <div class="dub_show_item_info" @mouseover="fnHover(index,'1')" @mouseout="fnHover(index,'0')">
+                            <div class="dub_show_img">
+                                <img :src="item.videoCoverReal" alt="">
+                                <div class="dub_show_hover" v-if="item.isHover=='1'">
+                                    <img src="../img/index/video_btn.png" alt="">
+                                </div>
+                            </div>
+                            <p>{{item.videoNameReal}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home_info_div" v-if="indexInfo.hotBookList.length>0">
+            <div class="home_info_content">
+                <div class="home_info_title">
+                    <img src="../img/index/book.png" alt="">
+                    <span>推荐书籍</span>
+                </div>
+                <div class="book_info">
+                    <div class="dub_info_list">
+                        <div class="book_info_item" v-for="item,index in indexInfo.hotBookList" v-if="index<3">
+                            <div class="book_info_item_cover">
+                                <img :src="item.booksCoverUrl" alt="">
+                            </div>
+                            <p>{{item.booksName}}</p>
+                        </div>
+                    </div>
+                    <div class="dub_show_bg">
+                        <img src="../img/index/read_bottom.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

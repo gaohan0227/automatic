@@ -1,0 +1,34 @@
+
+    <div class="myDubListVue" v-cloak>
+        <div v-if="isLoad">
+        <div class="my_dub_title">
+            <p :class="newIndex=='1'?'my_dub_title_item active':'my_dub_title_item'" @click="fnSetIndex('1')">已发布</p>
+            <p :class="newIndex=='2'?'my_dub_title_item active':'my_dub_title_item'" @click="fnSetIndex('2')">未发布</p>
+        </div>
+        <div class="my_dub_list">
+            <div class="my_dub_item_width" v-for="item,index in myDubList">
+                <div class="my_dub_item" @mouseover="fnHover(index,'1')" @mouseout="fnHover(index,'0')">
+                    <div class="my_dub_show_img">
+                        <img :src="item.videoCover" alt="">
+                        <div class="my_dub_show_hover" v-if="item.isHover=='1'">
+                            <img src="../img/index/video_btn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="my_dub_item_content">
+                        <div class="dub_show_info">
+                            <span class="dub_show_name">{{item.videoName}}</span>
+                            <img :src="item.praiseStatus=='1'?'../img/mine/my_dub_like.png':'../img/mine/my_dub_no_like.png'"
+                                alt="">
+                            <span class="dub_show_like_num">{{item.praiseNum}}</span>
+                        </div>
+                        <p class="dub_show_time">{{formatTime(item.updateDate,'date')}}</p>
+                        <div class="dub_show_result">
+                            <span class="dub_show_unit">{{item.moduleName}}</span>
+                            <span class="dub_show_score">{{item.countScore}}分</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

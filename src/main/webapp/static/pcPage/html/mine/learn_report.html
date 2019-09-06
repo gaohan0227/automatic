@@ -1,0 +1,143 @@
+<div class="learnReportVue" v-cloak>
+    <div class="learn_report" :style="{background:bgColor[newIndex]}">
+        <div class="learn_report_title">
+            <div :class="newIndex=='0'?'learn_report_title_item active':'learn_report_title_item'"
+                @click="fnSetIndex('0')">配音秀</div>
+            <div
+                :class="newIndex=='0'?'learn_report_title_item_line left':(newIndex=='1'?'learn_report_title_item_line right':'learn_report_title_item_line')">
+            </div>
+            <div :class="newIndex=='1'?'learn_report_title_item active':'learn_report_title_item'"
+                @click="fnSetIndex('1')">我的作业</div>
+            <div
+                :class="newIndex=='1'?'learn_report_title_item_line left':(newIndex=='2'?'learn_report_title_item_line right':'learn_report_title_item_line')">
+            </div>
+            <div :class="newIndex=='2'?'learn_report_title_item active':'learn_report_title_item'"
+                @click="fnSetIndex('2')">单元测试</div>
+            <div
+                :class="newIndex=='2'?'learn_report_title_item_line left':(newIndex=='3'?'learn_report_title_item_line right':'learn_report_title_item_line')">
+            </div>
+            <div :class="newIndex=='3'?'learn_report_title_item active':'learn_report_title_item'"
+                @click="fnSetIndex('3')">勇闯关</div>
+            <div :class="newIndex=='3'?'learn_report_title_item_line left':'learn_report_title_item_line'"></div>
+            <div class="learn_report_change_unit"></div>
+        </div>
+        <div class="learn_report_content">
+            <div v-if="newIndex=='0'&&dubIsLoad">
+                <div class="dub_show_report_info">
+                    <div class="dub_show_report_item">
+                        <div class="dub_show_report_item_bg">
+                            <img src="../img/mine/dub_time.png" alt="">
+                            <div>
+                                <p v-text="dubReportInfo.timeNum>0?parseInt(dubReportInfo.timeNum):'0'"></p>
+                                <span>总时长/分</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <div class="dub_show_report_item_bg">
+                            <img src="../img/mine/dub_num.png" alt="">
+                            <div>
+                                <p v-text="dubReportInfo.countNum>0?dubReportInfo.countNum:'0'"></p>
+                                <span>总数量/个</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <div class="dub_show_report_item_bg">
+                            <img src="../img/mine/dub_share.png" alt="">
+                            <div>
+                                <p v-text="dubReportInfo.clickCountNum>0?dubReportInfo.clickCountNum:'0'"></p>
+                                <span>总分享/次</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <div class="dub_show_report_item_bg">
+                            <img src="../img/mine/dub_like.png" alt="">
+                            <div>
+                                <p v-text="dubReportInfo.praiseNum>0?dubReportInfo.praiseNum:'0'"></p>
+                                <span>总赞数/个</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="newIndex=='1'&&taskIsLoad">
+                <div class="task_report_card">
+                    <div class="task_report_card_header" v-if="taskReportInfo.length>0">
+                        <div class="task_report_card_header_item">
+                            <p>时间</p>
+                        </div>
+                        <div class="task_report_card_header_item">
+                            <p>做题数</p>
+                        </div>
+                        <div class="task_report_card_header_item">
+                            <p>完成度</p>
+                        </div>
+                        <div class="task_report_card_header_item">
+                            <p>正确率</p>
+                        </div>
+                    </div>
+                    <div class="task_report_card_content" v-if="taskReportInfo.length>0">
+                        <div class="task_report_card_content_list" v-for="item in taskReportInfo">
+                            <p class="task_report_time">{{item.createDate|fnSetDate('report')}}</p>
+                            <p class="task_report_question_num">{{item.ztNum}}</p>
+                            <p class="task_report_complete">{{item.wcdu}}</p>
+                            <p class="task_report_correct">{{item.zqdu}}</p>
+                        </div>
+                    </div>
+                    <div class="none_data" v-else>
+                        <div>
+                            <img src="../img/no_page/no_task.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="newIndex=='2'&&testIsLoad">
+                <div class="unit_test_report">
+                    <div class="unit_test_report_title">
+                        <img src="../img/mine/topic_num.png" alt="">
+                        <div>
+                            <p>{{testScore}}分</p>
+                            <span>测试分数</span>
+                        </div>
+                    </div>
+                    <div class="unit_test_report_info">
+                        <div class="unit_test_report_title">答题卡</div>
+                        <div class="unit_test_report_line"></div>
+                        <div class="unit_test_report_question">
+                            <div class="unit_test_report_question_item" v-for="item,index in testReportInfo">
+                                <div
+                                    :class="item.doStatus=='1'?'question_item_num question_item_success':(item.doStatus=='2'?'question_item_num question_item_fail':'question_item_num')">
+                                    <span>{{index|fnIndexNum}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="newIndex=='3'&&topicIsLoad">
+                <div class="dub_show_report_info" style="margin-bottom:230px;">
+                    <div class="dub_show_report_item">
+                        <div class="dub_show_report_item_bg">
+                            <img src="../img/mine/topic_time.png" alt="">
+                            <div>
+                                <p>{{parseInt(topicTotalDuration)}}</p>
+                                <span>总时长/分</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dub_show_report_item">
+                        <div class="dub_show_report_item_bg">
+                            <img src="../img/mine/topic_num.png" alt="">
+                            <div>
+                                <p>{{topicCompletionDegree}}%</p>
+                                <span>完成度</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

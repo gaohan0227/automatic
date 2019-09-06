@@ -1,0 +1,30 @@
+server:
+  port: 9802
+  servlet:
+    context-path:
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package: priv.bigant.automatic
+  global-config:
+    db-config:
+      logic-delete-value: true # �߼���ɾ��ֵ(Ĭ��Ϊ 1)
+      logic-not-delete-value: false # �߼�δɾ��ֵ(Ĭ��Ϊ 0)
+
+
+#路径,在webapp文件夹下新建文件夹WEB-INF,在往下建文件夹jsp
+spring:
+  messages:
+    basename: i18n/messages
+    encoding: utf-8
+
+  datasource:
+    url: jdbc:mysql://www.bigant.ltd:3306/autocode?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: Qq27689480
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    view:
+      prefix: /webpage/
+      suffix: .jsp
